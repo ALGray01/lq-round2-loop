@@ -19,33 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-SCOPE OF THIS LICENCE
-
-The licence above covers the material in this repository that is mine to
-licence. Two categories are not, and are excluded from the grant above:
-
-1. The question briefs at `dry-runs/*/QUESTION.md`.
-   These are LegalQuants' own assessment material, reproduced here because
-   they are published in their public baselines repository at
-   https://github.com/LegalQuants/lq-assess-machine-baselines. They are
-   included for reference so each run's output can be read against the brief
-   it was answering. Nothing above grants any right in them, and any reuse is
-   a matter for LegalQuants rather than for me.
-
-2. The source documents under `dry-runs/OQ-010/documents/` and
-   `dry-runs/OQ-010-v2/documents/`.
-   These are third-party public-domain records — an 1827 probate bond from
-   the Supreme Court of New South Wales, a 1755 Virginia land indenture from
-   the Augusta County Circuit Court Archive, a page of a United States
-   federal court filing, and a US federal FOIA production. They were already
-   in the public domain when I obtained them; they are not mine, I claim no
-   copyright in them, and the licence above neither adds to nor subtracts
-   from their existing status. Provenance and attribution for each are
-   recorded in the README of the run that uses it.
-
-Everything else — the loop harness, its tests and scripts, the design notes,
-and the output the loop generated in each dry run — is covered by the MIT
-licence above.

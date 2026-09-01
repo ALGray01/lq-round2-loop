@@ -1,0 +1,34 @@
+SCOPE OF THE MIT LICENCE IN THIS REPOSITORY
+
+The MIT licence in LICENSE covers the material in this repository that is mine
+to license: the loop harness, its tests and scripts, the design notes, and the
+output the loop itself generated in each dry run.
+
+Two categories are not mine to license, and are excluded from that grant.
+
+1. The question briefs — dry-runs/*/QUESTION.md
+
+   These are LegalQuants' own assessment material, reproduced here because
+   they are published in their public baselines repository at
+   https://github.com/LegalQuants/lq-assess-machine-baselines. They are
+   included for reference, so each run's output can be read against the brief
+   it was answering. Nothing in LICENSE grants any right in them, and any
+   reuse is a matter for LegalQuants rather than for me.
+
+2. The source documents — dry-runs/OQ-010/documents/ and
+   dry-runs/OQ-010-v2/documents/
+
+   These are third-party public-domain records:
+
+   - an 1827 handwritten probate bond from the Supreme Court of New South
+     Wales (In the Goods of James Squire), via Wikimedia Commons;
+   - a 1755 Virginia land indenture, digitised by the Augusta County Circuit
+     Court Archive;
+   - a page of a United States federal court filing (United States v.
+     Manafort, D.D.C. 17-cr-201, Doc. 525);
+   - a United States federal FOIA production.
+
+   They were already in the public domain when obtained. They are not mine, I
+   claim no copyright in them, and LICENSE neither adds to nor subtracts from
+   their existing status. Provenance and attribution for each are recorded in
+   the README of the run that uses it.

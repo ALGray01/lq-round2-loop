@@ -308,7 +308,7 @@ is removed on exit.
 
 MIT — see [`LICENSE`](LICENSE). Take it and build on it.
 
-Two things in here aren't mine to license, and the licence says so explicitly:
+Two things in here aren't mine to license, and [`NOTICE`](NOTICE) says so explicitly:
 
 - **The question briefs** (`dry-runs/*/QUESTION.md`) are LegalQuants' own,
   reproduced because they're published in their public
