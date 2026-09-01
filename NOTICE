@@ -4,7 +4,7 @@ The MIT licence in LICENSE covers the material in this repository that is mine
 to license: the loop harness, its tests and scripts, the design notes, and the
 output the loop itself generated in each dry run.
 
-Two categories are not mine to license, and are excluded from that grant.
+Three categories are not mine to license, and are excluded from that grant.
 
 1. The question briefs — dry-runs/*/QUESTION.md
 
@@ -32,3 +32,18 @@ Two categories are not mine to license, and are excluded from that grant.
    claim no copyright in them, and LICENSE neither adds to nor subtracts from
    their existing status. Provenance and attribution for each are recorded in
    the README of the run that uses it.
+
+3. Third-party test fixtures — dry-runs/OQ-112-v2/real_world_spotcheck/
+
+   The 12 .eml files in that directory are test fixtures from mailgun/talon
+   (https://github.com/mailgun/talon), redistributed here unmodified under the
+   Apache License, Version 2.0. A copy of that licence sits alongside them as
+   LICENSE-APACHE-2.0.txt, and the directory's own NOTICE.md records where they
+   came from, when, and why. They are not covered by LICENSE; they remain under
+   Apache-2.0, and anyone reusing them takes them on those terms.
+
+   They are not part of the scored 28-file corpus in dry-runs/OQ-112-v2/corpus/,
+   which is entirely synthetic and is covered by LICENSE. The talon fixtures were
+   pulled in by the run itself as an independence check, so that the extractor
+   was tested against genuinely third-party real-world email rather than only
+   against email the same session had written.

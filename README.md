@@ -308,7 +308,7 @@ is removed on exit.
 
 MIT — see [`LICENSE`](LICENSE). Take it and build on it.
 
-Two things in here aren't mine to license, and [`NOTICE`](NOTICE) says so explicitly:
+A few things in here aren't mine to license, and [`NOTICE`](NOTICE) says so explicitly:
 
 - **The question briefs** (`dry-runs/*/QUESTION.md`) are LegalQuants' own,
   reproduced because they're published in their public
@@ -319,6 +319,9 @@ Two things in here aren't mine to license, and [`NOTICE`](NOTICE) says so explic
   Court Archive, a page of a US federal court filing, and a US federal FOIA
   production. Attribution and provenance for each are in the README of the run
   that uses it.
+- **The 12 test fixtures** in `dry-runs/OQ-112-v2/real_world_spotcheck/` come
+  from [mailgun/talon](https://github.com/mailgun/talon) and stay under
+  Apache-2.0, with a copy of that licence alongside them.
 
 Everything else — the harness, the tests, the design notes, and everything the
 loop generated in the dry runs — is covered by the licence.
