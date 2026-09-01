@@ -1,0 +1,47 @@
+=== Head-to-head: bi-temporal graph vs. layered-compartment store vs. flat vector RAG ===
+
+TEST                        GRAPH   COMPART.  BASELINE  NOTES
+--------------------------------------------------------------------------------------------------------------
+T1-current-sol              PASS    PASS      FAIL      Current statute of limitations after the amendment
+    graph:       top-1 matched, no forbidden facts  (top-k: ['A-sol-v2', 'A-party-v2', 'A-precedent-v2'])
+    compartment: top-1 matched, no forbidden facts  (top-k: ['A-sol-v2', 'A-party-v2', 'A-precedent-v2'])
+    baseline:    top-1 was session 1, expected one of [7]  (top-k: ['1', '7', '2'])
+T2-point-in-time-sol        PASS    FAIL      PASS      What we believed the SOL was before the amendment was learned (as of session 4)
+    graph:       top-1 matched, no forbidden facts  (top-k: ['A-sol-v1', 'A-precedent-v1', 'A-precedent-v1-capped'])
+    compartment: forbidden fact(s) surfaced: ['A-sol-v2']  (top-k: ['A-sol-v2', 'A-party-v2', 'A-precedent-v2'])
+    baseline:    top-1 matched, no forbidden sessions  (top-k: ['1', '12', '2'])
+T3-precedent-current        PASS    PASS      PASS      Whether Smith v. Jones is still good law, now (after it was overturned)
+    graph:       top-1 matched, no forbidden facts  (top-k: ['A-precedent-v2', 'A-sol-v2', 'A-party-v2'])
+    compartment: top-1 matched, no forbidden facts  (top-k: ['A-precedent-v2', 'A-sol-v2', 'A-party-v2'])
+    baseline:    top-1 matched, no forbidden sessions  (top-k: ['10', '9', '2'])
+T4-point-in-time-precedent  PASS    FAIL      FAIL      Whether Smith was considered good law as of week 3 / session 6, before the overturning was learned
+    graph:       top-1 matched, no forbidden facts  (top-k: ['A-precedent-v1', 'A-precedent-v1-capped', 'A-sol-v1'])
+    compartment: forbidden fact(s) surfaced: ['A-precedent-v2']  (top-k: ['A-precedent-v2', 'A-sol-v2', 'A-party-v2'])
+    baseline:    forbidden session(s) surfaced: [10]  (top-k: ['10', '9', '12'])
+T5-party-name-control       PASS    PASS      PASS      Party name correction -- control case, baseline is given a fair shot
+    graph:       top-1 matched, no forbidden facts  (top-k: ['A-party-v2', 'A-sol-v2', 'A-precedent-v2'])
+    compartment: top-1 matched, no forbidden facts  (top-k: ['A-party-v2', 'A-sol-v2', 'A-precedent-v2'])
+    baseline:    top-1 matched, no forbidden sessions  (top-k: ['4', '10', '7'])
+T6-isolation-tagging-drift  PASS    PASS      FAIL      Matter-scoped query hitting a source session that was never tagged with a matter_id
+    graph:       top-1 matched, no forbidden facts  (top-k: ['B-vendor-sol', 'B-trust-issue'])
+    compartment: top-1 matched, no forbidden facts  (top-k: ['B-vendor-sol', 'B-trust-issue'])
+    baseline:    top-1 was session 11, expected one of [3]  (top-k: ['11', '8', '5'])
+T7-isolation-no-filter      PASS    PASS      FAIL      What a skipped/forgotten matter filter exposes (routing bug), scoped as Matter A
+    graph:       top-1 matched, no forbidden facts  (top-k: ['A-sol-v2', 'A-party-v2', 'A-precedent-v2'])
+    compartment: top-1 matched, no forbidden facts  (top-k: ['A-sol-v2', 'A-party-v2', 'A-precedent-v2'])
+    baseline:    forbidden session(s) surfaced: [3]  (top-k: ['1', '3', '7'])
+--------------------------------------------------------------------------------------------------------------
+TOTAL: graph 7/7   compartment 5/7   baseline 3/7
+
+=== Sanity check: break the graph store's TIME enforcement (FAILURE-CLASSES #4) ===
+
+  T2-point-in-time-sol: FAIL -- forbidden fact(s) surfaced: ['A-sol-v2']
+  T4-point-in-time-precedent: FAIL -- forbidden fact(s) surfaced: ['A-precedent-v2']
+  Confirmed: scorer correctly flags every previously-passing case in this axis as failing once that axis's enforcement is removed.
+
+=== Sanity check: break the graph store's MATTER-PARTITION enforcement (FAILURE-CLASSES #4) ===
+
+  T2-point-in-time-sol: FAIL -- top-1 was B-vendor-sol, expected one of ['A-sol-v1']
+  T6-isolation-tagging-drift: FAIL -- forbidden fact(s) surfaced: ['A-sol-v2']
+  T7-isolation-no-filter: FAIL -- forbidden fact(s) surfaced: ['B-vendor-sol']
+  Confirmed: scorer correctly flags every previously-passing case in this axis as failing once that axis's enforcement is removed.

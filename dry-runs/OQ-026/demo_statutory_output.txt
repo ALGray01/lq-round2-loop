@@ -1,0 +1,159 @@
+====================================================================================================
+Scenario A -- major questions doctrine gates ordinary interpretation
+----------------------------------------------------------------------------------------------------
+Fact pattern: An agency claims a novel statutory basis for a program of vast economic significance (West Virginia v. EPA's actual fact pattern: EPA claiming Clean Air Act authority to restructure the national power grid). The major-questions threshold rule (priority 5) must dispose of the case before the ordinary plain-meaning rule (priority 10) is reached.
+
+{
+  "clause_id": "statutory_scenario_1",
+  "jurisdiction": "US-federal",
+  "threshold_determination": {
+    "test_applied": "Major questions doctrine (clear-statement gate)",
+    "outcome": "clear congressional authorization required and absent: the interpretation urged would grant the agency authority of vast economic/political significance, so it is rejected regardless of what the bare statutory text could otherwise support (major questions doctrine)",
+    "authority": "case_west_virginia_epa"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: clear congressional authorization required and absent: the interpretation urged would grant the agency authority of vast economic/political significance, so it is rejected regardless of what the bare statutory text could otherwise support (major questions doctrine). No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_west_virginia_epa",
+      "weight": 140.0,
+      "role": "binding"
+    }
+  ]
+}
+
+====================================================================================================
+Scenario B -- same jurisdiction, ordinary plain-meaning question
+----------------------------------------------------------------------------------------------------
+Fact pattern: No major-questions flag this time -- the engine must fall through to the second threshold rule in priority order rather than stopping at the first one it finds.
+
+{
+  "clause_id": "statutory_scenario_2",
+  "jurisdiction": "US-federal",
+  "threshold_determination": {
+    "test_applied": "Statutory plain-meaning rule",
+    "outcome": "statutory text is unambiguous and controls; legislative history/agency interpretation offered as an aid does not override plain text absent an absurd result",
+    "authority": "case_plain_meaning_statutory"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: statutory text is unambiguous and controls; legislative history/agency interpretation offered as an aid does not override plain text absent an absurd result. No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_plain_meaning_statutory",
+      "weight": 140.0,
+      "role": "binding"
+    }
+  ]
+}
+
+====================================================================================================
+Scenario C -- agency interpretation offered, Chevron's overruling surfaces
+----------------------------------------------------------------------------------------------------
+Fact pattern: An agency's own interpretation of a statute it administers is offered as authority. Skidmore respect (not Chevron deference) is the live rule; the annotation must still surface that Chevron -- once the controlling rule -- was overruled by Loper Bright, since a reader unaware of that history could otherwise treat Chevron as good law.
+
+{
+  "clause_id": "statutory_scenario_3",
+  "jurisdiction": "US-federal",
+  "threshold_determination": {
+    "test_applied": "Statutory plain-meaning rule",
+    "outcome": "not reached: no extrinsic aid offered and no facial ambiguity alleged",
+    "authority": "case_plain_meaning_statutory"
+  },
+  "applicable_rules": [
+    {
+      "rule_id": "rule_skidmore_respect",
+      "priority": 20,
+      "weight": 140.0
+    }
+  ],
+  "conflicting_authority": [
+    "pr_loper_overrules_chevron"
+  ],
+  "recommended_interpretive_posture": "Threshold: not reached: no extrinsic aid offered and no facial ambiguity alleged. Controlling interpretive rule: Skidmore respect for agency interpretation (priority 20 of 1 triggered).",
+  "citations": [
+    {
+      "authority_id": "case_loper_bright",
+      "weight": 140.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "case_plain_meaning_statutory",
+      "weight": 140.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "case_skidmore",
+      "weight": 140.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "case_chevron",
+      "weight": 70.0,
+      "role": "persuasive"
+    }
+  ]
+}
+
+====================================================================================================
+Scenario D -- rule of lenity, criminal statute, no other canon resolves it
+----------------------------------------------------------------------------------------------------
+Fact pattern: United States v. Bass's actual posture: a criminal statute's scope is genuinely ambiguous and no structural canon applies -- lenity is the last-resort tiebreaker.
+
+{
+  "clause_id": "statutory_scenario_4",
+  "jurisdiction": "US-federal",
+  "threshold_determination": {
+    "test_applied": "Statutory plain-meaning rule",
+    "outcome": "not reached: no extrinsic aid offered and no facial ambiguity alleged",
+    "authority": "case_plain_meaning_statutory"
+  },
+  "applicable_rules": [
+    {
+      "rule_id": "rule_of_lenity",
+      "priority": 90,
+      "weight": 140.0
+    }
+  ],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: not reached: no extrinsic aid offered and no facial ambiguity alleged. Controlling interpretive rule: Rule of lenity (priority 90 of 1 triggered).",
+  "citations": [
+    {
+      "authority_id": "case_bass_lenity",
+      "weight": 140.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "case_plain_meaning_statutory",
+      "weight": 140.0,
+      "role": "binding"
+    }
+  ]
+}
+
+====================================================================================================
+Scenario E -- civil statute, same ambiguity shape, lenity must NOT apply
+----------------------------------------------------------------------------------------------------
+Fact pattern: Confirms lenity is genuinely gated on criminal_statute and not on 'no other rule fired' alone -- a civil statute with the identical unresolved-ambiguity shape gets no fallback canon at all in this KB, which is doctrinally correct: lenity is criminal-law-specific.
+
+{
+  "clause_id": "statutory_scenario_5",
+  "jurisdiction": "US-federal",
+  "threshold_determination": {
+    "test_applied": "Statutory plain-meaning rule",
+    "outcome": "not reached: no extrinsic aid offered and no facial ambiguity alleged",
+    "authority": "case_plain_meaning_statutory"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: not reached: no extrinsic aid offered and no facial ambiguity alleged. No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_plain_meaning_statutory",
+      "weight": 140.0,
+      "role": "binding"
+    }
+  ]
+}
+

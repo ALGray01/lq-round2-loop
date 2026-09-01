@@ -1,0 +1,25 @@
+---
+title: Broken Fixture (intentionally invalid, for lint testing)
+---
+
+# Definitions
+
+[[define:Agreement|this agreement]] means this agreement.
+
+# Obligations
+
+The Provider shall perform the [[Services]] described in Exhibit A.
+
+This clause references a section that does not exist: [[ref:sec-nowhere]].
+
+This clause cites a footnote that was never defined.[^ghost]
+
+# Obligations
+
+This heading id collides with the one above (both slugify to "obligations").
+
+[[define:Agreement|redefined, which should be an error]] means something else entirely.
+
+[[signature-block]]
+
+[^unused]: Nobody ever cites this footnote, so it should be a lint warning.

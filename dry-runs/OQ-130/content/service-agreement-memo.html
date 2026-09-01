@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Service Agreement — Clause-by-Clause Memo</title>
+<style>
+  :root{
+    --ink:#161a20; --paper:#f7f7f5; --panel:#ffffff; --line:#e2e3df;
+    --accent:#2f4b5e; --accent-ink:#1c313e; --muted:#68706e;
+    --low:#2f6d4f; --low-bg:#e8f3ec; --med:#9a6a12; --med-bg:#faf1de; --high:#a13d3d; --high-bg:#f8e8e8;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.55;}
+  header.page{background:var(--accent-ink); color:#eaf1f5; padding:26px 20px 20px;}
+  header.page .eyebrow{text-transform:uppercase; letter-spacing:.12em; font-size:.7rem; color:#9fc0d1; margin:0 0 6px;}
+  header.page h1{font-family:var(--serif); font-weight:normal; font-size:1.5rem; margin:0 0 6px; max-width:36ch;}
+  header.page p{margin:0; color:#c3d6df; font-size:.88rem; max-width:60ch;}
+
+  nav.toc{
+    position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--line);
+    overflow-x:auto; white-space:nowrap; padding:10px 16px; -webkit-overflow-scrolling:touch;
+  }
+  nav.toc a{
+    display:inline-block; font-size:.8rem; color:var(--accent-ink); text-decoration:none;
+    padding:8px 12px; border-radius:999px; background:#eef2f3; margin-right:8px; min-height:36px; line-height:20px;
+  }
+  nav.toc a:hover{background:#dfe7e9;}
+
+  .controls{
+    max-width:820px; margin:16px auto 0; padding:0 20px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .controls label{
+    display:inline-flex; align-items:center; gap:8px; font-size:.82rem; color:var(--muted); cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); padding:8px 12px; border-radius:999px;
+  }
+  .controls input{width:18px; height:18px;}
+
+  main{max-width:820px; margin:0 auto; padding:16px 20px 64px;}
+  section.clause{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; margin-bottom:14px; overflow:hidden;
+  }
+  section.clause > button.head{
+    width:100%; text-align:left; background:none; border:0; padding:16px 18px; cursor:pointer;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:44px;
+  }
+  section.clause > button.head h2{font-family:var(--serif); font-weight:normal; font-size:1.05rem; margin:0;}
+  .num{color:var(--muted); font-family:var(--mono); font-size:.85rem; margin-right:8px;}
+  .risk{font-size:.68rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase; padding:3px 9px; border-radius:999px; white-space:nowrap;}
+  .risk.low{color:var(--low); background:var(--low-bg);}
+  .risk.med{color:var(--med); background:var(--med-bg);}
+  .risk.high{color:var(--high); background:var(--high-bg);}
+  .chev{transition:transform .15s ease; color:var(--muted); flex:0 0 auto;}
+  section.clause.open .chev{transform:rotate(90deg);}
+  .body{max-height:0; overflow:hidden; transition:max-height .2s ease;}
+  section.clause.open .body{max-height:2000px;}
+  .body-inner{padding:0 18px 18px;}
+  .plain{font-size:.95rem;}
+  .clause-text{
+    display:none; font-family:var(--mono); font-size:.8rem; background:#f2f4f3; border:1px solid var(--line);
+    border-radius:10px; padding:12px; margin-top:10px; white-space:pre-wrap; color:#2a2f2c;
+  }
+  body.show-clauses .clause-text{display:block;}
+  footer{max-width:820px; margin:8px auto 32px; padding:0 20px; font-size:.76rem; color:var(--muted);}
+</style>
+</head>
+<body>
+  <header class="page">
+    <p class="eyebrow">Master Service Agreement · Plain-English Memo</p>
+    <h1>What you're actually agreeing to, clause by clause</h1>
+    <p>Six clauses worth reading twice before signing. Tap any heading to expand it, and use the toggle below to see the original wording alongside the plain-English version.</p>
+  </header>
+
+  <nav class="toc" aria-label="Jump to clause">
+    <a href="#c-term">Term &amp; termination</a>
+    <a href="#c-liability">Limitation of liability</a>
+    <a href="#c-indemnity">Indemnification</a>
+    <a href="#c-confidentiality">Confidentiality</a>
+    <a href="#c-ip">IP ownership</a>
+    <a href="#c-law">Governing law</a>
+  </nav>
+
+  <div class="controls">
+    <label><input type="checkbox" id="showClauses"> Show original clause text</label>
+    <label><input type="checkbox" id="expandAll"> Expand all sections</label>
+  </div>
+
+  <main id="clauseList">
+    <section class="clause" id="c-term">
+      <button class="head" aria-expanded="false">
+        <h2><span class="num">§9</span>Term &amp; Termination</h2>
+        <span class="risk med">Medium</span>
+      </button>
+      <div class="body"><div class="body-inner">
+        <p class="plain">The agreement auto-renews yearly unless either side gives 60 days' written notice before the renewal date — miss that window and you're locked in for another year. Either side can also terminate early for "material breach," but only after a 30-day cure period, except for non-payment, which allows immediate termination.</p>
+        <div class="clause-text">9.1 This Agreement commences on the Effective Date and continues for an
+initial term of twelve (12) months, automatically renewing for successive
+twelve (12) month periods unless either party gives the other not less than
+sixty (60) days' written notice prior to the end of the then-current term.
+9.2 Either party may terminate this Agreement immediately upon written notice
+if the other party fails to pay any undisputed amount within thirty (30) days
+of its due date.
+9.3 Either party may terminate for any other material breach not cured within
+thirty (30) days of written notice specifying the breach.</div>
+      </div></div>
+    </section>
+
+    <section class="clause" id="c-liability">
+      <button class="head" aria-expanded="false">
+        <h2><span class="num">§11</span>Limitation of Liability</h2>
+        <span class="risk high">High</span>
+      </button>
+      <div class="body"><div class="body-inner">
+        <p class="plain">Liability is capped at fees paid in the preceding 12 months — for a new engagement, that could be a small number relative to real losses. Indirect and consequential damages are excluded entirely, and the cap does not carve out data breaches, which is unusual and worth pushing back on if you're handling sensitive data.</p>
+        <div class="clause-text">11.1 Except in respect of the exclusions in clause 11.3, each party's total
+aggregate liability arising out of or in connection with this Agreement,
+whether in contract, tort (including negligence) or otherwise, shall not
+exceed the total fees paid or payable by the Customer in the twelve (12)
+months preceding the event giving rise to the claim.
+11.2 Neither party shall be liable for any indirect, incidental, special or
+consequential loss, or loss of profits, revenue, data, or goodwill.
+11.3 Nothing in this clause 11 limits liability for death or personal injury
+caused by negligence, fraud, or any liability which cannot be excluded by law.</div>
+      </div></div>
+    </section>
+
+    <section class="clause" id="c-indemnity">
+      <button class="head" aria-expanded="false">
+        <h2><span class="num">§12</span>Indemnification</h2>
+        <span class="risk med">Medium</span>
+      </button>
+      <div class="body"><div class="body-inner">
+        <p class="plain">You indemnify the Supplier against claims arising from your use of the deliverables — standard, but note it's one-directional in this draft. The Supplier only indemnifies you for IP infringement claims, not for its own negligence or breach generally. Worth asking for a mutual indemnity on ordinary breach.</p>
+        <div class="clause-text">12.1 The Customer shall indemnify and hold harmless the Supplier from and
+against any claims, damages, or expenses arising out of the Customer's use of
+the Deliverables in breach of this Agreement or applicable law.
+12.2 The Supplier shall indemnify the Customer against any claim that the
+Deliverables infringe a third party's intellectual property rights, provided
+the Customer promptly notifies the Supplier and permits the Supplier to
+control the defense.</div>
+      </div></div>
+    </section>
+
+    <section class="clause" id="c-confidentiality">
+      <button class="head" aria-expanded="false">
+        <h2><span class="num">§15</span>Confidentiality</h2>
+        <span class="risk low">Low</span>
+      </button>
+      <div class="body"><div class="body-inner">
+        <p class="plain">Fairly standard mutual confidentiality obligation, surviving five years after termination. Carve-outs for information that's independently developed, publicly available, or required to be disclosed by law are all present and reasonably drafted.</p>
+        <div class="clause-text">15.1 Each party shall keep confidential all non-public information disclosed
+by the other party and shall not use it other than to perform its obligations
+under this Agreement.
+15.2 The obligations in this clause 15 do not apply to information that: (a)
+is or becomes public through no fault of the receiving party; (b) was
+lawfully known before disclosure; (c) is independently developed; or (d) must
+be disclosed by law or court order.
+15.3 This clause survives termination of this Agreement for five (5) years.</div>
+      </div></div>
+    </section>
+
+    <section class="clause" id="c-ip">
+      <button class="head" aria-expanded="false">
+        <h2><span class="num">§16</span>IP Ownership</h2>
+        <span class="risk high">High</span>
+      </button>
+      <div class="body"><div class="body-inner">
+        <p class="plain">The Supplier keeps ownership of all deliverables and pre-existing IP, and you only get a license to use them — and that license is non-exclusive, meaning the Supplier can build and sell the same thing to your competitors. If you're paying for bespoke work, you may want ownership, or at least exclusivity in your field.</p>
+        <div class="clause-text">16.1 All intellectual property rights in the Deliverables, and in any
+pre-existing materials incorporated into them, shall remain vested in the
+Supplier (or its licensors).
+16.2 The Supplier grants the Customer a non-exclusive, non-transferable,
+worldwide license to use the Deliverables for the Customer's internal
+business purposes for the term of this Agreement.
+16.3 Nothing in this clause 16 transfers ownership of any Supplier IP to the
+Customer.</div>
+      </div></div>
+    </section>
+
+    <section class="clause" id="c-law">
+      <button class="head" aria-expanded="false">
+        <h2><span class="num">§21</span>Governing Law</h2>
+        <span class="risk low">Low</span>
+      </button>
+      <div class="body"><div class="body-inner">
+        <p class="plain">Standard exclusive-jurisdiction clause. Not remarkable unless the chosen forum is inconvenient for you to litigate in — check whether that's the Supplier's home jurisdiction and factor in the practical cost of a dispute there.</p>
+        <div class="clause-text">21.1 This Agreement and any dispute arising out of or in connection with it
+shall be governed by and construed in accordance with the laws of the
+jurisdiction specified in Schedule 1.
+21.2 The parties submit to the exclusive jurisdiction of the courts of that
+jurisdiction.</div>
+      </div></div>
+    </section>
+  </main>
+
+  <footer>Illustrative explainer for a simulated engagement. Clause numbers and wording are placeholders — verify against the executed agreement before relying on any interpretation here.</footer>
+
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section.clause'));
+  sections.forEach(function(sec){
+    var head = sec.querySelector('.head');
+    head.addEventListener('click', function(){
+      var open = sec.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  document.getElementById('showClauses').addEventListener('change', function(e){
+    document.body.classList.toggle('show-clauses', e.target.checked);
+  });
+
+  document.getElementById('expandAll').addEventListener('change', function(e){
+    sections.forEach(function(sec){
+      sec.classList.toggle('open', e.target.checked);
+      sec.querySelector('.head').setAttribute('aria-expanded', e.target.checked ? 'true' : 'false');
+    });
+  });
+
+  // Smooth same-page anchor scroll that also opens the target section.
+  document.querySelectorAll('nav.toc a').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      ev.preventDefault();
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      target.classList.add('open');
+      target.querySelector('.head').setAttribute('aria-expanded', 'true');
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+</body>
+</html>

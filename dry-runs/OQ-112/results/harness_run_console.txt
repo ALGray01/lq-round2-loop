@@ -1,0 +1,41 @@
+ID   STATUS FEATURES             FILE
+------------------------------------------------------------------------------------------
+01   PASS   F1,F2,F3             01_deep_chain_5hop_mixed_quoting.eml
+02   PASS   F4                   02_broken_quote_depth.eml
+03   PASS   F5,F16               03_forwarded_as_rfc822_attachment.eml
+04   FAIL   F6,F8                04_alt_html_plain_mismatch.eml
+     -> expected content not found in extraction
+05   PASS   F7,F19               05_related_inline_images_plus_attachment.eml
+06   FAIL   F8                   06_messy_html_table_nested.eml
+     -> expected content not found in extraction
+07   FAIL   F8                   07_div_grid_table.eml
+     -> expected content not found in extraction
+08   FAIL   F9                   08_tracked_change_red_text.eml
+     -> expected content not found in extraction
+09   PASS   F9,F10               09_bracket_annotation_plaintext.eml
+10   PASS   F11,F14              10_mixed_encoding_subject.eml
+11   PASS   F11,F12              11_qp_soft_break_multibyte.eml
+12   FAIL   F13                  12_mislabeled_charset_mojibake.eml
+     -> expected content not found in extraction | notes: decode-error:UnicodeDecodeError (used errors=replace)
+13   PASS   F12                  13_mixed_cte_parts.eml
+14   PASS   F14                  14_huge_cc_list_folded_headers.eml
+15   FAIL   F15                  15_zero_width_bom_body.eml
+     -> expected content not found in extraction | notes: decode-error:UnicodeDecodeError (used errors=replace) | defects: MissingHeaderBodySeparatorDefect
+16   PASS   F17                  16_rfc2231_filename_attachment.eml
+17   PASS   F18                  17_mislabeled_attachment_type.eml
+18   PASS   F16,F20              18_nested_eml_in_eml.eml
+19   PASS   F19                  19_corrupted_truncated_attachment.eml
+20   PASS   F1                   20_top_posted_simple.eml
+21   FAIL   F3                   21_interleaved_reply_deep.eml
+     -> expected content not found in extraction
+22   PASS   F2                   22_apple_mail_style_quote.eml
+23   PASS   control              23_plaintext_only_clean_control.eml
+24   PASS   F6                   24_html_only_no_plain_part.eml
+25   PASS   F21                  msg/25_native_msg_basic.msg
+26   FAIL   F21,F22,F9           msg/26_native_msg_rtf_only_body.msg
+     -> empty extraction | notes: rtf-deencapsulate-failed:MalformedEncapsulatedRtf: Malformed encapsulated RTF discovered:; PR_BODY empty and RTF body present but not in Outlook's encapsulated-HTML/plain convention - extract-msg/RTFDE cannot recover text from genuinely-formatted RTF
+27   PASS   F21                  msg/27_native_msg_with_attachment.msg
+------------------------------------------------------------------------------------------
+TOTAL: 27  PASS: 19  FAIL: 8
+
+Full results -> C:\Users\Andy\Documents\Projects\lq-loop\baselines\dry-runs\OQ-112\results\harness_output.json

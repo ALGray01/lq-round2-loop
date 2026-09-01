@@ -1,0 +1,301 @@
+====================================================================================================
+Scenario 1 -- same clause, two jurisdictions (the CA/NY interpretive split)
+----------------------------------------------------------------------------------------------------
+Clause text: "This Agreement may not be extended beyond its Initial Term of 3 years except by written instrument signed by both the Buyer and the Seller."
+Fact pattern: One party offers evidence of an oral side-agreement extending the term. The clause text is identical; only the jurisdiction changes. Raw entity extraction cannot see that this changes the legal answer -- the methodology layer's job is exactly to see it.
+
+[1] Raw entity extraction (Isaacus/Kanon-style NER) -- what an LLM sees today:
+[
+  {
+    "type": "DURATION",
+    "text": "3 years",
+    "start": 62,
+    "end": 69
+  },
+  {
+    "type": "DEFINED_TERM",
+    "text": "the Buyer",
+    "start": 114,
+    "end": 123
+  },
+  {
+    "type": "DEFINED_TERM",
+    "text": "the Seller",
+    "start": 128,
+    "end": 138
+  }
+]
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-CA:
+{
+  "clause_id": "scenario_1",
+  "jurisdiction": "US-CA",
+  "threshold_determination": {
+    "test_applied": "Contextualist / reasonably-susceptible rule (CA)",
+    "outcome": "provisionally admissible: extrinsic evidence must be considered to test whether the language is reasonably susceptible to the meaning urged, regardless of facial clarity",
+    "authority": "case_pge"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [
+    "pr_newport_limits_pge",
+    "pr_trident_criticizes_pge"
+  ],
+  "recommended_interpretive_posture": "Threshold: provisionally admissible: extrinsic evidence must be considered to test whether the language is reasonably susceptible to the meaning urged, regardless of facial clarity. No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_pge",
+      "weight": 120.0,
+      "role": "binding"
+    }
+  ]
+}
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-NY:
+{
+  "clause_id": "scenario_1",
+  "jurisdiction": "US-NY",
+  "threshold_determination": {
+    "test_applied": "Four corners / plain meaning rule (NY)",
+    "outcome": "inadmissible: contract is unambiguous on its face, and the four-corners rule bars extrinsic evidence regardless of what is offered",
+    "authority": "case_giancontieri"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: inadmissible: contract is unambiguous on its face, and the four-corners rule bars extrinsic evidence regardless of what is offered. No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_giancontieri",
+      "weight": 120.0,
+      "role": "binding"
+    }
+  ]
+}
+
+
+====================================================================================================
+Scenario 2 -- a federal court borrowing state law (Erie / Trident Center)
+----------------------------------------------------------------------------------------------------
+Clause text: "Buyer shall have no right to accelerate or prepay any portion of the outstanding balance prior to the Maturity Date."
+Fact pattern: This is Trident Center's actual fact pattern (a categorical no-prepayment clause). A 9th Circuit panel applying California law is bound by PG&E even though it called the result absurd. The annotation must surface that tension, not launder it away.
+
+[1] Raw entity extraction (Isaacus/Kanon-style NER) -- what an LLM sees today:
+[
+  {
+    "type": "DEFINED_TERM",
+    "text": "Buyer",
+    "start": 0,
+    "end": 5
+  }
+]
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-federal-9th-cir:
+{
+  "clause_id": "scenario_2",
+  "jurisdiction": "US-federal-9th-cir",
+  "threshold_determination": {
+    "test_applied": "Contextualist / reasonably-susceptible rule (CA)",
+    "outcome": "provisionally admissible: extrinsic evidence must be considered to test whether the language is reasonably susceptible to the meaning urged, regardless of facial clarity [borrowed from US-CA law: Erie R.R. Co. v. Tompkins, 304 U.S. 64 (1938): a federal court sitting in diversity applies the substantive law of the state whose law governs, whether or not the panel agrees with it]",
+    "authority": "case_pge"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [
+    "pr_newport_limits_pge",
+    "pr_trident_criticizes_pge"
+  ],
+  "recommended_interpretive_posture": "Threshold: provisionally admissible: extrinsic evidence must be considered to test whether the language is reasonably susceptible to the meaning urged, regardless of facial clarity [borrowed from US-CA law: Erie R.R. Co. v. Tompkins, 304 U.S. 64 (1938): a federal court sitting in diversity applies the substantive law of the state whose law governs, whether or not the panel agrees with it]. No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_pge",
+      "weight": 60.0,
+      "role": "persuasive"
+    }
+  ]
+}
+
+
+====================================================================================================
+Scenario 3 -- UCC hierarchy: conflicting course of performance vs. usage of trade
+----------------------------------------------------------------------------------------------------
+Clause text: "Seller shall deliver Grade A produce, with quality determined per prevailing industry standard, and Buyer has accepted three prior shipments without objection."
+Fact pattern: Two sources of extrinsic meaning point in different directions. UCC 1-303(e) fixes the priority order by statute; this is not a judgment call the engine is making.
+
+[1] Raw entity extraction (Isaacus/Kanon-style NER) -- what an LLM sees today:
+[
+  {
+    "type": "DEFINED_TERM",
+    "text": "Seller",
+    "start": 0,
+    "end": 6
+  },
+  {
+    "type": "DEFINED_TERM",
+    "text": "Buyer",
+    "start": 100,
+    "end": 105
+  }
+]
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-CA:
+{
+  "clause_id": "scenario_3",
+  "jurisdiction": "US-CA",
+  "threshold_determination": {
+    "test_applied": "Contextualist / reasonably-susceptible rule (CA)",
+    "outcome": "not reached: no extrinsic evidence offered and no facial ambiguity alleged",
+    "authority": "case_pge"
+  },
+  "applicable_rules": [
+    {
+      "rule_id": "rule_course_of_performance",
+      "priority": 2,
+      "weight": 90.0
+    },
+    {
+      "rule_id": "rule_usage_of_trade",
+      "priority": 4,
+      "weight": 90.0
+    }
+  ],
+  "conflicting_authority": [
+    "pr_newport_limits_pge",
+    "pr_trident_criticizes_pge"
+  ],
+  "recommended_interpretive_posture": "Threshold: not reached: no extrinsic evidence offered and no facial ambiguity alleged. Controlling interpretive rule: Course of performance controls over course of dealing/usage (priority 2 of 2 triggered).",
+  "citations": [
+    {
+      "authority_id": "case_pge",
+      "weight": 120.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "statute_ucc_1_303",
+      "weight": 90.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "case_frigaliment",
+      "weight": 30.0,
+      "role": "persuasive"
+    }
+  ]
+}
+
+
+====================================================================================================
+Scenario 4 -- structural canon: specific list + general catchall
+----------------------------------------------------------------------------------------------------
+Clause text: "Lessee shall not park cars, trucks, motorcycles, or other vehicles on the lawn."
+Fact pattern: Does 'other vehicles' include a bicycle or a ride-on lawnmower? Ejusdem generis reads the catchall in light of the specific items that precede it.
+
+[1] Raw entity extraction (Isaacus/Kanon-style NER) -- what an LLM sees today:
+  (no entities matched -- this stub is intentionally minimal)
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-NY:
+{
+  "clause_id": "scenario_4",
+  "jurisdiction": "US-NY",
+  "threshold_determination": {
+    "test_applied": "Four corners / plain meaning rule (NY)",
+    "outcome": "not reached: no extrinsic evidence offered and no facial ambiguity alleged",
+    "authority": "case_giancontieri"
+  },
+  "applicable_rules": [
+    {
+      "rule_id": "rule_ejusdem_generis",
+      "priority": 30,
+      "weight": 40.0
+    }
+  ],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: not reached: no extrinsic evidence offered and no facial ambiguity alleged. Controlling interpretive rule: Ejusdem generis (priority 30 of 1 triggered).",
+  "citations": [
+    {
+      "authority_id": "case_giancontieri",
+      "weight": 120.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "restatement_202",
+      "weight": 40.0,
+      "role": "persuasive"
+    }
+  ]
+}
+
+
+====================================================================================================
+Scenario 5 -- last resort: contra proferentem with no other canon available
+----------------------------------------------------------------------------------------------------
+Clause text: "Coverage excludes damage arising from 'normal wear and tear', a term this policy does not define."
+Fact pattern: An adhesive insurance policy, no structural canon applies, and no other rule resolves the ambiguity -- contra proferentem is the fallback of last resort, not first move.
+
+[1] Raw entity extraction (Isaacus/Kanon-style NER) -- what an LLM sees today:
+  (no entities matched -- this stub is intentionally minimal)
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-NY:
+{
+  "clause_id": "scenario_5",
+  "jurisdiction": "US-NY",
+  "threshold_determination": {
+    "test_applied": "Four corners / plain meaning rule (NY)",
+    "outcome": "not reached: no extrinsic evidence offered and no facial ambiguity alleged",
+    "authority": "case_giancontieri"
+  },
+  "applicable_rules": [
+    {
+      "rule_id": "rule_contra_proferentem",
+      "priority": 90,
+      "weight": 40.0
+    }
+  ],
+  "conflicting_authority": [],
+  "recommended_interpretive_posture": "Threshold: not reached: no extrinsic evidence offered and no facial ambiguity alleged. Controlling interpretive rule: Contra proferentem (priority 90 of 1 triggered).",
+  "citations": [
+    {
+      "authority_id": "case_giancontieri",
+      "weight": 120.0,
+      "role": "binding"
+    },
+    {
+      "authority_id": "restatement_206",
+      "weight": 40.0,
+      "role": "persuasive"
+    }
+  ]
+}
+
+
+====================================================================================================
+Scenario 6 -- Newport Beach Country Club narrows PG&E (objective theory of contracts)
+----------------------------------------------------------------------------------------------------
+Clause text: "Right of First Offer under this Agreement extends to any member organization of the Club existing as of the date hereof."
+Fact pattern: PG&E's reasonably-susceptible test still applies in California, but Newport Beach Country Club narrows it: undisclosed subjective intent -- internal communications never conveyed to the other side -- is not the kind of extrinsic evidence the test requires courts to admit. (This scenario replaced an earlier, inaccurate one after web-search verification found the case's actual holding didn't match this KB's first draft -- see README.md's Verification section.)
+
+[1] Raw entity extraction (Isaacus/Kanon-style NER) -- what an LLM sees today:
+  (no entities matched -- this stub is intentionally minimal)
+
+[2] Methodology-layer InterpretiveAnnotation -- jurisdiction=US-CA:
+{
+  "clause_id": "scenario_6",
+  "jurisdiction": "US-CA",
+  "threshold_determination": {
+    "test_applied": "Contextualist / reasonably-susceptible rule (CA)",
+    "outcome": "provisionally admissible: extrinsic evidence must be considered to test whether the language is reasonably susceptible to the meaning urged, regardless of facial clarity; narrowed here (Newport Beach Country Club) -- the evidence offered is undisclosed subjective intent never objectively communicated between the parties, which is not the kind of extrinsic evidence the reasonably-susceptible test requires courts to consider",
+    "authority": "case_pge"
+  },
+  "applicable_rules": [],
+  "conflicting_authority": [
+    "pr_newport_limits_pge",
+    "pr_trident_criticizes_pge"
+  ],
+  "recommended_interpretive_posture": "Threshold: provisionally admissible: extrinsic evidence must be considered to test whether the language is reasonably susceptible to the meaning urged, regardless of facial clarity; narrowed here (Newport Beach Country Club) -- the evidence offered is undisclosed subjective intent never objectively communicated between the parties, which is not the kind of extrinsic evidence the reasonably-susceptible test requires courts to consider. No downstream interpretive rule triggered by this fact pattern.",
+  "citations": [
+    {
+      "authority_id": "case_pge",
+      "weight": 120.0,
+      "role": "binding"
+    }
+  ]
+}
+
+

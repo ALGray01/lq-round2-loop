@@ -1,0 +1,20 @@
+# Harness scaffolding provided by the assessment -- not part of this
+# submission's deliverable (see CONTINUE_RESERVE_PROMPT.md's framing).
+# Left on disk untouched; intentionally not committed to this repo.
+CLAUDE.md
+FIRST_PROMPT.md
+CONTINUE_BUILD_PROMPT.md
+CONTINUE_RESERVE_PROMPT.md
+FAILURE-CLASSES.md
+ENTRY.md
+QUESTION.md
+loop.sh
+run.log
+run.meta
+lib/
+bash.exe.stackdump
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/

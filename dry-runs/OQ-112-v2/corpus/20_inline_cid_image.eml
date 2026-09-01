@@ -1,0 +1,52 @@
+From: forensics@example.com
+To: alice@example.com
+Subject: Signature comparison
+Date: Mon, 12 Feb 2024 19:00:00 -0500
+Message-ID: <f20@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============1192772521791159506=="
+
+--===============1192772521791159506==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Signature comparison below (images not shown in plain text). The second signa=
+ture does not match the exemplar on file.
+
+--===============1192772521791159506==
+MIME-Version: 1.0
+Content-Type: multipart/related;
+ boundary="===============2613224779403741985=="
+
+--===============2613224779403741985==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Signature comparison below:</p><img src=3D"cid:sig1" width=3D"200"><br><im=
+g src=3D"cid:sig2" width=3D"200"><p>The second signature does not match the e=
+xemplar on file.</p>
+
+--===============2613224779403741985==
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <sig1>
+MIME-Version: 1.0
+Content-Disposition: inline
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YA
+AAAASUVORK5CYII=
+
+--===============2613224779403741985==
+Content-Type: image/png
+Content-Transfer-Encoding: base64
+Content-ID: <sig2>
+MIME-Version: 1.0
+Content-Disposition: inline
+
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YA
+AAAASUVORK5CYII=
+
+--===============2613224779403741985==--
+
+--===============1192772521791159506==--

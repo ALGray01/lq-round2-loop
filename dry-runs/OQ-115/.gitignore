@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Runtime artifacts: mutated by running the router. Not tracked, so
+# running the CLI/tests/demo never leaves the working tree surprisingly
+# dirty. A missing state file behaves identically to a zeroed one
+# (router/lanes.py:load_state), so nothing needs to be committed for a
+# fresh clone to start at zero headroom. A sample log from a real demo
+# run is committed separately under demo/sample_routing_log.jsonl as
+# static evidence -- regenerate it with `python demo.py`.
+logs/routing_log.jsonl
+demo/demo_state.json
+demo/demo_log.jsonl
+state/lanes_state.json

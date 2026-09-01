@@ -1,0 +1,22 @@
+[
+  {"text": "need a draft opp to msj by fri, judge hates footnotes so keep it tight", "expected_task_type": "litigation_reasoning"},
+  {"text": "Thinking through our reply brief strategy on the statute of limitations defense - can you help me war-game the counterarguments opposing counsel will raise at the hearing?", "expected_task_type": "litigation_reasoning"},
+  {"text": "prep cross examination outline for their damages expert, trial starts in 3 weeks", "expected_task_type": "litigation_reasoning"},
+  {"text": "Client got served with a motion to compel discovery yesterday. What's our best argument for a protective order limiting the scope of the RFPs?", "expected_task_type": "litigation_reasoning"},
+  {"text": "draft me an nda, mutual, standard 2yr term, nothing fancy", "expected_task_type": "transactional_drafting"},
+  {"text": "Need a first draft of a commercial sublease for the Denver office - landlord wants it by Monday 8/3.", "expected_task_type": "transactional_drafting"},
+  {"text": "put together an employment offer letter + at-will disclosure for a VP Sales hire, CA based", "expected_task_type": "transactional_drafting"},
+  {"text": "Can you draft a SAFE note for our seed round, $2M cap, most favored nation clause?", "expected_task_type": "transactional_drafting"},
+  {"text": "vendor sent back their redline on the MSA - can u flag anything that shifts liability back to us", "expected_task_type": "contract_review"},
+  {"text": "Reviewing a 40-page supply agreement against our playbook, mainly worried about the indemnification and limitation of liability sections lining up", "expected_task_type": "contract_review"},
+  {"text": "diligence on target's customer contracts - looking for change of control triggers before we sign the LOI", "expected_task_type": "contract_review"},
+  {"text": "does this NDA they sent have a one-way carveout problem? attached", "expected_task_type": "contract_review"},
+  {"text": "what's the current standard for personal jurisdiction over out-of-state defendants after Ford v Montana courts", "expected_task_type": "legal_research"},
+  {"text": "need a memo on whether non-competes are enforceable in this state post the FTC rule getting vacated", "expected_task_type": "legal_research"},
+  {"text": "is there caselaw on whether an AI-generated work can hold a copyright? researching for a client memo", "expected_task_type": "legal_research"},
+  {"text": "double check the pin cite on p.14 of our brief, want to make sure 550 US 544 actually says what we're quoting", "expected_task_type": "citation_checking"},
+  {"text": "before we file - can you verify every case citation in this brief is still good law and not overruled", "expected_task_type": "citation_checking"},
+  {"text": "confirm this quote from the deposition transcript matches what's actually in the exhibit before it goes in the filing", "expected_task_type": "citation_checking"},
+  {"text": "can you help me set up a shared drive folder structure for the litigation team", "expected_task_type": "general"},
+  {"text": "what do you think about using AI tools for legal work generally - pros and cons", "expected_task_type": "general"}
+]

@@ -1,0 +1,26 @@
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0010==="
+MIME-Version: 1.0
+From: Sarah Chen <sarah.chen@meridiancole-law.example>
+To: David Osei <d.osei@harrowgate-partners.example>
+Subject: =?utf-8?q?=C3=84nderungsvertrag_zur_Unterschrift?=
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0010===
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+QW5iZWkgZGVyIMOEbmRlcnVuZ3N2ZXJ0cmFnIHp1ciBVbnRlcnNjaHJpZnQuIEJpdHRlIGJpcyBG
+cmVpdGFnIHp1csO8Y2tzZW5kZW4u
+
+--===corpus-boundary-0010===
+Content-Type: application/pdf
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename*=UTF-8''%C3%84nderungsvertrag%20%28Entwurf%29.pdf
+
+JVBERi0xLjQgZmFrZSBwZGYgYnl0ZXMgeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
+eHh4eHh4eA==
+
+--===corpus-boundary-0010===--

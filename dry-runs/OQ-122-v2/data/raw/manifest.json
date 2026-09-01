@@ -1,0 +1,12 @@
+{
+  "title": 16,
+  "part": 312,
+  "date": "2026-07-27",
+  "structure_file": "structure_title16_2026-07-27.json",
+  "xml_file": "title16_part312_2026-07-27.xml",
+  "source_urls": {
+    "structure": "https://www.ecfr.gov/api/versioner/v1/structure/2026-07-27/title-16.json",
+    "full_text": "https://www.ecfr.gov/api/versioner/v1/full/2026-07-27/title-16.xml?part=312"
+  },
+  "fetched_at": "2026-07-29T13:34:50Z"
+}

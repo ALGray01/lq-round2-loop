@@ -1,0 +1,75 @@
+Total candidate facts extracted: 23
+Supersession events detected: 6
+Sentences rejected for missing matter_id: 2
+
+=== Rejected sentences (no matter_id -- structural guarantee holds) ===
+  [s06] 'Quick memo, no file opened yet: confirmed the Coastal Cleaning Group vendor services agreement for the Whitfield trust matter contains a 3-year statute of limitations clause for breach of contract claims against the vendor.'
+  [s06] 'Need to open a matter file.'
+
+=== Detected supersession events ===
+  extracted-10 (session s05, week 3) supersedes extracted-7 (session s03, score=0.357)
+    new:      "Trustee's counsel disputes whether Coastal Cleaning Group's invoices were properly authorized."
+    original: "The trust's maintenance vendor is Coastal Cleaning Group."
+  extracted-13 (session s07, week 4) supersedes extracted-3 (session s01, score=0.451)
+    new:      'The limitations period for breach of commercial contract claims is now 3 years for any claim not already time-barred under the prior 4-year rule.'
+    original: 'Researched Fictional State Commercial Code section 12-101: the statute of limitations for breach of commercial contract claims is 4 years from breach.'
+  extracted-19 (session s10, week 7) supersedes extracted-4 (session s02, score=0.580)
+    new:      'A demand letter no longer tolls the limitations period for commercial carriage disputes as of this decision.'
+    original: 'Delta Transit, a controlling appellate decision holding that a written demand letter tolls the limitations period for commercial carriage disputes.'
+  extracted-20 (session s11, week 7) supersedes extracted-6 (session s03, score=0.584)
+    new:      'Settlement conference on the Whitfield trust matter scheduled.'
+    original: 'Intake on the Whitfield trust matter.'
+  extracted-22 (session s12, week 8) supersedes extracted-14 (session s08, score=0.364)
+    new:      'Revised the motion in limine to drop reliance on Nguyen given Park v.'
+    original: 'Drafted motion in limine relying on the current 3-year limitations period and the Nguyen tolling rule for the demand letter sent to Coastal Freight & Logistics LLC.'
+  extracted-23 (session s12, week 8) supersedes extracted-14 (session s08, score=0.497)
+    new:      'Summit Carriers, and to rely on the current 3-year limitations period against Coastal Freight & Logistics LLC directly without a tolling argument.'
+    original: 'Drafted motion in limine relying on the current 3-year limitations period and the Nguyen tolling rule for the demand letter sent to Coastal Freight & Logistics LLC.'
+
+=== All extracted candidates, in order ===
+  extracted-1 [matter-reyes-v-coastal] (session s01, week 1)
+    'Intake call on Reyes v.'
+  extracted-2 [matter-reyes-v-coastal] (session s01, week 1)
+    'Client alleges Coastal Freight LLC breached the shipping contract.'
+  extracted-3 [matter-reyes-v-coastal] (session s01, week 1)
+    'Researched Fictional State Commercial Code section 12-101: the statute of limitations for breach of commercial contract claims is 4 years from breach.'
+  extracted-4 [matter-reyes-v-coastal] (session s02, week 1)
+    'Delta Transit, a controlling appellate decision holding that a written demand letter tolls the limitations period for commercial carriage disputes.'
+  extracted-5 [matter-reyes-v-coastal] (session s02, week 1)
+    'This helps our timing position against Coastal Freight LLC.'
+  extracted-6 [matter-whitfield-trust] (session s03, week 2)
+    'Intake on the Whitfield trust matter.'
+  extracted-7 [matter-whitfield-trust] (session s03, week 2)
+    "The trust's maintenance vendor is Coastal Cleaning Group."
+  extracted-8 [matter-whitfield-trust] (session s03, week 2)
+    'Reviewing the vendor services agreement for relevant terms; nothing conclusive yet.'
+  extracted-9 [matter-reyes-v-coastal] (session s04, week 2)
+    "Defendant's correct legal name is Coastal Freight & Logistics LLC, not Coastal Freight LLC as originally pleaded."
+  extracted-10 [matter-whitfield-trust] (session s05, week 3) [supersedes extracted-7, score=0.357]
+    "Trustee's counsel disputes whether Coastal Cleaning Group's invoices were properly authorized."
+  extracted-11 [matter-whitfield-trust] (session s05, week 3)
+    "This is a breach of fiduciary duty question, separate from the vendor contract's 3-year limitations clause."
+  extracted-12 [matter-reyes-v-coastal] (session s07, week 4)
+    "Legislature amended Fictional State Commercial Code section 12-101, effective this session's date."
+  extracted-13 [matter-reyes-v-coastal] (session s07, week 4) [supersedes extracted-3, score=0.451]
+    'The limitations period for breach of commercial contract claims is now 3 years for any claim not already time-barred under the prior 4-year rule.'
+  extracted-14 [matter-reyes-v-coastal] (session s08, week 5)
+    'Drafted motion in limine relying on the current 3-year limitations period and the Nguyen tolling rule for the demand letter sent to Coastal Freight & Logistics LLC.'
+  extracted-15 [matter-whitfield-trust] (session s09, week 6)
+    'Drafted response on the fiduciary duty question.'
+  extracted-16 [matter-whitfield-trust] (session s09, week 6)
+    'Client also asked again whether the 3-year vendor contract limitations clause has run; confirmed it has not.'
+  extracted-17 [matter-reyes-v-coastal] (session s10, week 7)
+    'Appellate court decided Park v.'
+  extracted-18 [matter-reyes-v-coastal] (session s10, week 7)
+    'Summit Carriers, expressly overturning Nguyen v.'
+  extracted-19 [matter-reyes-v-coastal] (session s10, week 7) [supersedes extracted-4, score=0.580]
+    'A demand letter no longer tolls the limitations period for commercial carriage disputes as of this decision.'
+  extracted-20 [matter-whitfield-trust] (session s11, week 7) [supersedes extracted-6, score=0.584]
+    'Settlement conference on the Whitfield trust matter scheduled.'
+  extracted-21 [matter-whitfield-trust] (session s11, week 7)
+    'No new legal research this session; administrative update only.'
+  extracted-22 [matter-reyes-v-coastal] (session s12, week 8) [supersedes extracted-14, score=0.364]
+    'Revised the motion in limine to drop reliance on Nguyen given Park v.'
+  extracted-23 [matter-reyes-v-coastal] (session s12, week 8) [supersedes extracted-14, score=0.497]
+    'Summit Carriers, and to rely on the current 3-year limitations period against Coastal Freight & Logistics LLC directly without a tolling argument.'

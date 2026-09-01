@@ -1,0 +1,27 @@
+From: bob@example.com
+To: carol@example.com
+Subject: Re: Redline call
+Date: Mon, 12 Feb 2024 11:00:00 -0500
+Message-ID: <f04@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============2724240536831418172=="
+
+--===============2724240536831418172==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+This message is best viewed in an HTML-capable email client.
+
+--===============2724240536831418172==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<div>Works for me, let's schedule the call for Thursday.</div><div><br></div>=
+<div class=3D"gmail_quote">On Mon, Feb 12, 2024 at 8:00 AM Carol Smith &lt;ca=
+rol@example.com&gt; wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px solid #ccc;padding-left:1ex"><div>Can we schedu=
+le a call to discuss the redline?</div></blockquote></div>
+
+--===============2724240536831418172==--

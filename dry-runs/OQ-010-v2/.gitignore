@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+documents/*.tif
+documents/*.png
+output/*.png
+_attacker_scratch/
+_skeptic_scratch/
+_baseline_scratch/
+bash.exe.stackdump
+*.stackdump

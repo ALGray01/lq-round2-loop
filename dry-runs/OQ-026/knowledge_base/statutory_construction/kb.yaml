@@ -1,0 +1,299 @@
+# Second bounded area, built specifically to test whether the schema in
+# schema/methodology_layer.schema.json actually generalizes beyond contract
+# interpretation, rather than just asserting that it does (see README.md's
+# Reflection section in the first commit of this work, which named this as
+# the single biggest remaining gap). Same four entity types, same trigger
+# vocabulary (threshold_ambiguity / structural_pattern / evidence_conflict /
+# fallback), zero schema changes -- only new data plus, where the engine
+# turned out to have hardcoded a contract-specific assumption, a fix to
+# methodology_layer/engine.py (see its module docstring and README.md's
+# "Generalization" section for what had to change and why).
+#
+# Bounded area: resolving ambiguity in federal statutory text -- the
+# textualist plain-meaning threshold, the (former) Chevron / (current)
+# Loper Bright / Skidmore axis for agency interpretations, the major
+# questions doctrine, and shared canons of construction applied in their
+# statutory rather than contractual form. As with the contract KB, case
+# summaries are drawn from the model's training-data knowledge of famous,
+# heavily-covered opinions (Loper Bright is a well-known 2024 decision) and
+# have not been re-verified against a citator in this session -- see
+# README.md Limitations.
+
+authorities:
+  - id: case_chevron
+    type: case
+    citation: "Chevron U.S.A., Inc. v. Natural Res. Def. Council, Inc., 467 U.S. 837 (1984)"
+    short_name: "Chevron"
+    home_jurisdiction: US-federal
+    court_level: scotus
+    binding_in: []
+    year: 1984
+    summary: >
+      Established a two-step framework requiring courts to defer to a federal
+      agency's reasonable interpretation of an ambiguous statute it
+      administers. Controlling law for 40 years. Overruled in 2024 -- kept in
+      this knowledge base specifically so the engine can be tested on a real
+      "this used to be good law and no longer is" case; binding_in is left
+      empty (not "binding nowhere" as a substantive claim, but because this
+      KB models current law, and Chevron is no longer good law anywhere
+      after Loper Bright).
+
+  - id: case_loper_bright
+    type: case
+    citation: "Loper Bright Enters. v. Raimondo, 603 U.S. 369 (2024)"
+    short_name: "Loper Bright"
+    home_jurisdiction: US-federal
+    court_level: scotus
+    binding_in: [US-federal]
+    year: 2024
+    summary: >
+      Overrules Chevron. Courts must exercise independent judgment in
+      deciding whether an agency acted within its statutory authority, and
+      may not defer to an agency's reading of an ambiguous statute merely
+      because it is reasonable. An agency's interpretation may still be
+      considered for its persuasive force under the Skidmore standard, but
+      that is respect earned through reasoning, not mandatory deference.
+
+  - id: case_skidmore
+    type: case
+    citation: "Skidmore v. Swift & Co., 323 U.S. 134 (1944)"
+    short_name: "Skidmore"
+    home_jurisdiction: US-federal
+    court_level: scotus
+    binding_in: [US-federal]
+    year: 1944
+    summary: >
+      An agency's interpretation is entitled to "respect" proportional to its
+      persuasive power -- the thoroughness of its reasoning, the validity of
+      its logic, its consistency with earlier and later pronouncements -- not
+      to binding deference. Predates Chevron; revived as the live standard by
+      Loper Bright.
+
+  - id: case_west_virginia_epa
+    type: case
+    citation: "West Virginia v. EPA, 597 U.S. 697 (2022)"
+    short_name: "West Virginia v. EPA"
+    home_jurisdiction: US-federal
+    court_level: scotus
+    binding_in: [US-federal]
+    year: 2022
+    summary: >
+      The "major questions doctrine": in extraordinary cases of vast
+      economic and political significance, courts expect Congress to speak
+      clearly if it intends to grant an agency that degree of power; absent a
+      clear statement, the agency's assertion of authority is rejected even
+      if the statutory text could otherwise bear that reading. Operates as a
+      threshold clear-statement gate that gets checked before ordinary
+      Chevron/Skidmore-style analysis of the agency's interpretation.
+
+  - id: case_plain_meaning_statutory
+    type: case
+    citation: "Conn. Nat'l Bank v. Germain, 503 U.S. 249, 253-54 (1992)"
+    short_name: "Connecticut National Bank v. Germain"
+    home_jurisdiction: US-federal
+    court_level: scotus
+    binding_in: [US-federal]
+    year: 1992
+    summary: >
+      "[C]ourts must presume that a legislature says in a statute what it
+      means and means in a statute what it says there." Canonical statement
+      of the statutory plain-meaning rule: where the text is unambiguous,
+      judicial inquiry ends there absent an absurd result.
+
+  - id: case_bass_lenity
+    type: case
+    citation: "United States v. Bass, 404 U.S. 336, 347-48 (1971)"
+    short_name: "United States v. Bass"
+    home_jurisdiction: US-federal
+    court_level: scotus
+    binding_in: [US-federal]
+    year: 1971
+    summary: >
+      Rule of lenity: ambiguity in the scope of a criminal statute should be
+      resolved in the defendant's favor, particularly where the broader
+      reading would work an unprecedented expansion of federal jurisdiction
+      without a clear statement from Congress. Treated as a canon of last
+      resort -- invoked only where the ordinary tools of construction leave
+      genuine, unresolved ambiguity.
+
+  - id: statute_dictionary_act
+    type: statute
+    citation: "1 U.S.C. § 1"
+    short_name: "Dictionary Act"
+    home_jurisdiction: US-federal
+    court_level: "n/a"
+    binding_in: [US-federal]
+    year: 1947
+    summary: >
+      Supplies default definitions for common words used throughout the
+      U.S. Code unless "the context indicates otherwise" -- e.g. "person"
+      includes corporations, companies, and associations, not just natural
+      persons. A gap-filler for terms a specific statute leaves undefined.
+
+  - id: treatise_reading_law
+    type: treatise
+    citation: "Antonin Scalia & Bryan A. Garner, Reading Law: The Interpretation of Legal Texts (2012)"
+    short_name: "Scalia & Garner, Reading Law"
+    home_jurisdiction: US-model
+    court_level: "n/a"
+    binding_in: []
+    year: 2012
+    summary: >
+      Widely cited (including by courts) compilation and restatement of the
+      canons of construction, including ejusdem generis, noscitur a sociis,
+      and expressio unius, as applied to statutory rather than contractual
+      text. Persuasive secondary authority only.
+
+precedent_relations:
+  - id: pr_loper_overrules_chevron
+    source_case: case_loper_bright
+    target_case: case_chevron
+    relation: overrules
+    on_issue: >
+      whether a reviewing court must defer to an agency's reasonable
+      interpretation of an ambiguous statute it administers
+    source_bound_by_target: false
+
+  - id: pr_loper_follows_skidmore
+    source_case: case_loper_bright
+    target_case: case_skidmore
+    relation: follows
+    on_issue: >
+      the level of respect (not binding deference) a reviewing court gives
+      to an agency's persuasive but non-controlling interpretation
+    source_bound_by_target: true
+
+doctrinal_rules:
+  # --- Threshold rules: both scoped to US-federal, applied in priority
+  # order -- major questions is checked first as a gate; only if it does not
+  # dispose of the case does ordinary plain-meaning analysis follow. This is
+  # the case that required generalizing methodology_layer.engine._apply_threshold
+  # to walk an ordered list of threshold rules instead of assuming exactly
+  # one per jurisdiction, which was true of the contract-interpretation KB
+  # but is not true here.
+  - id: rule_major_questions_doctrine
+    name: "Major questions doctrine (clear-statement gate)"
+    statement: >
+      Where the interpretation urged would grant an agency authority of vast
+      economic or political significance, a clear congressional statement is
+      required; absent one, the agency's assertion of authority is rejected
+      regardless of what the bare statutory text could otherwise support.
+    authority_basis: [case_west_virginia_epa]
+    jurisdiction_scope: [US-federal]
+    trigger: { type: threshold_ambiguity, params: { test: major_questions_clear_statement } }
+    priority: 5
+
+  - id: rule_statutory_plain_meaning
+    name: "Statutory plain-meaning rule"
+    statement: >
+      Courts presume a legislature says in a statute what it means and means
+      what it says; where the text is unambiguous, that meaning controls.
+    authority_basis: [case_plain_meaning_statutory]
+    jurisdiction_scope: [US-federal]
+    trigger: { type: threshold_ambiguity, params: { test: statutory_plain_meaning } }
+    priority: 10
+
+  # --- Evidence-conflict rule: reuses the exact same trigger.type used by
+  # the contract KB's UCC hierarchy (evidence_conflict), for a completely
+  # different kind of "conflicting extrinsic source" -- an agency's own
+  # interpretation of the statute it administers, offered as persuasive
+  # (never binding, post-Loper Bright) authority.
+  - id: rule_skidmore_respect
+    name: "Skidmore respect for agency interpretation"
+    statement: >
+      An agency's interpretation of a statute it administers may be
+      considered for its persuasive value -- proportional to its
+      thoroughness, consistency, and soundness of reasoning -- but is never
+      owed binding deference.
+    authority_basis: [case_skidmore, case_loper_bright, case_chevron]
+    jurisdiction_scope: [US-federal]
+    trigger: { type: evidence_conflict, params: { source: agency_interpretation } }
+    priority: 20
+
+  # --- Gap-filler: reuses the structural_pattern trigger type for a
+  # different structural condition (an undefined common term), not a
+  # syntactic list shape.
+  - id: rule_dictionary_act_default
+    name: "Dictionary Act default definition"
+    statement: >
+      Where a statute uses a common term (e.g. "person") without defining
+      it, the Dictionary Act's default definition applies unless the
+      statute's context indicates otherwise.
+    authority_basis: [statute_dictionary_act]
+    jurisdiction_scope: [US-federal]
+    trigger: { type: structural_pattern, params: { pattern: undefined_common_term } }
+    priority: 15
+
+  # --- Canons of construction, statutory form. Same canon names and same
+  # structural_pattern trigger values as the contract KB's canons, but
+  # grounded in a different authority (a statutory-interpretation treatise
+  # rather than the Restatement of Contracts) -- deliberately not merged
+  # into a single shared rule, because real courts cite different authority
+  # for the "same" canon depending on whether they are reading a contract or
+  # a statute.
+  - id: rule_ejusdem_generis_statutory
+    name: "Ejusdem generis (statutory)"
+    statement: >
+      General words following an enumeration of specific items in a statute
+      are read to include only things of the same kind as those listed.
+    authority_basis: [treatise_reading_law]
+    jurisdiction_scope: []
+    trigger: { type: structural_pattern, params: { pattern: specific_list_then_general_catchall } }
+    priority: 30
+
+  - id: rule_noscitur_a_sociis_statutory
+    name: "Noscitur a sociis (statutory)"
+    statement: >
+      An ambiguous statutory term is given meaning by the words associated
+      with it in the same provision.
+    authority_basis: [treatise_reading_law]
+    jurisdiction_scope: []
+    trigger: { type: structural_pattern, params: { pattern: ambiguous_word_among_associated_words } }
+    priority: 31
+
+  - id: rule_expressio_unius_statutory
+    name: "Expressio unius est exclusio alterius (statutory)"
+    statement: >
+      Where a statute expressly enumerates specific items with no general
+      catchall, the expression of those items excludes items not listed.
+    authority_basis: [treatise_reading_law]
+    jurisdiction_scope: []
+    trigger: { type: structural_pattern, params: { pattern: enumerated_list_no_catchall } }
+    priority: 32
+
+  # --- Fallback of last resort. This is the rule that forced generalizing
+  # methodology_layer.engine._apply_fallback away from a hardcoded
+  # "rule_contra_proferentem" id lookup: the statutory KB's last-resort
+  # canon is a different rule entirely, gated on a different FactPattern
+  # flag (criminal_statute, not unequal_bargaining_power). See
+  # trigger.params.requires_flag below and engine.py's FALLBACK handling.
+  - id: rule_of_lenity
+    name: "Rule of lenity"
+    statement: >
+      As a rule of last resort, genuine ambiguity in the scope of a criminal
+      statute is resolved in favor of the defendant, particularly where the
+      broader reading would expand federal jurisdiction without a clear
+      congressional statement.
+    authority_basis: [case_bass_lenity]
+    jurisdiction_scope: [US-federal]
+    trigger: { type: fallback, params: { requires_flag: criminal_statute } }
+    priority: 90
+
+hierarchies:
+  - id: statutory_threshold_hierarchy
+    name: "Order of resort for statutory-interpretation threshold questions"
+    authority_basis: [case_west_virginia_epa, case_plain_meaning_statutory]
+    jurisdiction_scope: [US-federal]
+    ordered_rule_ids:
+      - rule_major_questions_doctrine
+      - rule_statutory_plain_meaning
+
+  - id: statutory_canons_ladder
+    name: "Statutory canons of construction, in order of resort"
+    authority_basis: [treatise_reading_law, case_bass_lenity]
+    jurisdiction_scope: []
+    ordered_rule_ids:
+      - rule_ejusdem_generis_statutory
+      - rule_noscitur_a_sociis_statutory
+      - rule_expressio_unius_statutory
+      - rule_of_lenity

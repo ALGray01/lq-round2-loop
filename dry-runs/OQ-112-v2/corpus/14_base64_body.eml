@@ -1,0 +1,11 @@
+From: paralegal@example.com
+To: alice@example.com
+Subject: Signature pages received
+Date: Mon, 12 Feb 2024 09:00:00 -0500
+Message-ID: <f14@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+Q29uZmlybWluZyByZWNlaXB0IG9mIHRoZSBleGVjdXRlZCBzaWduYXR1cmUgcGFnZXMuIFdlIHdp
+bGwgZmlsZSB3aXRoIHRoZSBjb3VydCB0b21vcnJvdyBtb3JuaW5nLg0K

@@ -1,0 +1,6 @@
+# Corpus/spot-check files ARE the test artifact - their exact bytes (line
+# endings included) are part of what's being tested. core.autocrlf must
+# never rewrite them, regardless of the committer's or cloner's git config.
+corpus/*.eml -text
+corpus/*.msg -text
+real_world_spotcheck/*.eml -text

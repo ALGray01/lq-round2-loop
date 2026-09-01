@@ -1,0 +1,73 @@
+Candidate: multimodal vision (Claude Sonnet 5), independent context-isolated read of
+documents/foia_page1.png. Task: transcribe fully, and explicitly mark every black
+redaction bar as [REDACTED] rather than guessing hidden content, noting any visible
+red annotation text on/near the bar separately.
+
+=== Transcription ===
+
+Conversation Contents
+
+Invitation: Daily Check-in Call @ Daily from 11am to 11:30am (EST) (scott.angelle@bsee.gov)
+
+Attachments:
+/37. Invitation: Daily Check-in Call @ Daily from 11am to 11:30am (EST) (scott.angelle@bsee.gov)/1.1 invite.ics
+/37. Invitation: Daily Check-in Call @ Daily from 11am to 11:30am (EST) (scott.angelle@bsee.gov)/1.2 invite.ics
+
+David Bernhardt[REDACTED - red annotation on bar: "B6 - David Bernhardt"]
+
+From:        David Bernhardt[REDACTED - red annotation on bar: "B6 - David Bernhardt"]
+Sent:        Fri Dec 21 2018 10:39:51 GMT-0700 (MST)
+To:          scott.angelle@bsee.gov, todd_willens@ios.doi.gov, daniel.jorjani@sol.doi.gov,
+             jfreilly@usgs.gov, joseph_balash@ios.doi.gov, bburman@usbr.gov,
+             faith_vandervoort@ios.doi.gov, douglas_domenech@ios.doi.gov,
+             scott_cameron@ios.doi.gov, "Tara_Sweeney@ios.doi.gov" <tara_sweeney@ios.doi.gov>,
+             john_bockmier@ios.doi.gov, gowens@osmre.gov, walter.cruickshank@boem.gov,
+             andrea_travnicek@ios.doi.gov, susan_combs@ios.doi.gov, james_cason@ios.doi.gov,
+             bsteed@blm.gov, timothy_petty@ios.doi.gov, russell_newell@ios.doi.gov,
+             paul_smith@nps.gov, katharine_macgregor@ios.doi.gov
+Subject:     Invitation: Daily Check-in Call @ Daily from 11am to 11:30am (EST) (scott.angelle@bsee.gov)
+Attachments: invite.ics invite.ics
+
+Daily Check-in Call                                                          more details »
+When         Daily from 11am to 11:30am Eastern Time - New York
+Where        Call-in [REDACTED - red annotation: "(b) (5)"]#) (map)
+Video call   [REDACTED - red annotation: "(b) (5)"]
+Calendar     scott.angelle@bsee.gov
+Who          - [REDACTED - red annotation: "B6 - David Bernhardt"] - organizer
+             - gare h_rees@ios.doi.gov - creator
+             - todd_willens@ios.doi.gov
+             - daniel.jorjani@sol.doi.gov
+             - jfreilly@usgs.gov
+             - joseph_balash@ios.doi.gov
+             - bburman@usbr.gov
+             - faith_vandervoort@ios.doi.gov
+             - douglas_domenech@ios.doi.gov
+             - scott_cameron@ios.doi.gov
+             - Tara_Sweeney@ios.doi.gov
+             - john_bockmier@ios.doi.gov
+             - gowens@osmre.gov
+             - walter.cruickshank@boem.gov
+             - andrea_travnicek@ios.doi.gov
+             - susan_combs@ios.doi.gov
+             - james_cason@ios.doi.gov
+             - bsteed@blm.gov
+             - scott.angelle@bsee.gov
+             - imothy_petty@ios.doi.gov
+             - russell_newell@ios.doi.gov
+             - paul_smi h@nps.gov
+             - katharine_macgregor@ios.doi.gov
+
+Going (scott.angelle@bsee.gov)? All events in this series: Yes - Maybe - No   more op ions »
+Invitation from Google Calendar
+You are receiving this email at the account scott.angelle@bsee.gov because you are subscribed
+for invitations on calendar scott.angelle@bsee.gov.
+To stop receiving these emails, please log in to https://www.google.com/calendar/ and change
+your notification settings for this calendar.
+Forwarding this invitation could allow any recipient to modify your RSVP response. Learn More.
+
+=== Honesty statement (from the transcribing pass) ===
+"I did not invent or guess any text underneath the black redaction bars. For every redacted
+region, I marked it as [REDACTED] and separately noted the red annotation text that was visibly
+printed on or near the bar (e.g., 'B6 - David Bernhardt' and '(b) (5)'), which are FOIA
+exemption-code labels, not the original hidden content. No content underneath any black bar
+was fabricated or inferred."

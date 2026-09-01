@@ -1,0 +1,10 @@
+From: alice@example.com
+To: bob@example.com
+Subject: =?UTF-8?B?UsOpc3Vtw6kgb2YgYW1lbg==?=
+ =?UTF-8?B?ZG1lbnRzIOKAlCBjb25maWRlbnRpYWwg4pqgIGRvIG5vdCBmb3J3YXJk?=
+Date: Mon, 12 Feb 2024 17:00:00 -0500
+Message-ID: <f17@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Please treat the attached amendments as confidential until execution.

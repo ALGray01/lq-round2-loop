@@ -1,0 +1,2 @@
+loop.sh: loop 0 invocation exited 1 (subtype=error_max_turns) but returned a valid turn count (100) — treating as a normal cutoff, continuing
+loop.sh: loop 1 used 100 turns (100/133)

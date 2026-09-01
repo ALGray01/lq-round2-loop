@@ -1,0 +1,61 @@
+=== android.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+02.04.2012 14:20 пользователь "bob@xxx.mailgun.org" <
+bob@xxx.mailgun.org> написал:
+
+=== aol.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== apple_mail.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== apple_mail_2.eml ===
+subject: 'Re: Hello there'
+latest_message:
+Hello
+
+=== comcast.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== gmail.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== hotmail.eml ===
+subject: 'RE: Test'
+latest_message:
+Hello
+
+=== iphone.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== outlook.eml ===
+subject: 'Test'
+latest_message:
+Hello
+
+=== sparrow.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== thunderbird.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello
+
+=== yahoo.eml ===
+subject: 'Re: Test'
+latest_message:
+Hello

@@ -1,0 +1,231 @@
+{
+  "engine": "rapidocr",
+  "image": "documents\\foia_page1.png",
+  "seconds": 35.51787042617798,
+  "lines": [
+    {
+      "text": "Conversation Contents",
+      "conf": 0.9978810889380318
+    },
+    {
+      "text": "Invitation:DailyCheck-inCall@Dailyfrom11amto11:30am(EST)(scott.angelle@bsee.gov)",
+      "conf": 0.9857866480946541
+    },
+    {
+      "text": "Attachments:",
+      "conf": 0.9931209435065588
+    },
+    {
+      "text": "DavidBernhardtB6-DavidBernhardt",
+      "conf": 0.996550569611211
+    },
+    {
+      "text": "From:",
+      "conf": 0.9824424028396607
+    },
+    {
+      "text": "DavidBernhardtB6-DavidBernhardt",
+      "conf": 0.9952029931929803
+    },
+    {
+      "text": "Sent:",
+      "conf": 0.9941315054893494
+    },
+    {
+      "text": "Fri Dec 21 2018 10:39:51 GMT-0700 (MST)",
+      "conf": 0.9305975574713486
+    },
+    {
+      "text": "To:",
+      "conf": 0.9611558516820272
+    },
+    {
+      "text": "scott_cameron@ios.doi.gov,\"Tara_Sweeney@ios.doi.gov\"<tara_sweeney@ios.doi.gov>,",
+      "conf": 0.9791847995564907
+    },
+    {
+      "text": "john_bockmier@ios.doi.gov, gowens@osmre.gov,walter.cruickshank@boem.gov,andrea_travnicek@ios.doi.gov,",
+      "conf": 0.9849607903178376
+    },
+    {
+      "text": "russell_newell@ios.doi.gov,paul_smith@nps.gov,katharine_macgregor@ios.doi.gov",
+      "conf": 0.9856185905345074
+    },
+    {
+      "text": "Subject:",
+      "conf": 0.9940613135695457
+    },
+    {
+      "text": "Attachments:",
+      "conf": 0.9931447009245554
+    },
+    {
+      "text": "invite.ics invite.ics",
+      "conf": 0.9830901566005888
+    },
+    {
+      "text": "Daily Check-inCall",
+      "conf": 0.9768272837003072
+    },
+    {
+      "text": "more details 》",
+      "conf": 0.9924619325569698
+    },
+    {
+      "text": "When",
+      "conf": 0.9992554932832718
+    },
+    {
+      "text": "Daily from 11am to 11:30am Eastern Time - New York",
+      "conf": 0.9803543615341187
+    },
+    {
+      "text": "Where",
+      "conf": 0.9989572167396545
+    },
+    {
+      "text": "Callin(b) (5)",
+      "conf": 0.925891793691195
+    },
+    {
+      "text": "#)(map)",
+      "conf": 0.9766701885632106
+    },
+    {
+      "text": "Video call",
+      "conf": 0.9863111078739166
+    },
+    {
+      "text": "(b) (5)",
+      "conf": 0.9510914853640965
+    },
+    {
+      "text": "Calendar",
+      "conf": 0.998314656317234
+    },
+    {
+      "text": "scott.angelle@bsee.gov",
+      "conf": 0.9924096438017759
+    },
+    {
+      "text": "Who",
+      "conf": 0.9997006257375082
+    },
+    {
+      "text": "B6-David Bernhardt",
+      "conf": 0.972206175327301
+    },
+    {
+      "text": "- organizer",
+      "conf": 0.9648264700716193
+    },
+    {
+      "text": "·gareh_rees@ios.doi gov-creator",
+      "conf": 0.9765323650452399
+    },
+    {
+      "text": "·todd_willens@ios.doi.gov",
+      "conf": 0.9763464736938476
+    },
+    {
+      "text": "·daniel.jorjani@sol.doi.gov",
+      "conf": 0.9797177535516245
+    },
+    {
+      "text": "·jfreilly@usgs gov",
+      "conf": 0.9647207922405667
+    },
+    {
+      "text": "·joseph_balash@ios.doi.gov",
+      "conf": 0.9917806914219489
+    },
+    {
+      "text": "·bburman@usbr.gov",
+      "conf": 0.9816588549052968
+    },
+    {
+      "text": "·faith_vandervoort@ios.doi.gov",
+      "conf": 0.9791514277458191
+    },
+    {
+      "text": "·douglas_domenech@ios.doi.gov",
+      "conf": 0.9784960109612038
+    },
+    {
+      "text": "·scott_cameron@ios.doi gov",
+      "conf": 0.9920740035864023
+    },
+    {
+      "text": "·Tara_Sweeney@ios.doi.gov",
+      "conf": 0.9767977452278137
+    },
+    {
+      "text": "·john_bockmier@ios.doi.gov",
+      "conf": 0.9897083273300757
+    },
+    {
+      "text": "·gowens@osmre gov",
+      "conf": 0.9870937887360068
+    },
+    {
+      "text": "·walter.cruickshank@boem.gov",
+      "conf": 0.9848181733063289
+    },
+    {
+      "text": "·andrea_travnicek@ios.doi.gov",
+      "conf": 0.9899284449116937
+    },
+    {
+      "text": "·susan_combs@ios doi.gov",
+      "conf": 0.976578397055467
+    },
+    {
+      "text": "·james_cason@ios.doi.gov",
+      "conf": 0.9818528940280279
+    },
+    {
+      "text": "·bsteed@blm.gov",
+      "conf": 0.9566599130630493
+    },
+    {
+      "text": "·scott.angelle@bsee.gov",
+      "conf": 0.9764179820599763
+    },
+    {
+      "text": "·imothy_petty@ios.doi gov",
+      "conf": 0.9641011905670166
+    },
+    {
+      "text": "·russell_newell@ios.doi.gov",
+      "conf": 0.9217176216619986
+    },
+    {
+      "text": "·paul_smi h@nps.gov",
+      "conf": 0.9819314762165672
+    },
+    {
+      "text": "·katharine_macgregor@ios.doi.gov",
+      "conf": 0.9839952383190393
+    },
+    {
+      "text": "Going (scott angelle@bsee.gov)? All events in this series: Yes - Maybe - No more op ions 》",
+      "conf": 0.9518415060308244
+    },
+    {
+      "text": "Invitation from Google Calendar",
+      "conf": 0.9795148795650851
+    },
+    {
+      "text": "You are receiving this email at the account scott.angelle@bsee.gov because you are subscribed for invitations on calendar scott.angelle@bsee.gov.",
+      "conf": 0.964528889286107
+    },
+    {
+      "text": "To stop receiving these emails, please log in to https:/www google.com/calendar/ and change your notification seings for this calendar.",
+      "conf": 0.9732962749622486
+    },
+    {
+      "text": "Forwarding this invitation could allow any recipient to modify your RSVP response. Learn More.",
+      "conf": 0.9870056129516439
+    }
+  ]
+}

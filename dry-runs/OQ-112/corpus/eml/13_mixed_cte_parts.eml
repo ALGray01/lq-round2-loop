@@ -1,0 +1,36 @@
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0008==="
+MIME-Version: 1.0
+From: Sarah Chen <sarah.chen@meridiancole-law.example>
+To: Escrow Agent <agent@harrowgate-partners.example>
+Subject: Escrow release notice - $480,000 approved
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0008===
+Content-Type: multipart/alternative; boundary="===corpus-boundary-0009==="
+MIME-Version: 1.0
+
+--===corpus-boundary-0009===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+
+VGhyZWUgY29waWVzIG9mIHRoZSBzYW1lIG5vdGljZSBiZWxvdyBpbiBkaWZmZXJlbnQgdHJhbnNw
+b3J0IGVuY29kaW5ncyAtIHVzZSB3aGljaGV2ZXIgeW91ciBjbGllbnQgcmVuZGVycy4gRmluYWwg
+dmVyc2lvbjogZXNjcm93IHJlbGVhc2UgYXBwcm92ZWQgZm9yICQ0ODAsMDAwLg==
+
+--===corpus-boundary-0009===
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+Three copies of the same notice below in different transport encodings - us=
+e whichever your client renders. Final version: escrow release approved for=
+ $480,000.
+--===corpus-boundary-0009===
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Three copies of the same notice below in different transport encodings - use whichever your client renders. Final version: escrow release approved for $480,000.
+--===corpus-boundary-0009===--
+
+--===corpus-boundary-0008===--

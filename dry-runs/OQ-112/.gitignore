@@ -1,0 +1,17 @@
+# Harness scaffold/control files for this assessment session — not part of
+# the OQ-112 deliverable itself.
+CLAUDE.md
+CONTINUE_BUILD_PROMPT.md
+CONTINUE_RESERVE_PROMPT.md
+ENTRY.md
+FAILURE-CLASSES.md
+FIRST_PROMPT.md
+QUESTION.md
+loop.sh
+lib/
+run.log
+run.meta
+bash.exe.stackdump
+
+__pycache__/
+*.pyc

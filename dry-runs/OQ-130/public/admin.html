@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link admin</title>
+<style>
+  :root{ --ink:#181a1c; --paper:#f5f6f5; --panel:#fff; --line:#dfe2e0; --accent:#26463f; --muted:#666e6b; }
+  *{box-sizing:border-box;}
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif; background:var(--paper); color:var(--ink); margin:0; padding:20px 16px 60px;}
+  h1{font-size:1.2rem; margin:0 0 4px;}
+  p.sub{color:var(--muted); font-size:.85rem; margin:0 0 20px;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; max-width:760px;}
+  .card h2{font-size:.95rem; margin:0 0 12px;}
+  label{display:block; font-size:.78rem; color:var(--muted); margin:10px 0 4px;}
+  input,select{width:100%; padding:9px 10px; border-radius:7px; border:1px solid var(--line); font-size:.9rem; min-height:40px;}
+  button{margin-top:14px; background:var(--accent); color:#fff; border:0; padding:10px 16px; border-radius:7px; font-size:.88rem; cursor:pointer; min-height:40px;}
+  button.secondary{background:#b23b3b;}
+  table{width:100%; border-collapse:collapse; font-size:.82rem; margin-top:8px;}
+  th,td{text-align:left; padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
+  code{background:#eef1ef; padding:2px 5px; border-radius:4px; font-size:.78rem; word-break:break-all;}
+  .status-ok{color:#2f6d4f; font-weight:600;}
+  .status-dead{color:#a13d3d; font-weight:600;}
+  .row-actions button{margin-top:0;}
+  #log{font-family:ui-monospace,monospace; font-size:.76rem; white-space:pre-wrap; background:#111; color:#9fe6a0; padding:10px; border-radius:8px; max-height:160px; overflow:auto;}
+</style>
+</head>
+<body>
+  <h1>Explainer link admin</h1>
+  <p class="sub">Operator console for issuing and revoking per-client access links. Never link to this page from client-facing content.</p>
+
+  <div class="card">
+    <h2>Admin token</h2>
+    <label for="token">x-admin-token</label>
+    <input id="token" type="password" placeholder="paste the token printed by `node server.js`">
+    <button id="saveToken">Save locally</button>
+  </div>
+
+  <div class="card">
+    <h2>1. Create client</h2>
+    <label for="clientName">Client name</label>
+    <input id="clientName" placeholder="Acme Corp">
+    <label for="clientEmail">Client email (simulated)</label>
+    <input id="clientEmail" placeholder="counsel@acme-corp.example">
+    <button id="createClient">Create client</button>
+  </div>
+
+  <div class="card">
+    <h2>2. Issue a link</h2>
+    <label for="linkClient">Client</label>
+    <select id="linkClient"></select>
+    <label for="linkDoc">Document</label>
+    <select id="linkDoc"></select>
+    <label for="ttl">Expires in (hours, blank = never)</label>
+    <input id="ttl" type="number" placeholder="72">
+    <label for="maxViews">Max views (blank = unlimited)</label>
+    <input id="maxViews" type="number" placeholder="e.g. 1 for burn-after-reading">
+    <button id="issueLink">Issue link</button>
+  </div>
+
+  <div class="card">
+    <h2>3. Active &amp; revoked links</h2>
+    <button id="refreshLinks">Refresh</button>
+    <table>
+      <thead><tr><th>Client</th><th>Doc</th><th>Status</th><th>Views</th><th>Link</th><th></th></tr></thead>
+      <tbody id="linksBody"></tbody>
+    </table>
+  </div>
+
+  <div class="card"><h2>Log</h2><div id="log"></div></div>
+
+<script>
+(function(){
+  var tokenEl = document.getElementById('token');
+  tokenEl.value = localStorage.getItem('adminToken') || '';
+  document.getElementById('saveToken').addEventListener('click', function(){
+    localStorage.setItem('adminToken', tokenEl.value);
+    log('Token saved locally.');
+  });
+
+  var clients = [], documents = [];
+
+  function log(msg){
+    var el = document.getElementById('log');
+    el.textContent = ('[' + new Date().toLocaleTimeString() + '] ' + msg) + '\n' + el.textContent;
+  }
+
+  function authHeaders(){
+    return { 'x-admin-token': tokenEl.value, 'Content-Type': 'application/json' };
+  }
+
+  function api(path, opts){
+    opts = opts || {};
+    opts.headers = authHeaders();
+    return fetch(path, opts).then(function(r){
+      if (!r.ok) return r.json().then(function(b){ throw new Error(r.status + ': ' + (b.error || 'error')); });
+      return r.json();
+    });
+  }
+
+  function loadDocuments(){
+    return api('/admin/documents').then(function(docs){
+      documents = docs;
+      var sel = document.getElementById('linkDoc');
+      sel.innerHTML = docs.map(function(d){ return '<option value="' + d.id + '">' + d.title + '</option>'; }).join('');
+    });
+  }
+
+  function refreshClientSelect(){
+    var sel = document.getElementById('linkClient');
+    sel.innerHTML = clients.map(function(c){ return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
+  }
+
+  document.getElementById('createClient').addEventListener('click', function(){
+    var name = document.getElementById('clientName').value.trim();
+    var email = document.getElementById('clientEmail').value.trim();
+    if (!name) { log('Client name required.'); return; }
+    api('/admin/clients', { method: 'POST', body: JSON.stringify({ name: name, email: email }) })
+      .then(function(c){ clients.push(c); refreshClientSelect(); log('Created client ' + c.name + ' (' + c.id + ')'); })
+      .catch(function(e){ log('Error: ' + e.message); });
+  });
+
+  document.getElementById('issueLink').addEventListener('click', function(){
+    var clientId = document.getElementById('linkClient').value;
+    var documentId = document.getElementById('linkDoc').value;
+    var ttl = document.getElementById('ttl').value;
+    var maxViews = document.getElementById('maxViews').value;
+    if (!clientId || !documentId) { log('Create a client first.'); return; }
+    api('/admin/links', {
+      method: 'POST',
+      body: JSON.stringify({
+        clientId: clientId, documentId: documentId,
+        ttlHours: ttl ? Number(ttl) : null,
+        maxViews: maxViews ? Number(maxViews) : null,
+      })
+    }).then(function(link){
+      log('Issued link: ' + link.url);
+      loadLinks();
+    }).catch(function(e){ log('Error: ' + e.message); });
+  });
+
+  function statusOf(l){
+    if (l.revoked) return { text: 'revoked', ok: false };
+    if (l.expiresAt && Date.now() > Date.parse(l.expiresAt)) return { text: 'expired', ok: false };
+    if (l.maxViews && l.viewCount >= l.maxViews) return { text: 'view limit reached', ok: false };
+    return { text: 'active', ok: true };
+  }
+
+  function loadLinks(){
+    api('/admin/links').then(function(links){
+      var byId = {};
+      clients.forEach(function(c){ byId['client:' + c.id] = c.name; });
+      documents.forEach(function(d){ byId['doc:' + d.id] = d.title; });
+      var body = document.getElementById('linksBody');
+      body.innerHTML = links.slice().reverse().map(function(l){
+        var st = statusOf(l);
+        return '<tr>' +
+          '<td>' + (byId['client:' + l.clientId] || l.clientId) + '</td>' +
+          '<td>' + (byId['doc:' + l.documentId] || l.documentId) + '</td>' +
+          '<td class="' + (st.ok ? 'status-ok' : 'status-dead') + '">' + st.text + '</td>' +
+          '<td>' + l.viewCount + (l.maxViews ? ' / ' + l.maxViews : '') + '</td>' +
+          '<td><code>' + l.url + '</code></td>' +
+          '<td class="row-actions">' + (st.ok ? '<button class="secondary" data-token="' + l.token + '">Revoke</button>' : '') + '</td>' +
+          '</tr>';
+      }).join('');
+      body.querySelectorAll('button[data-token]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          api('/admin/links/' + btn.getAttribute('data-token') + '/revoke', { method: 'POST' })
+            .then(function(){ log('Revoked ' + btn.getAttribute('data-token').slice(0, 12) + '...'); loadLinks(); })
+            .catch(function(e){ log('Error: ' + e.message); });
+        });
+      });
+    }).catch(function(e){ log('Error: ' + e.message); });
+  }
+
+  document.getElementById('refreshLinks').addEventListener('click', loadLinks);
+
+  if (tokenEl.value) {
+    loadDocuments().then(loadLinks).catch(function(e){ log('Error: ' + e.message); });
+  }
+})();
+</script>
+</body>
+</html>

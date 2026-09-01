@@ -1,0 +1,23 @@
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0015==="
+MIME-Version: 1.0
+From: Linda Vance <l.vance@meridiancole-law.example>
+To: Sarah Chen <sarah.chen@meridiancole-law.example>
+Subject: Exhibit scan attached
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0015===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Attaching the exhibit scan - let me know if it doesn't open, our scanner has been acting up.
+--===corpus-boundary-0015===
+Content-Type: application/pdf
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="exhibit_scan.pdf"
+X-Expected-Size: 2458112
+
+JVBERi0xLjQK
+
+--===corpus-boundary-0015===--

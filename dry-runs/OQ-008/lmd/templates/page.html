@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}}</title>
+<style>
+  @page {
+    size: {{PAGE_SIZE}};
+    margin: {{PAGE_MARGIN}};
+    margin-left: 1.75in; /* extra room for margin paragraph numbers */
+
+    @top-center {
+      content: "{{HEADER}}";
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 9pt;
+      color: #555;
+    }
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 9pt;
+      color: #555;
+    }
+  }
+
+  body {
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    max-width: 7.5in;
+    margin: 2em auto;
+    color: #111;
+    counter-reset: clause;
+  }
+
+  h1.lmd-title {
+    text-align: center;
+    font-size: 15pt;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.3em;
+  }
+
+  .lmd-heading {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+  .lmd-heading .lmd-number {
+    font-weight: bold;
+  }
+  .lmd-level-1 { font-size: 13pt; margin-top: 1.6em; }
+  .lmd-level-2 { font-size: 12pt; margin-top: 1.2em; }
+  .lmd-level-3, .lmd-level-4 { font-size: 12pt; font-weight: normal; margin-top: 0.8em; }
+
+  /* --- Margin paragraph numbering ---------------------------------
+     Every body clause paragraph gets a sequential number in the left
+     margin, independent of the section numbering above. This is pure
+     CSS counters: it is exactly the part of the legal-document model
+     that HTML+CSS *is* good at (see SPEC.md section 2, "HTML + CSS").
+     The parts it can't do -- stable anchors, validated cross-refs,
+     defined-term tracking -- happened in Python before this HTML ever
+     existed. */
+  .lmd-body > p {
+    position: relative;
+    counter-increment: clause;
+  }
+  .lmd-body > p::before {
+    content: counter(clause);
+    position: absolute;
+    left: -1.6in;
+    width: 1.1in;
+    text-align: right;
+    color: #888;
+    font-size: 10pt;
+  }
+
+  .lmd-term-def {
+    font-style: italic;
+  }
+  .lmd-term-ref {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
+  }
+  .lmd-ref {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
+  }
+  .lmd-ref:hover, .lmd-term-ref:hover {
+    border-bottom-color: #333;
+  }
+
+  .footnote {
+    margin-top: 3em;
+    padding-top: 0.5em;
+    border-top: 1px solid #999;
+    font-size: 10pt;
+  }
+  .footnote::before {
+    content: "Notes (rendered at document end -- see SPEC.md \00a7 5 / README \00a7 Limitations for why true per-page footnotes aren't achievable in HTML+CSS today)";
+    display: block;
+    font-style: italic;
+    color: #900;
+    margin-bottom: 0.5em;
+  }
+  sup.footnote-ref { font-size: 8pt; }
+
+  .lmd-signature-block {
+    margin-top: 3em;
+    break-inside: avoid;
+  }
+  .sig-line {
+    display: inline-block;
+    width: 3in;
+    border-bottom: 1px solid #000;
+  }
+</style>
+</head>
+<body>
+<h1 class="lmd-title">{{TITLE}}</h1>
+<div class="lmd-body">
+{{BODY}}
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Master Services Agreement</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #ccc; --accent: #7a1f1f; }
+body {
+  font-family: "Century Schoolbook", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 1in 1in 1in 1.5in;
+  line-height: 1.5;
+  position: relative;
+}
+h1, h2, h3, h4 { font-weight: bold; }
+h1 .lmd-label, h2 .lmd-label, h3 .lmd-label, h4 .lmd-label {
+  color: var(--accent);
+  margin-right: 0.4em;
+}
+h1 { font-size: 1.15em; text-transform: uppercase; margin-top: 1.6em; }
+h2 { font-size: 1.05em; margin-top: 1.2em; }
+h3 { font-size: 1em; margin-left: 1.5em; }
+h4 { font-size: 1em; margin-left: 3em; }
+.lmd-paragraph {
+  position: relative;
+  margin: 0.9em 0;
+  padding-left: 0.2em;
+}
+.lmd-margin-number {
+  /* right/calc(100% + gap), not left:-<offset>, because this box's
+     containing block is .lmd-paragraph (position:relative), and
+     text-align:right draws the glyph at the box's own RIGHT edge -- a
+     left:-Xin + fixed-width version of this rule was found (via real
+     Chromium print-to-PDF text-position extraction, not just visual
+     inspection) to place the glyph only ~0.2-0.3in from the paragraph,
+     not out in the gutter, because the box's right edge (where the glyph
+     actually draws) landed near -Xin+width rather than near -Xin. Using
+     `right` sidesteps that class of off-by-width error: the box's right
+     edge is defined directly, independent of its width. */
+  position: absolute;
+  right: calc(100% + 0.2in);
+  width: 0.9in;
+  text-align: right;
+  color: #888;
+  font-size: 0.8em;
+  font-family: "Courier New", monospace;
+  user-select: none;
+}
+.lmd-term { color: var(--accent); }
+.lmd-term-ref { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+.lmd-ref { color: #1a4a7a; text-decoration: none; border-bottom: 1px dotted #1a4a7a; }
+.lmd-broken-ref, .lmd-broken { color: white; background: #b00; padding: 0 0.2em; font-family: monospace; }
+.lmd-signature-block { margin-top: 3em; }
+.lmd-signature-party { margin-top: 2em; }
+.lmd-sig-line { border-top: 1px solid #333; width: 3.2in; margin-top: 2.2em; }
+.lmd-sig-label { font-size: 0.85em; color: #555; margin-top: 0.2em; }
+.lmd-footnotes { margin-top: 3em; border-top: 1px solid var(--rule); padding-top: 0.6em; font-size: 0.88em; }
+.lmd-footnotes li { margin-bottom: 0.4em; }
+.lmd-cover { text-align: center; margin-bottom: 2.5em; }
+.lmd-cover h1 { font-size: 1.4em; }
+.lmd-parties { font-size: 0.95em; color: #333; }
+
+/* Print / paged-media target -- see module docstring for verification status.
+   @page's own margin is deliberately small and uniform (not the old
+   1.6in-left version): body's own 1.5in left padding is now the single
+   source of gutter width. Stacking a large @page margin on top of that
+   padding was the root cause of the margin-number positioning bug found
+   by testing against real Chromium print-to-PDF output (see README.md
+   Limitations) -- it pushed the whole content block, .lmd-margin-number
+   included, so far right that the negative-offset margin-number technique
+   ran out of room to reach a true gutter position. */
+@page {
+  size: letter;
+  margin: 0.5in;
+  @bottom-center { content: counter(page); }
+  @top-center { content: var(--running-title); font-size: 9pt; color: #666; }
+}
+.lmd-running-title { position: running(running-title); }
+</style></head><body>
+<div class="lmd-running-title">Master Services Agreement</div>
+<div class="lmd-cover">
+<h1>Master Services Agreement</h1>
+<p class="lmd-parties">Effective as of 2026-01-15</p>
+<p class="lmd-parties">
+Acme Corp, a Delaware corporation (&quot;Provider&quot;)<br>Globex Inc, a New York corporation (&quot;Client&quot;)
+</p>
+</div>
+<h1 id="definitions"><span class="lmd-label">1</span>Definitions</h1>
+<p class="lmd-paragraph"><span class="lmd-margin-number">1</span><strong id="def-agreement" class="lmd-term">&quot;Agreement&quot;</strong> means this Master Services Agreement, together with all Exhibits and Schedules attached hereto or incorporated by reference, as may be amended from time to time in accordance with <a class="lmd-ref" href="#sec-amendment">Section 4</a>.</p>
+<p class="lmd-paragraph"><span class="lmd-margin-number">2</span><strong id="def-confidential-information" class="lmd-term">&quot;Confidential Information&quot;</strong> means non-public information disclosed by either party in connection with the <a class="lmd-term-ref" href="#def-agreement">Agreement</a>, whether marked confidential or not, subject to the exclusions in <a class="lmd-ref" href="#sec-exclusions">Section 2.2</a>.</p>
+<p class="lmd-paragraph"><span class="lmd-margin-number">3</span><strong id="def-services" class="lmd-term">&quot;Services&quot;</strong> means the services described in one or more Statements of Work executed by both parties under this <a class="lmd-term-ref" href="#def-agreement">Agreement</a>.</p>
+<h1 id="sec-confidential-info"><span class="lmd-label">2</span>Confidential Information</h1>
+<h2 id="obligations"><span class="lmd-label">2.1</span>Obligations</h2>
+<p class="lmd-paragraph"><span class="lmd-margin-number">4</span>Each party agrees to protect the other party&#x27;s <a class="lmd-term-ref" href="#def-confidential-information">Confidential Information</a> using at least the same degree of care it uses to protect its own confidential information, and in no event less than reasonable care.<sup id="fnref-care-standard"><a href="#fn-care-standard">1</a></sup></p>
+<h2 id="sec-exclusions"><span class="lmd-label">2.2</span>Exclusions</h2>
+<h3 id="publicly-available-information"><span class="lmd-label">(a)</span>Publicly available information</h3>
+<p class="lmd-paragraph"><span class="lmd-margin-number">5</span><a class="lmd-term-ref" href="#def-confidential-information">Confidential Information</a> does not include information that was already publicly available at the time of disclosure.</p>
+<h3 id="independently-developed-information"><span class="lmd-label">(b)</span>Independently developed information</h3>
+<p class="lmd-paragraph"><span class="lmd-margin-number">6</span><a class="lmd-term-ref" href="#def-confidential-information">Confidential Information</a> does not include information that the receiving party can demonstrate, by written records, was independently developed without reference to the disclosing party&#x27;s <a class="lmd-term-ref" href="#def-confidential-information">Confidential Information</a>.</p>
+<h4 id="burden-of-proof"><span class="lmd-label">(i)</span>Burden of proof</h4>
+<p class="lmd-paragraph"><span class="lmd-margin-number">7</span>The receiving party bears the burden of establishing the exclusion under this clause by clear and convincing evidence.<sup id="fnref-burden"><a href="#fn-burden">2</a></sup></p>
+<h1 id="term-and-termination"><span class="lmd-label">3</span>Term and Termination</h1>
+<h2 id="term"><span class="lmd-label">3.1</span>Term</h2>
+<p class="lmd-paragraph"><span class="lmd-margin-number">8</span>This <a class="lmd-term-ref" href="#def-agreement">Agreement</a> commences on the Effective Date and continues until terminated as provided in <a class="lmd-ref" href="#sec-termination-convenience">Section 3.2</a> or <a class="lmd-ref" href="#sec-termination-cause">Section 3.3</a>.</p>
+<h2 id="sec-termination-convenience"><span class="lmd-label">3.2</span>Termination for convenience</h2>
+<p class="lmd-paragraph"><span class="lmd-margin-number">9</span>Either party may terminate this <a class="lmd-term-ref" href="#def-agreement">Agreement</a> for convenience upon sixty (60) days&#x27; prior written notice to the other party.</p>
+<h2 id="sec-termination-cause"><span class="lmd-label">3.3</span>Termination for cause</h2>
+<p class="lmd-paragraph"><span class="lmd-margin-number">10</span>Either party may terminate this <a class="lmd-term-ref" href="#def-agreement">Agreement</a> immediately upon written notice if the other party materially breaches any provision of this <a class="lmd-term-ref" href="#def-agreement">Agreement</a> and fails to cure such breach within thirty (30) days after receiving written notice describing the breach in reasonable detail.</p>
+<h1 id="sec-amendment"><span class="lmd-label">4</span>Amendment</h1>
+<p class="lmd-paragraph"><span class="lmd-margin-number">11</span>This <a class="lmd-term-ref" href="#def-agreement">Agreement</a> may only be amended by a written instrument signed by authorized representatives of both parties. No oral modification, waiver, or course of dealing shall be effective to amend this <a class="lmd-term-ref" href="#def-agreement">Agreement</a>.</p>
+<h1 id="governing-law"><span class="lmd-label">5</span>Governing Law</h1>
+<p class="lmd-paragraph"><span class="lmd-margin-number">12</span>This <a class="lmd-term-ref" href="#def-agreement">Agreement</a> is governed by the laws of the State of Delaware, without regard to its conflict-of-laws principles.</p>
+<div class="lmd-signature-block">
+<div class="lmd-signature-party">
+<p class="lmd-sig-label">Acme Corp, a Delaware corporation (&quot;Provider&quot;)</p>
+<div class="lmd-sig-line"></div>
+<p class="lmd-sig-label">By:</p>
+<p class="lmd-sig-label">Name:</p>
+<p class="lmd-sig-label">Title:</p>
+<p class="lmd-sig-label">Date:</p>
+</div>
+<div class="lmd-signature-party">
+<p class="lmd-sig-label">Globex Inc, a New York corporation (&quot;Client&quot;)</p>
+<div class="lmd-sig-line"></div>
+<p class="lmd-sig-label">By:</p>
+<p class="lmd-sig-label">Name:</p>
+<p class="lmd-sig-label">Title:</p>
+<p class="lmd-sig-label">Date:</p>
+</div>
+</div>
+<ol class="lmd-footnotes">
+<li id="fn-care-standard">This &quot;at least as protective&quot; formulation is the market standard for mutual NDAs and MSAs alike; see generally ABA Model Confidentiality Agreement commentary. <a href="#fnref-care-standard">&#8617;</a></li>
+<li id="fn-burden">Some jurisdictions apply a &quot;preponderance of the evidence&quot; standard here instead; confirm against the governing-law clause in <a class="lmd-ref" href="#sec-termination-cause">Section 3.3</a>&#x27;s surrounding Article before relying on &quot;clear and convincing&quot; in a non-Delaware agreement. <a href="#fnref-burden">&#8617;</a></li>
+</ol>
+</body></html>

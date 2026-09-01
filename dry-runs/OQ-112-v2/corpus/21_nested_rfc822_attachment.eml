@@ -1,0 +1,28 @@
+From: alice@example.com
+To: billing@example.com
+Subject: FYI - see attached email re: settlement
+Date: Mon, 12 Feb 2024 20:00:00 -0500
+Message-ID: <f21@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============5857231912077435062=="
+
+--===============5857231912077435062==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+FYI, forwarding as an attachment (not inline) for the file. See attached.
+
+--===============5857231912077435062==
+Content-Type: message/rfc822
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="original.eml"
+MIME-Version: 1.0
+
+RnJvbTogY2Fyb2xAZXhhbXBsZS5jb20KVG86IGFsaWNlQGV4YW1wbGUuY29tClN1YmplY3Q6IFJF
+OiBTZXR0bGVtZW50IG51bWJlcgpEYXRlOiBGcmksIDA5IEZlYiAyMDI0IDEwOjAwOjAwIC0wNTAw
+Ck1lc3NhZ2UtSUQ6IDxmMjEtaW5uZXJAZXhhbXBsZS5jb20+CkNvbnRlbnQtVHlwZTogdGV4dC9w
+bGFpbjsgY2hhcnNldD0idXRmLTgiCkNvbnRlbnQtVHJhbnNmZXItRW5jb2Rpbmc6IDdiaXQKTUlN
+RS1WZXJzaW9uOiAxLjAKCkNsaWVudCB3aWxsIGFjY2VwdCAkODUsMDAwIHRvIHNldHRsZSwgZmlu
+YWwgbnVtYmVyLgo=
+
+--===============5857231912077435062==--

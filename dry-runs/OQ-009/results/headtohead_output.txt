@@ -1,0 +1,64 @@
+Head-to-head: memory architectures on a 6-week, 2-matter legal scenario
+==============================================================================
+
+[Q1-supersession-current] matter=doe-v-roe as_of=2026-02-15
+  query: 'when is the hearing date'
+  note:  Hearing date was corrected in week 3; asked in week 6, must return the corrected date, not the original.
+    PASS hybrid (proposed)                      fact_id=dr-hearing-2     touched=['doe-v-roe'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected dr-hearing-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=dr-hearing-2     touched=['doe-v-roe'] :: matched expected fact
+
+[Q2-supersession-historical] matter=doe-v-roe as_of=2026-01-10
+  query: 'when is the hearing date'
+  note:  Asked before the week-3 correction happened: the historically-true answer is the original date, not the future correction.
+    PASS hybrid (proposed)                      fact_id=dr-hearing-1     touched=['doe-v-roe'] :: matched expected fact
+    PASS flat_rag (baseline)                    fact_id=dr-hearing-1     touched=['doe-v-roe'] :: matched expected fact
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=dr-hearing-2     touched=['doe-v-roe'] :: expected dr-hearing-1, got dr-hearing-2
+
+[Q3-settlement-current] matter=doe-v-roe as_of=2026-02-15
+  query: 'what is the settlement offer amount'
+  note:  Settlement offer was revised upward in week 6; must return the revised figure.
+    PASS hybrid (proposed)                      fact_id=dr-settle-2      touched=['doe-v-roe'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected dr-settle-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=dr-settle-2      touched=['doe-v-roe'] :: matched expected fact
+
+[Q4-leakage-same-predicate] matter=smith-estate as_of=2026-02-15
+  query: 'what is the hearing date'
+  note:  Both matters have a hearing_date fact; the estate matter's own date must come back, not the contract matter's.
+    PASS hybrid (proposed)                      fact_id=se-hearing-1     touched=['smith-estate'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected se-hearing-1, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=se-hearing-1     touched=['smith-estate'] :: matched expected fact
+
+[Q5-no-cross-matter-fact] matter=doe-v-roe as_of=2026-02-15
+  query: 'what is the estate value'
+  note:  Estate value belongs only to the smith-estate matter; doe-v-roe's own memory has nothing responsive and must not reach into smith-estate to answer.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['doe-v-roe'] :: expected nothing, but recalled irrelevant snippet: "Let's prepare a response to the mediation letter before the next settlement conversation."
+    PASS flat_rag (baseline)                    fact_id=None             touched=[] :: correctly found nothing
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['doe-v-roe'] :: correctly found nothing
+
+[Q6-supersession-other-matter] matter=smith-estate as_of=2026-02-15
+  query: 'what is the current estate value'
+  note:  Estate value was revised down in week 4; must return the revised appraisal.
+    PASS hybrid (proposed)                      fact_id=se-value-2       touched=['smith-estate'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected se-value-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=se-value-2       touched=['smith-estate'] :: matched expected fact
+
+[Q7-episodic-recall] matter=doe-v-roe as_of=2026-02-01
+  query: 'what did the client say about a vacation conflict'
+  note:  Not a structured fact at all -- pure episodic recall of a week-3 conversational turn about April/vacation.
+    PASS hybrid (proposed)                      fact_id=None             touched=['doe-v-roe'] :: recalled expected episodic content
+    PASS flat_rag (baseline)                    fact_id=None             touched=['doe-v-roe'] :: recalled expected episodic content
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['doe-v-roe'] :: snippet missing 'vacation': ''
+
+[Q8-not-yet-known] matter=doe-v-roe as_of=2026-01-15
+  query: 'who is the key witness'
+  note:  The witness fact isn't recorded until week 4 (valid_from 2026-01-27); asked in week 2, nothing should be returned yet, not a future fact leaking backward.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['doe-v-roe'] :: expected nothing, but recalled irrelevant snippet: 'We should track the contract dispute hearing and keep an eye on deadlines.'
+    FAIL flat_rag (baseline)                    fact_id=None             touched=['smith-estate'] :: touched forbidden matter smith-estate
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=dr-witness-1     touched=['doe-v-roe'] :: expected no fact, got dr-witness-1
+
+==============================================================================
+Scorecard
+  hybrid (proposed)                      6/8
+  flat_rag (baseline)                    3/8
+  frozen_snapshot (fine-tune stand-in)   5/8

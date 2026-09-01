@@ -1,0 +1,2 @@
+QUESTION (OQ-009 — Architect agent memory for long-running bots):
+Long-running legal-AI agents need memory. Knowledge graph (Graphiti), layered compartments (Honcho/Cognee), fine-tuning, or something else entirely — what's the right architecture for a legal-research bot that builds context over weeks of use? Propose a design, justify the choice against the alternatives, and sketch one head-to-head test you'd run to validate the call.

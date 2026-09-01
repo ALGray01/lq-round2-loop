@@ -1,0 +1,18 @@
+From: alice@example.com
+To: bob@example.com
+Subject: Re: Re: Fwd: Re: Contract v4
+Date: Mon, 12 Feb 2024 09:00:00 -0500
+Message-ID: <f05@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Final version approved, sending to the client today.
+
+> One more typo on page 2, otherwise good.
+>> Fixed the typo, see v4 attached.
+> | Should we also update the appendix reference?
+| Yes, appendix B needs the new numbering.
+>> > Numbering looks off in section 3.
+> >> Draft 3 attached for review.
+>>> Draft 2 comments incorporated.
+| >> Please see draft 2 for the updated schedule.

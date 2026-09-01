@@ -1,0 +1,56 @@
+T1-current-sol: current statute of limitations for Matter A
+  graph: PASS -- expected one of ['A-sol-v2'], top-1='A-sol-v2' score=0.436
+  compartment: PASS -- expected one of ['A-sol-v2'], top-1='A-sol-v2' score=0.436
+  baseline: FAIL -- expected one of ['s07'], top-1='s01' score=0.419
+T2-point-in-time-sol: belief as of week 2, before the week-4 amendment was learned
+  graph: PASS -- expected one of ['A-sol-v1'], top-1='A-sol-v1' score=0.250
+  compartment: FAIL -- forbidden top-1 ['A-sol-v2'], top-1='A-sol-v2' score=0.284
+  baseline: PASS -- expected one of ['s01'], top-1='s01' score=0.167
+T3-precedent-current: is Nguyen v. Delta Transit still good law, now
+  graph: PASS -- expected one of ['A-precedent-v2'], top-1='A-precedent-v2' score=0.253
+  compartment: PASS -- expected one of ['A-precedent-v2'], top-1='A-precedent-v2' score=0.253
+  baseline: PASS -- expected one of ['s10'], top-1='s10' score=0.187
+T4-point-in-time-precedent: was Nguyen good law as of week 3, before the week-7 overturning
+  graph: PASS -- expected one of ['A-precedent-v1'], top-1='A-precedent-v1' score=0.205
+  compartment: FAIL -- forbidden top-1 ['A-precedent-v2'], top-1='A-precedent-v2' score=0.225
+  baseline: FAIL -- expected one of ['s02'], top-1='s10' score=0.238
+T5-party-name-control: defendant's correct legal name, now
+  graph: PASS -- expected one of ['A-party-v2'], top-1='A-party-v2' score=0.527
+  compartment: PASS -- expected one of ['A-party-v2'], top-1='A-party-v2' score=0.527
+  baseline: PASS -- expected one of ['s04'], top-1='s04' score=0.403
+T6-isolation-tagging-drift: Matter B query whose source session (s06) was never tagged
+  graph: PASS -- expected one of ['B-vendor-sol'], top-1='B-vendor-sol' score=0.485
+  compartment: PASS -- expected one of ['B-vendor-sol'], top-1='B-vendor-sol' score=0.485
+  baseline: FAIL -- expected one of ['s06'], top-1='s03' score=0.218
+T7-isolation-no-filter: caller in a Matter B context forgets to pass a matter filter
+  graph: PASS -- raised ValueError(ValueError('query() requires a non-empty matter_id')) as required
+  compartment: PASS -- raised ValueError(ValueError('query() requires a non-empty matter_id')) as required
+  baseline: FAIL -- forbidden top-1 ['s01', 's02', 's04', 's07', 's08', 's10', 's12'], top-1='s01' score=0.291
+
+TEST                            GRAPH     COMPART.  BASELINE  
+--------------------------------------------------------------
+T1-current-sol                  PASS      PASS      FAIL      
+T2-point-in-time-sol            PASS      FAIL      PASS      
+T3-precedent-current            PASS      PASS      PASS      
+T4-point-in-time-precedent      PASS      FAIL      FAIL      
+T5-party-name-control           PASS      PASS      PASS      
+T6-isolation-tagging-drift      PASS      PASS      FAIL      
+T7-isolation-no-filter          PASS      PASS      FAIL      
+--------------------------------------------------------------
+TOTAL: graph 7/7   compartment 5/7   baseline 3/7
+
+=== Sanity check: break the graph store's TIME enforcement (FAILURE-CLASSES #4) ===
+  T2-point-in-time-sol: FAIL (as expected) -- top-1='A-sol-v2' (forbidden=['A-sol-v2'])
+  T4-point-in-time-precedent: FAIL (as expected) -- top-1='A-precedent-v2' (forbidden=['A-precedent-v2'])
+  Confirmed: disabling enforce_time flips exactly the point-in-time cases to FAIL.
+
+=== Sanity check: break the graph store's MATTER-PARTITION enforcement (FAILURE-CLASSES #4) ===
+  T6-isolation-tagging-drift: FAIL (as expected) -- top-1='A-sol-v2', candidate pool size=8 (all matters, not just Matter B)
+  Confirmed: disabling enforce_matter allows cross-matter leakage the scorer correctly flags.
+
+=== Does recency-biased ranking fix the baseline's point-in-time failures? ===
+  T2-point-in-time-sol: plain top-1='s01' (PASS), recency-biased top-1='s10' (FAIL)
+  T4-point-in-time-precedent: plain top-1='s10' (FAIL), recency-biased top-1='s10' (FAIL)
+  Recency is not the same axis as as-of: biasing toward later sessions cannot
+  distinguish 'what's most recent' from 'what was true as of an earlier week,'
+  and can make an accidental plain-baseline pass worse (see T2 above).

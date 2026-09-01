@@ -1,0 +1,23 @@
+downward departure from the government's estimated sentencing guideline range of 210 to 262 months is not warranted and he would not seek or suggest a departure or adjustment.2
+
+The government has organized this submission as follows:
+
+- I. Procedural History
+2. II1. Manafort's Relevant Criminal Conduct And The Statutory Sentencing Factors Under 18 U.S.C. § 3553(a):
+3. (A) Count One Conduct
+- (8) Count Two Conduct
+5. (C)  Post-Plea Conduct
+
+<!-- image -->
+
+Attached to this filing are the following:
+
+- Attachment A: A copy of the superseding criminal information to which Manafort pled guilty on September 14, 2018 (Doc. 419);
+- Attachment B: A copy of Manafort's plea agreement (Doc. 422) and the Statement of the Offenses and Other Acts, dated September 14, 2018 (Doc. 423);
+- Attachment C: A copy the superseding indictment charging Manafort in the Eastern District of Virginia (EDVA) on February 22, 2019, United States v. Manafort, 1:18-cr-83 (Doc. 9);
+- Attachment D: A copy of the verdict form from Manafort's trial in the EDVA, United States v. Manafort, 1:18-cr-83 (Aug. 21, 2018) (Doc. 280);
+- Attachment E: A copy of the government's sentencing submission in the EDVA, United States v. Manafort, 1:18-cr-83 (Feb. 15, 2019) (Doc. 314);
+- Attachment F: A copy of the government's objections to the PSR (under seal); and
+- Attachment G: A copy of additional documents cited herein, including the government's proposed trial exhibits, which were previously provided to the Court and defense. (An index of these exhibits is included in Attachment G, in the front of that attachment.)
+
+2 Attachment B, section 4D. Manafort further agrced that a sentence within the 210 to 262 month range "would constitute a reasonable sentence in light of all thc factors set forth in 18 U.s.C. § 3553(a), should such a sentence be

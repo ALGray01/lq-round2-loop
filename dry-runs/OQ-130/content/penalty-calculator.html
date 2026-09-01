@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Late-Delivery Penalty Calculator — Clause 14.2</title>
+<style>
+  :root{
+    --ink:#14181f; --paper:#fbfaf7; --panel:#ffffff; --line:#e4e0d6;
+    --accent:#8a5a2b; --accent-ink:#4a3218; --muted:#6b6459;
+    --risk-low:#2f6d4f; --risk-med:#9a6a12; --risk-high:#a13d3d;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans);
+    line-height:1.5; padding:0 0 64px;
+  }
+  header.page{
+    background:linear-gradient(160deg,#20140a,#3a2510 60%,#4a3218);
+    color:#f3ead9; padding:28px 20px 34px;
+  }
+  header.page .eyebrow{
+    text-transform:uppercase; letter-spacing:.12em; font-size:.72rem; color:#d8b98c; margin:0 0 6px;
+  }
+  header.page h1{
+    font-family:var(--serif); font-weight:normal; font-size:1.6rem; margin:0 0 8px; max-width:34ch;
+  }
+  header.page p{margin:0; color:#cdbca3; font-size:.92rem; max-width:60ch;}
+  main{max-width:760px; margin:0 auto; padding:0 20px;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:22px; margin-top:-18px; position:relative; z-index:1;
+    box-shadow:0 12px 28px rgba(30,20,10,.08);
+  }
+  .toggle-row{
+    display:flex; gap:8px; background:#f1ede3; border-radius:10px; padding:4px; margin-bottom:20px;
+  }
+  .toggle-row button{
+    flex:1; border:0; background:transparent; padding:11px 8px; border-radius:8px;
+    font-size:.88rem; font-weight:600; color:var(--muted); cursor:pointer; min-height:44px;
+  }
+  .toggle-row button.active{background:var(--accent); color:#fff;}
+  label{display:block; font-size:.82rem; font-weight:600; color:var(--muted); margin:16px 0 6px;}
+  label:first-of-type{margin-top:0;}
+  input[type=number], input[type=range]{width:100%;}
+  input[type=number]{
+    font-size:1.05rem; padding:11px 12px; border-radius:8px; border:1px solid var(--line);
+    background:#fdfcfa; min-height:44px;
+  }
+  input[type=range]{accent-color:var(--accent); height:32px;}
+  .field-note{font-size:.78rem; color:var(--muted); margin-top:4px;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:0 16px;}
+  @media (max-width:520px){ .grid{grid-template-columns:1fr;} }
+  .result{
+    margin-top:22px; border-radius:12px; padding:18px; background:#faf5ea;
+    border:1px solid #ecdfc4;
+  }
+  .result .headline{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  .result .amount{font-family:var(--serif); font-size:2rem; color:var(--accent-ink);}
+  .result .capped{
+    display:inline-block; margin-left:8px; font-size:.72rem; font-weight:700; letter-spacing:.03em;
+    text-transform:uppercase; background:#a13d3d; color:#fff; padding:3px 8px; border-radius:999px;
+  }
+  .result .sub{font-size:.85rem; color:var(--muted); margin-top:4px;}
+  .bar-track{height:10px; border-radius:6px; background:#ecdfc4; margin-top:14px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--accent); border-radius:6px; transition:width .2s ease;}
+  .bar-labels{display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); margin-top:4px;}
+
+  section.commentary{margin-top:28px;}
+  section.commentary h2{font-family:var(--serif); font-weight:normal; font-size:1.15rem; margin:0 0 4px;}
+  .clause-toggle{
+    display:inline-flex; align-items:center; gap:8px; font-size:.82rem; color:var(--muted);
+    margin:6px 0 14px; cursor:pointer; user-select:none;
+  }
+  .clause-toggle input{width:18px; height:18px;}
+  .plain{font-size:.95rem;}
+  .clause-text{
+    display:none; font-family:var(--mono); font-size:.82rem; background:#f6f4ee; border:1px solid var(--line);
+    border-radius:10px; padding:14px; margin-top:10px; white-space:pre-wrap; color:#332a1f;
+  }
+  .clause-text.show{display:block;}
+  footer{max-width:760px; margin:32px auto 0; padding:0 20px; font-size:.76rem; color:var(--muted);}
+  .badge-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
+  .badge{font-size:.72rem; padding:3px 9px; border-radius:999px; border:1px solid var(--line); color:var(--muted);}
+</style>
+</head>
+<body>
+  <header class="page">
+    <p class="eyebrow">Master Services Agreement · Clause 14.2</p>
+    <h1>What does a late delivery actually cost?</h1>
+    <p>Adjust the numbers below to see how the liquidated-damages clause applies to your own timeline. Nothing here is legal advice — it's a plain-English model of clause 14.2 so you can sanity-check any invoice before it lands.</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="toggle-row" role="tablist" aria-label="Penalty structure">
+        <button type="button" class="active" data-mode="percent" id="tab-percent">% of contract value / day</button>
+        <button type="button" data-mode="fixed" id="tab-fixed">Fixed fee / day</button>
+      </div>
+
+      <div class="grid">
+        <div>
+          <label for="contractValue">Total contract value</label>
+          <input type="number" id="contractValue" value="120000" min="0" step="1000" inputmode="decimal">
+          <p class="field-note">USD, ex. VAT</p>
+        </div>
+        <div>
+          <label for="daysLate">Days late</label>
+          <input type="number" id="daysLate" value="9" min="0" step="1" inputmode="numeric">
+          <input type="range" id="daysLateRange" value="9" min="0" max="60" step="1">
+        </div>
+      </div>
+
+      <div class="grid" id="percentFields">
+        <div>
+          <label for="dailyPercent">Penalty rate per day late</label>
+          <input type="number" id="dailyPercent" value="0.5" min="0" step="0.05" inputmode="decimal">
+          <p class="field-note">% of contract value, per calendar day</p>
+        </div>
+        <div>
+          <label for="capPercent">Cap on total penalty</label>
+          <input type="number" id="capPercent" value="10" min="0" step="1" inputmode="decimal">
+          <p class="field-note">% of contract value — clause 14.2(c)</p>
+        </div>
+      </div>
+
+      <div class="grid" id="fixedFields" style="display:none;">
+        <div>
+          <label for="dailyFee">Fixed fee per day late</label>
+          <input type="number" id="dailyFee" value="450" min="0" step="10" inputmode="decimal">
+          <p class="field-note">USD, per calendar day</p>
+        </div>
+        <div>
+          <label for="capAmount">Cap on total penalty</label>
+          <input type="number" id="capAmount" value="12000" min="0" step="100" inputmode="decimal">
+          <p class="field-note">USD — clause 14.2(c)</p>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="headline">
+          <span class="amount" id="resultAmount">$5,400</span>
+          <span class="capped" id="cappedBadge" style="display:none">Cap applied</span>
+        </div>
+        <div class="sub" id="resultSub">9 days × 0.5% of $120,000 = $5,400 (below the $12,000 cap)</div>
+        <div class="bar-track"><div class="bar-fill" id="barFill" style="width:45%"></div></div>
+        <div class="bar-labels"><span>Day 0</span><span id="capLabel">Cap reached at day 20</span></div>
+      </div>
+    </div>
+
+    <section class="commentary">
+      <h2>What clause 14.2 actually says</h2>
+      <label class="clause-toggle">
+        <input type="checkbox" id="showClauseText"> Show original clause text
+      </label>
+
+      <p class="plain">Clause 14.2 is a <strong>liquidated damages</strong> provision, not a penalty in the punitive sense — it fixes, in advance, a genuine pre-estimate of the loss caused by late delivery, so neither side has to prove actual damages later. It applies automatically once the delivery date in Schedule 2 passes, accrues per calendar day (not business day), and is capped so a very long delay can't spiral into an unbounded claim.</p>
+      <div class="clause-text" id="clauseText">14.2 LATE DELIVERY. (a) If the Supplier fails to deliver the Services by the
+Delivery Date specified in Schedule 2, the Supplier shall pay to the Customer,
+as liquidated damages and not as a penalty, an amount equal to zero point five
+per cent (0.5%) of the Contract Value for each calendar day (or part thereof)
+that delivery is delayed, calculated from the day after the Delivery Date.
+(b) Amounts due under this clause 14.2 shall be deducted from any sums
+otherwise payable to the Supplier, or invoiced separately at the Customer's
+election.
+(c) The Supplier's total liability under this clause 14.2 shall not exceed ten
+per cent (10%) of the Contract Value, irrespective of the length of the delay.
+(d) This clause is without prejudice to the Customer's right to terminate for
+material breach under clause 17.</div>
+
+      <div class="badge-row">
+        <span class="badge">Liquidated damages, not a penalty clause</span>
+        <span class="badge">Accrues daily, uncapped until 14.2(c)</span>
+        <span class="badge">Doesn't waive termination rights</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>Illustrative explainer for a simulated engagement. Figures are placeholders — verify against the executed agreement before relying on any number here.</footer>
+
+<script>
+(function(){
+  var mode = 'percent';
+  var tabPercent = document.getElementById('tab-percent');
+  var tabFixed = document.getElementById('tab-fixed');
+  var percentFields = document.getElementById('percentFields');
+  var fixedFields = document.getElementById('fixedFields');
+
+  var contractValue = document.getElementById('contractValue');
+  var daysLate = document.getElementById('daysLate');
+  var daysLateRange = document.getElementById('daysLateRange');
+  var dailyPercent = document.getElementById('dailyPercent');
+  var capPercent = document.getElementById('capPercent');
+  var dailyFee = document.getElementById('dailyFee');
+  var capAmount = document.getElementById('capAmount');
+
+  var resultAmount = document.getElementById('resultAmount');
+  var resultSub = document.getElementById('resultSub');
+  var cappedBadge = document.getElementById('cappedBadge');
+  var barFill = document.getElementById('barFill');
+  var capLabel = document.getElementById('capLabel');
+  var clauseText = document.getElementById('clauseText');
+  var showClauseText = document.getElementById('showClauseText');
+
+  function fmt(n){
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function setMode(next){
+    mode = next;
+    tabPercent.classList.toggle('active', mode === 'percent');
+    tabFixed.classList.toggle('active', mode === 'fixed');
+    percentFields.style.display = mode === 'percent' ? '' : 'none';
+    fixedFields.style.display = mode === 'fixed' ? '' : 'none';
+    calc();
+  }
+
+  function calc(){
+    var cv = Math.max(0, Number(contractValue.value) || 0);
+    var days = Math.max(0, Number(daysLate.value) || 0);
+    var total, cap, perDayLabel, capDay;
+
+    if (mode === 'percent') {
+      var rate = Math.max(0, Number(dailyPercent.value) || 0) / 100;
+      var capPct = Math.max(0, Number(capPercent.value) || 0) / 100;
+      cap = cv * capPct;
+      var raw = cv * rate * days;
+      total = Math.min(raw, cap);
+      capDay = rate > 0 ? Math.ceil(capPct / rate) : Infinity;
+      resultSub.textContent = days + ' days × ' + dailyPercent.value + '% of ' + fmt(cv) + ' = ' + fmt(raw) +
+        (raw > cap ? ' — capped to ' + fmt(cap) : ' (below the ' + fmt(cap) + ' cap)');
+    } else {
+      var fee = Math.max(0, Number(dailyFee.value) || 0);
+      cap = Math.max(0, Number(capAmount.value) || 0);
+      var raw2 = fee * days;
+      total = Math.min(raw2, cap);
+      capDay = fee > 0 ? Math.ceil(cap / fee) : Infinity;
+      resultSub.textContent = days + ' days × ' + fmt(fee) + '/day = ' + fmt(raw2) +
+        (raw2 > cap ? ' — capped to ' + fmt(cap) : ' (below the ' + fmt(cap) + ' cap)');
+    }
+
+    resultAmount.textContent = fmt(total);
+    var raw = mode === 'percent'
+      ? cv * (Math.max(0, Number(dailyPercent.value) || 0) / 100) * days
+      : Math.max(0, Number(dailyFee.value) || 0) * days;
+    // Note: toggle via style.display, not the `hidden` attribute — this
+    // element's own CSS class sets `display: inline-block`, and author CSS
+    // always overrides the UA default `[hidden]{display:none}` rule, so
+    // `.hidden = true` alone would silently fail to hide it.
+    cappedBadge.style.display = (raw > cap && cap >= 0) ? 'inline-block' : 'none';
+
+    var pct = cap > 0 ? Math.min(100, (total / cap) * 100) : 0;
+    barFill.style.width = pct + '%';
+    capLabel.textContent = isFinite(capDay) ? ('Cap reached at day ' + capDay) : 'Cap never reached at this rate';
+  }
+
+  tabPercent.addEventListener('click', function(){ setMode('percent'); });
+  tabFixed.addEventListener('click', function(){ setMode('fixed'); });
+
+  [contractValue, dailyPercent, capPercent, dailyFee, capAmount].forEach(function(el){
+    el.addEventListener('input', calc);
+  });
+  daysLate.addEventListener('input', function(){ daysLateRange.value = daysLate.value; calc(); });
+  daysLateRange.addEventListener('input', function(){ daysLate.value = daysLateRange.value; calc(); });
+
+  showClauseText.addEventListener('change', function(){
+    clauseText.classList.toggle('show', showClauseText.checked);
+  });
+
+  calc();
+})();
+</script>
+</body>
+</html>

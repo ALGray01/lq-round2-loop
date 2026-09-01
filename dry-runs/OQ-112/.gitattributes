@@ -1,0 +1,5 @@
+# Corpus fixtures are byte-exact test data (intentional non-UTF-8 bytes,
+# BOMs, mixed encodings, forced CRLF). Never let git normalize line endings
+# or otherwise touch these bytes.
+corpus/eml/* -text
+corpus/msg/* -text binary

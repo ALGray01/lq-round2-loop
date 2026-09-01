@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Broken Fixture (intentionally invalid, for lint testing)</title>
+<style>
+:root { --ink: #1a1a1a; --rule: #ccc; --accent: #7a1f1f; }
+body {
+  font-family: "Century Schoolbook", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 1in 1in 1in 1.6in;
+  line-height: 1.5;
+  position: relative;
+}
+h1, h2, h3, h4 { font-weight: bold; }
+h1 .lmd-label, h2 .lmd-label, h3 .lmd-label, h4 .lmd-label {
+  color: var(--accent);
+  margin-right: 0.4em;
+}
+h1 { font-size: 1.15em; text-transform: uppercase; margin-top: 1.6em; }
+h2 { font-size: 1.05em; margin-top: 1.2em; }
+h3 { font-size: 1em; margin-left: 1.5em; }
+h4 { font-size: 1em; margin-left: 3em; }
+.lmd-paragraph {
+  position: relative;
+  margin: 0.9em 0;
+  padding-left: 0.2em;
+}
+.lmd-margin-number {
+  position: absolute;
+  left: -0.9in;
+  width: 0.7in;
+  text-align: right;
+  color: #888;
+  font-size: 0.8em;
+  font-family: "Courier New", monospace;
+  user-select: none;
+}
+.lmd-term { color: var(--accent); }
+.lmd-term-ref { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+.lmd-ref { color: #1a4a7a; text-decoration: none; border-bottom: 1px dotted #1a4a7a; }
+.lmd-broken-ref, .lmd-broken { color: white; background: #b00; padding: 0 0.2em; font-family: monospace; }
+.lmd-signature-block { margin-top: 3em; }
+.lmd-signature-party { margin-top: 2em; }
+.lmd-sig-line { border-top: 1px solid #333; width: 3.2in; margin-top: 2.2em; }
+.lmd-sig-label { font-size: 0.85em; color: #555; margin-top: 0.2em; }
+.lmd-footnotes { margin-top: 3em; border-top: 1px solid var(--rule); padding-top: 0.6em; font-size: 0.88em; }
+.lmd-footnotes li { margin-bottom: 0.4em; }
+.lmd-cover { text-align: center; margin-bottom: 2.5em; }
+.lmd-cover h1 { font-size: 1.4em; }
+.lmd-parties { font-size: 0.95em; color: #333; }
+
+/* Print / paged-media target -- see module docstring for verification status */
+@page {
+  size: letter;
+  margin: 1in 1in 1in 1.6in;
+  @bottom-center { content: counter(page); }
+  @top-center { content: var(--running-title); font-size: 9pt; color: #666; }
+}
+.lmd-running-title { position: running(running-title); }
+@media print {
+  .lmd-margin-number { left: -0.9in; }
+}
+</style></head><body>
+<div class="lmd-running-title">Broken Fixture (intentionally invalid, for lint testing)</div>
+<div class="lmd-cover">
+<h1>Broken Fixture (intentionally invalid, for lint testing)</h1>
+</div>
+<h1 id="definitions"><span class="lmd-label">1</span>Definitions</h1>
+<p class="lmd-paragraph"><span class="lmd-margin-number">1</span><strong id="def-agreement" class="lmd-term">&quot;Agreement&quot;</strong> means this agreement.</p>
+<h1 id="obligations"><span class="lmd-label">3</span>Obligations</h1>
+<p class="lmd-paragraph"><span class="lmd-margin-number">2</span>The Provider shall perform the <span class="lmd-broken-ref">[[Services?]]</span> described in Exhibit A.</p>
+<p class="lmd-paragraph"><span class="lmd-margin-number">3</span>This clause references a section that does not exist: <span class="lmd-broken-ref">[[ref:sec-nowhere?]]</span>.</p>
+<p class="lmd-paragraph"><span class="lmd-margin-number">4</span>This clause cites a footnote that was never defined.<sup class="lmd-broken-ref">[^ghost?]</sup></p>
+<h1 id="obligations"><span class="lmd-label">3</span>Obligations</h1>
+<p class="lmd-paragraph"><span class="lmd-margin-number">5</span>This heading id collides with the one above (both slugify to &quot;obligations&quot;).</p>
+<p class="lmd-paragraph"><span class="lmd-margin-number">6</span><strong id="def-agreement" class="lmd-term">&quot;Agreement&quot;</strong> means something else entirely.</p>
+<div class="lmd-signature-block">
+</div>
+</body></html>

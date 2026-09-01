@@ -1,0 +1,58 @@
+ANTHROPIC_API_KEY set: False
+OPENAI_API_KEY set: False
+Local model server / binary check (not just API keys):
+  port 11434: not reachable (URLError)
+  port 1234: not reachable (URLError)
+  port 8080: not reachable (URLError)
+  port 5000: not reachable (URLError)
+  `ollama` on PATH: not found
+  `llama-cpp` on PATH: not found
+  `llama-cpp-python` on PATH: not found
+(no API key, no reachable local model server or binary -- so no
+ end-to-end run of any of these libraries, and no real LLM-driven
+ extraction step, was possible here; everything below is source
+ inspection of installed packages, not a behavioral test)
+=== graphiti-core: real EntityEdge temporal fields ===
+  created_at: present (required=True)
+  expired_at: present (required=False)
+  valid_at: present (required=False)
+  invalid_at: present (required=False)
+  -> confirms this repo's bi-temporal design (two independent clocks:
+     valid_at/invalid_at = valid time, created_at/expired_at = transaction
+     time) matches Graphiti's actual edge schema, not just its design docs.
+=== graphiti-core: is group_id (its matter-partition mechanism) required? ===
+  Edge.group_id is_required() at the Pydantic model level: True
+  (this only means the *low-level* Edge object needs *some* string passed in --
+   see below for what value the *public* add_episode() API actually supplies)
+  validate_group_id.__doc__ (first line): 'Validate that a group_id contains only ASCII alphanumeric characters, dashes, and underscores.'
+  validate_group_id source explicitly allows empty string: True
+  Graphiti.add_episode(group_id=None) resolves a default before constructing any Edge: True
+  -> The low-level Edge model requires *a* string (Pydantic can't have a
+     missing field); the public API a caller actually uses resolves that
+     string FOR them when they don't pass one, silently pooling into a
+     shared default ('' for most providers). The practical, caller-facing
+     guarantee is 'you always get some group_id,' not 'you must choose one' --
+     the opposite of this repo's Fact.matter_id, which has no such resolution
+     step and refuses to construct at all without a real value.
+=== honcho-ai: is workspace_id (its tenant-partition mechanism) required? ===
+  Honcho.__init__'s workspace_id default: FieldInfo(annotation=NoneType, required=False, default=None, description='Workspace ID for scoping operations', metadata=[MinLen(min_length=1)])
+  Falls back to "default" (env var or literal) when omitted: True
+  Peer.peer_id field: FieldInfo(annotation=NoneType, required=True, description='Unique identifier for this peer within the workspace', metadata=[MinLen(min_length=1)]) (min_length enforced -- but this is
+    peer identity within a workspace, not cross-tenant isolation)
+  -> Same pattern as Graphiti: the actual tenant-scoping parameter
+     (workspace_id) is optional and pools into a shared "default"
+     workspace when a caller forgets to pass it.
+=== cognee: is dataset_name (its matter-partition mechanism) required? ===
+  add()'s dataset_name default: 'main_dataset'
+  -> A third confirmation of the same pattern: cognee's real partition
+     key also defaults to a shared bucket ("main_dataset") rather than
+     requiring an explicit value.
+=== Summary ===
+  All three real libraries' actual tenant/matter-partition parameter
+  (group_id / workspace_id / dataset_name) is OPTIONAL with a shared
+  default fallback -- none of them make it a required field the way
+  this repo's Fact.matter_id is required and non-nullable. This is a
+  real, verified finding, not an assumption -- and it means this
+  repo's isolation design is a deliberate hardening beyond what any
+  of the three reference libraries do by default, not a description
+  of how they already behave.

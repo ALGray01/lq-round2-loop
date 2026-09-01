@@ -1,0 +1,2 @@
+email_reply_parser==0.5.12
+extract-msg==0.56.0

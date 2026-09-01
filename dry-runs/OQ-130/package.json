@@ -1,0 +1,20 @@
+{
+  "name": "explainer-link-delivery",
+  "version": "1.0.0",
+  "description": "Per-client, access-controlled, revocable link delivery layer for interactive HTML legal explainers.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node scripts/demo.js",
+    "screenshot": "node scripts/screenshot.js",
+    "security-test": "node scripts/security-test.js",
+    "admin-ui-check": "node scripts/admin-ui-check.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.47.0"
+  }
+}

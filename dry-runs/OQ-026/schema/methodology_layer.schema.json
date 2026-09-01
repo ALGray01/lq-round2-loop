@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/methodology-layer/schema.json",
+  "title": "Legal Methodology Layer",
+  "description": "Schema for the layer that sits between raw legal-text entity extraction (e.g. Isaacus/Kanon NER) and an LLM. It encodes doctrinal structure -- what a competent lawyer knows before reading a single clause -- so the LLM receives structured grounding instead of just spans of text with entity tags.",
+  "$defs": {
+    "AuthorityType": {
+      "enum": ["constitution", "statute", "regulation", "case", "restatement", "treatise"]
+    },
+    "CourtLevel": {
+      "enum": ["scotus", "state_supreme", "federal_circuit", "state_appellate", "federal_district", "state_trial", "n/a"]
+    },
+    "PrecedentRelationType": {
+      "enum": ["follows", "distinguishes", "overrules", "criticizes", "limits", "questions", "extends"]
+    },
+
+    "Authority": {
+      "type": "object",
+      "description": "A single source of law: a statute, a case, a restatement section, a treatise passage. Weight is NOT stored as a hand-picked number -- it is computed at query time by methodology_layer.weighting from (type, court_level, whether it is binding in the jurisdiction being queried). See weighting.py for the formula.",
+      "required": ["id", "type", "citation", "home_jurisdiction"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "type": { "$ref": "#/$defs/AuthorityType" },
+        "citation": { "type": "string" },
+        "short_name": { "type": "string" },
+        "home_jurisdiction": {
+          "type": "string",
+          "description": "Jurisdiction that produced this authority, e.g. US-CA, US-NY, US-federal-9th-cir, US-model (for UCC/Restatement, which are model law, binding nowhere on their own)."
+        },
+        "court_level": { "$ref": "#/$defs/CourtLevel" },
+        "binding_in": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Jurisdictions in which this authority is binding (not merely persuasive). A model-law or out-of-jurisdiction case is persuasive everywhere it is not listed here."
+        },
+        "year": { "type": "integer" },
+        "summary": { "type": "string" }
+      }
+    },
+
+    "PrecedentRelation": {
+      "type": "object",
+      "required": ["id", "source_case", "target_case", "relation", "on_issue"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "source_case": { "type": "string", "description": "Authority id of the citing case" },
+        "target_case": { "type": "string", "description": "Authority id of the cited case" },
+        "relation": { "$ref": "#/$defs/PrecedentRelationType" },
+        "on_issue": { "type": "string", "description": "The specific doctrinal point the relation concerns, not just 'the case in general'." },
+        "source_bound_by_target": {
+          "type": "boolean",
+          "description": "True when source_case is under a vertical stare decisis obligation to follow target_case (e.g. a federal circuit applying state law is bound by that state's highest court) regardless of whether it agrees. This is the field that lets 'criticizes' and 'follows' coexist truthfully."
+        }
+      }
+    },
+
+    "DoctrinalRule": {
+      "type": "object",
+      "description": "An interpretive principle / canon of construction, expressed as a machine-checkable trigger plus the authority that grounds it.",
+      "required": ["id", "name", "statement", "authority_basis", "trigger", "priority"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "statement": { "type": "string" },
+        "authority_basis": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Authority ids grounding this rule."
+        },
+        "jurisdiction_scope": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Jurisdictions where this rule is treated as binding; empty/absent means 'general common-law canon, weight depends on local adoption'."
+        },
+        "trigger": {
+          "type": "object",
+          "description": "Structural precondition on the fact pattern that must hold for this rule to be considered at all.",
+          "required": ["type"],
+          "additionalProperties": false,
+          "properties": {
+            "type": { "type": "string", "enum": ["threshold_ambiguity", "structural_pattern", "evidence_conflict", "fallback"] },
+            "params": {
+              "type": "object",
+              "description": "Rule-type-specific trigger parameters (e.g. {source: course_of_performance} or {pattern: specific_list_then_general_catchall}); intentionally left open-ended since its shape varies per trigger type."
+            }
+          }
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Lower number = consulted earlier in the doctrinal hierarchy. Used to order applicable_rules in an InterpretiveAnnotation, not to hide a fixed answer."
+        },
+        "supersedes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Rule ids this rule takes priority over when both are triggered and conflict."
+        }
+      }
+    },
+
+    "DoctrinalHierarchy": {
+      "type": "object",
+      "description": "A named, ordered ladder of DoctrinalRules for a sub-area of law, e.g. the UCC 1-303 order of resort for interpreting agreements.",
+      "required": ["id", "name", "authority_basis", "ordered_rule_ids"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "authority_basis": { "type": "array", "items": { "type": "string" } },
+        "jurisdiction_scope": { "type": "array", "items": { "type": "string" } },
+        "ordered_rule_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Rule ids in the order they are to be consulted; earlier entries control over later ones when they conflict."
+        }
+      }
+    },
+
+    "InterpretiveAnnotation": {
+      "type": "object",
+      "description": "The unit actually handed to the LLM in place of (or alongside) raw entity spans: a structured interpretive brief for one clause in one jurisdiction under one fact pattern.",
+      "required": ["clause_id", "jurisdiction", "threshold_determination", "applicable_rules", "citations"],
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "threshold_determination": {
+          "type": "object",
+          "description": "The gating question: is extrinsic/contextual evidence even admissible here, and under what test.",
+          "additionalProperties": false,
+          "properties": {
+            "test_applied": { "type": ["string", "null"] },
+            "outcome": { "type": "string" },
+            "authority": { "type": ["string", "null"] }
+          }
+        },
+        "applicable_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "rule_id": { "type": "string" },
+              "priority": { "type": "integer" },
+              "weight": { "type": "number" }
+            }
+          }
+        },
+        "conflicting_authority": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "PrecedentRelation ids surfacing tension the LLM should be aware of (e.g. a binding case that a later court criticized but could not depart from)."
+        },
+        "recommended_interpretive_posture": {
+          "type": "string",
+          "description": "A structural summary, not a legal conclusion: what doctrinal path applies and why, in one or two sentences."
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "authority_id": { "type": "string" },
+              "weight": { "type": "number" },
+              "role": { "type": "string", "enum": ["binding", "persuasive"] }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "required": ["authorities", "precedent_relations", "doctrinal_rules", "hierarchies"],
+  "additionalProperties": false,
+  "properties": {
+    "authorities": { "type": "array", "items": { "$ref": "#/$defs/Authority" } },
+    "precedent_relations": { "type": "array", "items": { "$ref": "#/$defs/PrecedentRelation" } },
+    "doctrinal_rules": { "type": "array", "items": { "$ref": "#/$defs/DoctrinalRule" } },
+    "hierarchies": { "type": "array", "items": { "$ref": "#/$defs/DoctrinalHierarchy" } }
+  }
+}

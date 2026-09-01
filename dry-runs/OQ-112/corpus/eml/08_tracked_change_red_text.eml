@@ -1,0 +1,27 @@
+Content-Type: multipart/alternative; boundary="===corpus-boundary-0007==="
+MIME-Version: 1.0
+From: Mike Torres <mike.torres@meridiancole-law.example>
+To: David Osei <d.osei@harrowgate-partners.example>
+Subject: Clause 8.2 - amended in red
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0007===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Please see amended clause in red below (view in HTML for markup): liquidated damages capped at 10%, was 15%.
+--===corpus-boundary-0007===
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<html><body>
+<p>Please see amended clause in red below - we've capped liquidated damages
+at 10% of contract value instead of the original 15%.</p>
+<p>Clause 8.2: In the event of late delivery, Supplier shall pay liquidated
+damages equal to <strike>15%</strike> <span style="color:red">10%</span>
+of the total Contract Value, calculated per day of delay beyond the
+Delivery Date.</p>
+</body></html>
+--===corpus-boundary-0007===--

@@ -1,0 +1,35 @@
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0011==="
+MIME-Version: 1.0
+From: Priya Patel <priya.patel@blackstoneridge.example>
+To: Sarah Chen <sarah.chen@meridiancole-law.example>
+Subject: Signed contract + ID scan
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0011===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Two files attached: the signed contract and the scanned ID as requested.
+--===corpus-boundary-0011===
+Content-Type: application/octet-stream
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="signed_contract.docx"
+
+UEsDBHJlYWwgZG9jeCBjb250ZW50cmVhbCBkb2N4IGNvbnRlbnRyZWFsIGRvY3ggY29udGVudHJl
+YWwgZG9jeCBjb250ZW50cmVhbCBkb2N4IGNvbnRlbnRyZWFsIGRvY3ggY29udGVudHJlYWwgZG9j
+eCBjb250ZW50cmVhbCBkb2N4IGNvbnRlbnRyZWFsIGRvY3ggY29udGVudHJlYWwgZG9jeCBjb250
+ZW50
+
+--===corpus-boundary-0011===
+Content-Type: application/pdf
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="id_scan.pdf"
+
+TVqQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAGV4ZWN1dGFibGUtcGF5bG9hZGV4ZWN1dGFibGUtcGF5bG9hZGV4ZWN1dGFibGUtcGF5
+bG9hZGV4ZWN1dGFibGUtcGF5bG9hZGV4ZWN1dGFibGUtcGF5bG9hZA==
+
+--===corpus-boundary-0011===--

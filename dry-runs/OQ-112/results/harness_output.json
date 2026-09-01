@@ -1,0 +1,380 @@
+{
+  "summary": {
+    "total": 27,
+    "pass": 19,
+    "fail": 8
+  },
+  "results": [
+    {
+      "id": "01",
+      "file": "01_deep_chain_5hop_mixed_quoting.eml",
+      "features": [
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "status": "PASS",
+      "reason": "PASS with 294 chars of extra trailing content (signature/disclaimer)",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Sarah, Confirmed - Blackstone Ridge accepts the revised indemnification cap at $2.5M. Please send the updated Schedule C for signature by EOD Friday. Mike This "
+    },
+    {
+      "id": "02",
+      "file": "02_broken_quote_depth.eml",
+      "features": [
+        "F4"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "All, Agreed, let's proceed on that basis. I'll circulate the final redline tonight. Best, David"
+    },
+    {
+      "id": "03",
+      "file": "03_forwarded_as_rfc822_attachment.eml",
+      "features": [
+        "F5",
+        "F16"
+      ],
+      "status": "PASS",
+      "reason": "PASS with 294 chars of extra trailing content (signature/disclaimer)",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Priya - forwarding the original engagement letter you asked for, see attached. Let me know if you need anything else pulled from the file. This message and any "
+    },
+    {
+      "id": "04",
+      "file": "04_alt_html_plain_mismatch.eml",
+      "features": [
+        "F6",
+        "F8"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "This message requires an HTML-capable email client to view correctly."
+    },
+    {
+      "id": "05",
+      "file": "05_related_inline_images_plus_attachment.eml",
+      "features": [
+        "F7",
+        "F19"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/html (naive tag-strip fallback)",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "See the signature block comparison below (inline images) and the clean redline attached. The exhibit scan attachment looks corrupted on my end - can you resend?"
+    },
+    {
+      "id": "06",
+      "file": "06_messy_html_table_nested.eml",
+      "features": [
+        "F8"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Revised closing schedule attached below - view in HTML."
+    },
+    {
+      "id": "07",
+      "file": "07_div_grid_table.eml",
+      "features": [
+        "F8"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Settlement allocation below - view in HTML for the grid."
+    },
+    {
+      "id": "08",
+      "file": "08_tracked_change_red_text.eml",
+      "features": [
+        "F9"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Please see amended clause in red below (view in HTML for markup): liquidated damages capped at 10%, was 15%."
+    },
+    {
+      "id": "09",
+      "file": "09_bracket_annotation_plaintext.eml",
+      "features": [
+        "F9",
+        "F10"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Attached my comments inline using brackets since I'm on mobile and can't do track changes right now: Clause 4.1: Tenant shall pay a security deposit of [deleted"
+    },
+    {
+      "id": "10",
+      "file": "10_mixed_encoding_subject.eml",
+      "features": [
+        "F11",
+        "F14"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Bonjour Sarah, Veuillez trouver ci-joint la clause révisée concernant la résiliation anticipée du bail commercial. Merci de confirmer votre accord avant vendred"
+    },
+    {
+      "id": "11",
+      "file": "11_qp_soft_break_multibyte.eml",
+      "features": [
+        "F11",
+        "F12"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Total due: 1.250,00 € (incl. VAT) – please confirm receipt of funds."
+    },
+    {
+      "id": "12",
+      "file": "12_mislabeled_charset_mojibake.eml",
+      "features": [
+        "F13"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [
+        "decode-error:UnicodeDecodeError (used errors=replace)"
+      ],
+      "extracted_preview": "Client�s counsel confirmed �no objection� to the amended schedule � see redline attached."
+    },
+    {
+      "id": "13",
+      "file": "13_mixed_cte_parts.eml",
+      "features": [
+        "F12"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Three copies of the same notice below in different transport encodings - use whichever your client renders. Final version: escrow release approved for $480,000."
+    },
+    {
+      "id": "14",
+      "file": "14_huge_cc_list_folded_headers.eml",
+      "features": [
+        "F14"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "All parties copied for the record - closing is confirmed for August 15 at 10am. Wire instructions to follow under separate cover."
+    },
+    {
+      "id": "15",
+      "file": "15_zero_width_bom_body.eml",
+      "features": [
+        "F15"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [
+        "MissingHeaderBodySeparatorDefect"
+      ],
+      "notes": [
+        "decode-error:UnicodeDecodeError (used errors=replace)"
+      ],
+      "extracted_preview": "���From: Mike Torres <mike.torres@meridiancole-law.example>"
+    },
+    {
+      "id": "16",
+      "file": "16_rfc2231_filename_attachment.eml",
+      "features": [
+        "F17"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Anbei der Änderungsvertrag zur Unterschrift. Bitte bis Freitag zurücksenden."
+    },
+    {
+      "id": "17",
+      "file": "17_mislabeled_attachment_type.eml",
+      "features": [
+        "F18"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Two files attached: the signed contract and the scanned ID as requested."
+    },
+    {
+      "id": "18",
+      "file": "18_nested_eml_in_eml.eml",
+      "features": [
+        "F16",
+        "F20"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Full history attached for the file - this is the complete chain including Linda's original attachment."
+    },
+    {
+      "id": "19",
+      "file": "19_corrupted_truncated_attachment.eml",
+      "features": [
+        "F19"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Attaching the exhibit scan - let me know if it doesn't open, our scanner has been acting up."
+    },
+    {
+      "id": "20",
+      "file": "20_top_posted_simple.eml",
+      "features": [
+        "F1"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Works for me, please proceed."
+    },
+    {
+      "id": "21",
+      "file": "21_interleaved_reply_deep.eml",
+      "features": [
+        "F3"
+      ],
+      "status": "FAIL",
+      "reason": "expected content not found in extraction",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "See my responses inline below marked [MT]: [MT] Confirmed. [MT] Confirmed - escrow account only, per Section 3. [MT] Just the environmental report, expected Wed"
+    },
+    {
+      "id": "22",
+      "file": "22_apple_mail_style_quote.eml",
+      "features": [
+        "F2"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Sounds good - I'll have the paralegal pull those records this afternoon."
+    },
+    {
+      "id": "23",
+      "file": "23_plaintext_only_clean_control.eml",
+      "features": [
+        "control"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/plain",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Hi team, Just confirming receipt of the signed documents. We'll file with the county clerk tomorrow morning and send confirmation once recorded. Thanks, Linda"
+    },
+    {
+      "id": "24",
+      "file": "24_html_only_no_plain_part.eml",
+      "features": [
+        "F6"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "text/html (naive tag-strip fallback)",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Please review the attached amendment before our 2pm call. Key change highlighted below. Section 5(b) now requires 30 days' notice instead of 15."
+    },
+    {
+      "id": "25",
+      "file": "msg/25_native_msg_basic.msg",
+      "features": [
+        "F21"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "PR_BODY (plain)",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Confirming the wire went out this morning for the escrow release - $480,000 to the account on file. Let me know once your side reconciles."
+    },
+    {
+      "id": "26",
+      "file": "msg/26_native_msg_rtf_only_body.msg",
+      "features": [
+        "F21",
+        "F22",
+        "F9"
+      ],
+      "status": "FAIL",
+      "reason": "empty extraction",
+      "content_path": null,
+      "defects": [],
+      "notes": [
+        "rtf-deencapsulate-failed:MalformedEncapsulatedRtf: Malformed encapsulated RTF discovered:",
+        "PR_BODY empty and RTF body present but not in Outlook's encapsulated-HTML/plain convention - extract-msg/RTFDE cannot recover text from genuinely-formatted RTF"
+      ],
+      "extracted_preview": ""
+    },
+    {
+      "id": "27",
+      "file": "msg/27_native_msg_with_attachment.msg",
+      "features": [
+        "F21"
+      ],
+      "status": "PASS",
+      "reason": "clean",
+      "content_path": "PR_BODY (plain)",
+      "defects": [],
+      "notes": [],
+      "extracted_preview": "Anbei die unterschriebene Vollmacht als Anhang - bitte bis Freitag bestätigen."
+    }
+  ]
+}

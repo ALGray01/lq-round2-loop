@@ -1,0 +1,64 @@
+Generalization check, round 2: same architectures, scenario3 (third vocabulary)
+==============================================================================
+
+[R3-Q1-supersession-current] matter=carter-custody as_of=2026-02-10
+  query: "when's the custody hearing"
+  note:  Hearing was continued in week 3; asked after, must return the new date.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['carter-custody'] :: expected cc-hearing-2, got None
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected cc-hearing-2, got None
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['carter-custody'] :: expected cc-hearing-2, got None
+
+[R3-Q2-supersession-historical] matter=carter-custody as_of=2026-01-10
+  query: "when's the custody hearing"
+  note:  Asked before the continuance was granted: the original date was still true then.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['carter-custody'] :: expected cc-hearing-1, got None
+    FAIL flat_rag (baseline)                    fact_id=None             touched=['carter-custody'] :: expected cc-hearing-1, got None
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['carter-custody'] :: expected cc-hearing-1, got None
+
+[R3-Q3-supersession-current-other-subject] matter=reyes-employment as_of=2026-02-10
+  query: "what's the current back pay amount being claimed"
+  note:  Back-pay estimate was revised up after a payroll audit in week 5; must return the revised figure.
+    PASS hybrid (proposed)                      fact_id=re-backpay-2     touched=['reyes-employment'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected re-backpay-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=re-backpay-2     touched=['reyes-employment'] :: matched expected fact
+
+[R3-Q4-leakage-same-predicate] matter=reyes-employment as_of=2026-02-10
+  query: "when's the hearing"
+  note:  Both matters have a hearing_date fact; the employment matter's own date must come back, not the custody case's.
+    PASS hybrid (proposed)                      fact_id=re-hearing-2     touched=['reyes-employment'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected re-hearing-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=re-hearing-2     touched=['reyes-employment'] :: matched expected fact
+
+[R3-Q5-no-cross-matter-fact] matter=carter-custody as_of=2026-02-10
+  query: "what's the back pay claim amount"
+  note:  Back pay only exists in reyes-employment; carter-custody's memory has nothing responsive.
+    FAIL hybrid (proposed)                      fact_id=cc-support-1     touched=['carter-custody'] :: expected no fact, got cc-support-1
+    PASS flat_rag (baseline)                    fact_id=None             touched=[] :: correctly found nothing
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=cc-support-1     touched=['carter-custody'] :: expected no fact, got cc-support-1
+
+[R3-Q6-supersession-other-matter] matter=carter-custody as_of=2026-02-10
+  query: "what's the current living arrangement for the kids"
+  note:  Custody arrangement changed to joint physical custody after week-5 mediation; must return the revised arrangement.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['carter-custody'] :: expected cc-residence-2, got None
+    FAIL flat_rag (baseline)                    fact_id=None             touched=['carter-custody'] :: expected cc-residence-2, got None
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['carter-custody'] :: expected cc-residence-2, got None
+
+[R3-Q7-episodic-recall] matter=reyes-employment as_of=2026-01-30
+  query: 'did the client bring up any concerns about retaliation'
+  note:  Pure episodic recall of a week-4 conversational turn about retaliation and whistleblower protection.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['reyes-employment'] :: snippet missing 'retaliate': "I filed the charge with the EEOC and I'm waiting to hear about next steps."
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: snippet missing 'retaliate': ''
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['reyes-employment'] :: snippet missing 'retaliate': ''
+
+[R3-Q8-not-yet-known] matter=carter-custody as_of=2026-01-08
+  query: 'who is the guardian ad litem'
+  note:  Guardian ad litem isn't appointed until week 2 (valid_from 2026-01-12); asked in week 1, nothing should be returned yet.
+    FAIL hybrid (proposed)                      fact_id=cc-residence-1   touched=['carter-custody'] :: expected no fact, got cc-residence-1
+    FAIL flat_rag (baseline)                    fact_id=cc-residence-1   touched=['carter-custody'] :: expected no fact, got cc-residence-1
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=cc-gal-1         touched=['carter-custody'] :: expected no fact, got cc-gal-1
+
+==============================================================================
+Scorecard
+  hybrid (proposed)                      2/8
+  flat_rag (baseline)                    1/8
+  frozen_snapshot (fine-tune stand-in)   2/8

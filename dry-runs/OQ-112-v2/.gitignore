@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+scripts/_tmp/
+scripts/_eml_manifest.json
+scripts/_msg_manifest.json

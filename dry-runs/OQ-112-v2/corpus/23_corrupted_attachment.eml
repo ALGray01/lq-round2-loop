@@ -1,0 +1,30 @@
+From: paralegal@example.com
+To: alice@example.com
+Subject: Scan attached (may be corrupted, resending)
+Date: Mon, 12 Feb 2024 22:00:00 -0500
+Message-ID: <f23@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============5246358822465338868=="
+
+--===============5246358822465338868==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Scan attached, let me know if it opens on your end.
+
+--===============5246358822465338868==
+Content-Type: application/pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="scan.pdf"
+MIME-Version: 1.0
+
+JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZw==
+
+--===============5246358822465338868==
+Content-Type: application/pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="scan_empty.pdf"
+MIME-Version: 1.0
+
+
+--===============5246358822465338868==--

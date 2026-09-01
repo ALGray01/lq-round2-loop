@@ -1,0 +1,195 @@
+{
+  "n": 20,
+  "task_type_accuracy": 0.95,
+  "stakes_accuracy_on_checked_subset": 1.0,
+  "stakes_checked_n": 3,
+  "confusion_matrix": {
+    "litigation_reasoning": {
+      "litigation_reasoning": 4
+    },
+    "transactional_drafting": {
+      "transactional_drafting": 4
+    },
+    "contract_review": {
+      "contract_review": 4
+    },
+    "legal_research": {
+      "legal_research": 5
+    },
+    "citation_check": {
+      "citation_check": 2,
+      "legal_research": 1
+    }
+  },
+  "per_case": [
+    {
+      "id": 1,
+      "text": "Draft the argument section for our motion to dismiss.",
+      "expected_task_type": "litigation_reasoning",
+      "predicted_task_type": "litigation_reasoning",
+      "task_type_correct": true,
+      "task_type_confidence": 0.5
+    },
+    {
+      "id": 2,
+      "text": "We need a rebuttal to opposing counsel's summary judgment motion.",
+      "expected_task_type": "litigation_reasoning",
+      "predicted_task_type": "litigation_reasoning",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 3,
+      "text": "What's our likelihood of success if we move to compel discovery here?",
+      "expected_task_type": "litigation_reasoning",
+      "predicted_task_type": "litigation_reasoning",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 4,
+      "text": "Please draft a non-disclosure agreement for our new contractor.",
+      "expected_task_type": "transactional_drafting",
+      "predicted_task_type": "transactional_drafting",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 5,
+      "text": "Put together a first draft of an employment agreement for our new VP of Sales.",
+      "expected_task_type": "transactional_drafting",
+      "predicted_task_type": "transactional_drafting",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 6,
+      "text": "I need contract language for an indemnification clause for the vendor MSA.",
+      "expected_task_type": "transactional_drafting",
+      "predicted_task_type": "transactional_drafting",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 7,
+      "text": "Can you review this contract and flag risky clauses before we send it back?",
+      "expected_task_type": "contract_review",
+      "predicted_task_type": "contract_review",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 8,
+      "text": "Take a look at the attached NDA and tell me if anything looks off before we sign.",
+      "expected_task_type": "contract_review",
+      "predicted_task_type": "contract_review",
+      "task_type_correct": true,
+      "task_type_confidence": 0.5
+    },
+    {
+      "id": 9,
+      "text": "Redline this MSA and add comments on anything that needs negotiation.",
+      "expected_task_type": "contract_review",
+      "predicted_task_type": "contract_review",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 10,
+      "text": "We're about to sign this lease -- can you check it for anything unusual?",
+      "expected_task_type": "contract_review",
+      "predicted_task_type": "contract_review",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0,
+      "expected_stakes": "medium",
+      "predicted_stakes": "medium",
+      "stakes_correct": true
+    },
+    {
+      "id": 11,
+      "text": "What is the standard for piercing the corporate veil in Delaware?",
+      "expected_task_type": "legal_research",
+      "predicted_task_type": "legal_research",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 12,
+      "text": "Can you research whether non-competes are enforceable in California?",
+      "expected_task_type": "legal_research",
+      "predicted_task_type": "legal_research",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 13,
+      "text": "Summarize the current case law on trade secret misappropriation.",
+      "expected_task_type": "legal_research",
+      "predicted_task_type": "legal_research",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 14,
+      "text": "I have a general legal question about how courts treat force majeure clauses during pandemics.",
+      "expected_task_type": "legal_research",
+      "predicted_task_type": "legal_research",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 15,
+      "text": "Please verify the citation: 410 U.S. 113 (1973), Bluebook format.",
+      "expected_task_type": "citation_check",
+      "predicted_task_type": "citation_check",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 16,
+      "text": "Can you cite check this brief before we file it?",
+      "expected_task_type": "citation_check",
+      "predicted_task_type": "citation_check",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 17,
+      "text": "Is Roe v. Wade still good law after Dobbs?",
+      "expected_task_type": "citation_check",
+      "predicted_task_type": "legal_research",
+      "task_type_correct": false,
+      "task_type_confidence": 0.0
+    },
+    {
+      "id": 18,
+      "text": "Draft a term sheet for the Series A round.",
+      "expected_task_type": "transactional_drafting",
+      "predicted_task_type": "transactional_drafting",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0
+    },
+    {
+      "id": 19,
+      "text": "This is the final version to be filed with the court tomorrow -- I need the argument on the motion to dismiss.",
+      "expected_task_type": "litigation_reasoning",
+      "predicted_task_type": "litigation_reasoning",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0,
+      "expected_stakes": "high",
+      "predicted_stakes": "high",
+      "stakes_correct": true
+    },
+    {
+      "id": 20,
+      "text": "This memo needs to be finalized so we can send to the client -- it covers our research on the licensing question.",
+      "expected_task_type": "legal_research",
+      "predicted_task_type": "legal_research",
+      "task_type_correct": true,
+      "task_type_confidence": 1.0,
+      "expected_stakes": "medium",
+      "predicted_stakes": "medium",
+      "stakes_correct": true
+    }
+  ]
+}

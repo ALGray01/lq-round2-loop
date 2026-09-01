@@ -1,0 +1,2 @@
+QUESTION (OQ-040 — Prompt-injection tester for legal agents):
+Legal agents receive untrusted inputs constantly — client documents, opposing-counsel filings, third-party email. Build a prompt-injection tester. Define the threat model (what's the attacker trying to achieve, what's the agent protecting), implement at least 10 test cases covering 3 attack classes (direct injection, indirect via document, multi-turn social engineering), and run it against a vanilla Claude Code agent. Report what got past.

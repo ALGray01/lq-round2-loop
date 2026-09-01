@@ -1,0 +1,14 @@
+From: carol@example.com
+To: alice@example.com
+Subject: Contract comparison
+Date: Mon, 12 Feb 2024 09:00:00 -0500
+Message-ID: <f10@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+See comparison below (aligned in my email client, may not be aligned here):
+
+Item                 Draft 1      Draft 2
+Indemnification cap  $1,000,000   $2,500,000
+Term                 3 years      5 years
+Termination notice   30 days      60 days

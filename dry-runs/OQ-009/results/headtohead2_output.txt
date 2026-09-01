@@ -1,0 +1,64 @@
+Generalization check: same architectures, scenario2 (independent vocabulary)
+==============================================================================
+
+[R2-Q1-supersession-current] matter=acme-v-globex as_of=2026-02-10
+  query: 'when is the trial scheduled'
+  note:  Trial date moved after a continuance in week 3; asked after, must return the new date.
+    PASS hybrid (proposed)                      fact_id=ag-trial-2       touched=['acme-v-globex'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected ag-trial-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=ag-trial-2       touched=['acme-v-globex'] :: matched expected fact
+
+[R2-Q2-supersession-historical] matter=acme-v-globex as_of=2026-01-10
+  query: 'when is the trial scheduled'
+  note:  Asked before the continuance was granted: the original date was still true then.
+    PASS hybrid (proposed)                      fact_id=ag-trial-1       touched=['acme-v-globex'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected ag-trial-1, got None
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=ag-trial-2       touched=['acme-v-globex'] :: expected ag-trial-1, got ag-trial-2
+
+[R2-Q3-royalty-current] matter=acme-v-globex as_of=2026-02-10
+  query: "what's the royalty rate under the license"
+  note:  Royalty rate was revised by arbitration in week 5; must return the revised rate.
+    PASS hybrid (proposed)                      fact_id=ag-royalty-2     touched=['acme-v-globex'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected ag-royalty-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=ag-royalty-2     touched=['acme-v-globex'] :: matched expected fact
+
+[R2-Q4-leakage-same-predicate] matter=briggs-injury as_of=2026-02-10
+  query: 'when is the trial scheduled'
+  note:  Both matters have a trial_date fact; the injury matter's own date must come back, not the patent case's.
+    PASS hybrid (proposed)                      fact_id=bi-trial-1       touched=['briggs-injury'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected bi-trial-1, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=bi-trial-1       touched=['briggs-injury'] :: matched expected fact
+
+[R2-Q5-no-cross-matter-fact] matter=acme-v-globex as_of=2026-02-10
+  query: 'what is the settlement demand amount'
+  note:  Settlement demand only exists in briggs-injury; acme-v-globex's memory has nothing responsive.
+    PASS hybrid (proposed)                      fact_id=None             touched=['acme-v-globex'] :: correctly found nothing
+    PASS flat_rag (baseline)                    fact_id=None             touched=[] :: correctly found nothing
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['acme-v-globex'] :: correctly found nothing
+
+[R2-Q6-supersession-other-matter] matter=briggs-injury as_of=2026-02-10
+  query: 'what is the current settlement demand'
+  note:  Demand was revised up in week 5 after the specialist's report; must return the revised figure.
+    PASS hybrid (proposed)                      fact_id=bi-demand-2      touched=['briggs-injury'] :: matched expected fact
+    FAIL flat_rag (baseline)                    fact_id=None             touched=[] :: expected bi-demand-2, got None
+    PASS frozen_snapshot (fine-tune stand-in)   fact_id=bi-demand-2      touched=['briggs-injury'] :: matched expected fact
+
+[R2-Q7-episodic-recall] matter=briggs-injury as_of=2026-01-30
+  query: 'did the client mention anything about physical therapy'
+  note:  Pure episodic recall of a week-4 conversational turn about back pain and physical therapy.
+    PASS hybrid (proposed)                      fact_id=None             touched=['briggs-injury'] :: recalled expected episodic content
+    PASS flat_rag (baseline)                    fact_id=None             touched=['briggs-injury'] :: recalled expected episodic content
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=None             touched=['briggs-injury'] :: snippet missing 'therapy': ''
+
+[R2-Q8-not-yet-known] matter=acme-v-globex as_of=2026-01-08
+  query: 'who is the lead expert'
+  note:  Expert isn't retained until week 2 (valid_from 2026-01-12); asked in week 1, nothing should be returned yet.
+    FAIL hybrid (proposed)                      fact_id=None             touched=['acme-v-globex'] :: expected nothing, but recalled irrelevant snippet: 'We want to keep a close eye on the trial schedule and the license terms.'
+    FAIL flat_rag (baseline)                    fact_id=None             touched=['acme-v-globex'] :: expected nothing, but recalled irrelevant snippet: 'We want to keep a close eye on the trial schedule and the license terms.'
+    FAIL frozen_snapshot (fine-tune stand-in)   fact_id=ag-expert-1      touched=['acme-v-globex'] :: expected no fact, got ag-expert-1
+
+==============================================================================
+Scorecard
+  hybrid (proposed)                      7/8
+  flat_rag (baseline)                    2/8
+  frozen_snapshot (fine-tune stand-in)   5/8

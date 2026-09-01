@@ -1,0 +1,16 @@
+From: bob@example.com
+To: alice@example.com, carol@example.com
+Subject: Re: Closing schedule
+Date: Mon, 12 Feb 2024 10:00:00 -0500
+Message-ID: <f02@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+  charset=utf-8
+
+Agreed on the revised timeline, let's lock it in.
+
+> On Feb 10, 2024, Carol wrote:
+> Can we push the closing date by a week?
+>
+> > On Feb 9, 2024, Alice wrote:
+> > Draft 2 attached, please review the closing schedule.

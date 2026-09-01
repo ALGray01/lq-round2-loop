@@ -1,0 +1,329 @@
+# Knowledge base for the bounded demo area: ambiguity resolution in written
+# contracts under U.S. common law + UCC Article 1/2.
+#
+# Every authority below is a real, citable source. Case summaries were
+# written from the model's training-data knowledge of these (genuinely
+# famous, heavily-casebooked) opinions, not invented for this demo -- but
+# see README.md's Limitations section: they have NOT been re-verified
+# against a citator (Westlaw/Lexis) in this session, which is the standard
+# a real legal-AI product would need to meet before shipping citations to a
+# user. Treat citations here as "textbook accurate, not Shepardized."
+
+authorities:
+  - id: statute_ucc_1_303
+    type: statute
+    citation: "U.C.C. § 1-303 (2001) (formerly §§ 1-205, 2-208)"
+    short_name: "UCC 1-303"
+    home_jurisdiction: US-model
+    court_level: "n/a"
+    binding_in: [US-CA, US-NY, US-federal-9th-cir]
+    year: 2001
+    summary: >
+      Defines course of performance, course of dealing, and usage of trade,
+      and fixes their relative priority against each other and against the
+      express terms of the agreement when they cannot be reconciled: express
+      terms control over course of performance, which controls over course
+      of dealing, which controls over usage of trade (1-303(e)). Enacted,
+      with local variations, as state statute in nearly every U.S.
+      jurisdiction; modeled here as binding in the demo jurisdictions.
+
+  - id: restatement_202
+    type: restatement
+    citation: "Restatement (Second) of Contracts § 202 (Am. Law Inst. 1981)"
+    short_name: "Restatement 2d §202"
+    home_jurisdiction: US-model
+    court_level: "n/a"
+    binding_in: []
+    year: 1981
+    summary: >
+      "Rules in Aid of Interpretation": read the writing as a whole and in
+      light of its circumstances; give technical terms their technical
+      meaning; course of performance is given great weight. Persuasive
+      secondary authority only -- never independently binding -- so its
+      influence in any jurisdiction depends on whether local courts have
+      adopted it.
+
+  - id: restatement_203
+    type: restatement
+    citation: "Restatement (Second) of Contracts § 203 (Am. Law Inst. 1981)"
+    short_name: "Restatement 2d §203"
+    home_jurisdiction: US-model
+    court_level: "n/a"
+    binding_in: []
+    year: 1981
+    summary: >
+      "Standards of Preference in Interpretation": an interpretation giving
+      a reasonable, lawful, effective meaning to all terms is preferred;
+      express terms > course of performance > course of dealing > usage of
+      trade; specific/exact terms are preferred over general language;
+      separately negotiated or added terms are given greater weight than
+      standardized boilerplate.
+
+  - id: restatement_206
+    type: restatement
+    citation: "Restatement (Second) of Contracts § 206 (Am. Law Inst. 1981)"
+    short_name: "Restatement 2d §206"
+    home_jurisdiction: US-model
+    court_level: "n/a"
+    binding_in: []
+    year: 1981
+    summary: >
+      "Interpretation Against the Draftsman" -- contra proferentem. Where
+      other rules of interpretation do not resolve an ambiguity, the
+      ambiguous term is construed against the party who supplied the
+      language (typically the drafter of a standardized or adhesive
+      agreement). Framed here, and in most courts, as a last resort, not a
+      first move.
+
+  - id: restatement_214
+    type: restatement
+    citation: "Restatement (Second) of Contracts § 214 (Am. Law Inst. 1981)"
+    short_name: "Restatement 2d §214"
+    home_jurisdiction: US-model
+    court_level: "n/a"
+    binding_in: []
+    year: 1981
+    summary: >
+      Agreements and negotiations prior to or contemporaneous with the
+      adoption of a writing are admissible in evidence, among other things,
+      to establish the meaning of the writing. Substantively aligned with
+      the contextualist (PG&E) position rather than the strict four-corners
+      position; persuasive-only, so it carries no independent weight in a
+      jurisdiction whose courts have rejected that approach.
+
+  - id: case_pge
+    type: case
+    citation: "Pacific Gas & Elec. Co. v. G.W. Thomas Drayage & Rigging Co., 69 Cal. 2d 33 (1968)"
+    short_name: "PG&E v. Thomas Drayage"
+    home_jurisdiction: US-CA
+    court_level: state_supreme
+    binding_in: [US-CA]
+    year: 1968
+    summary: >
+      Justice Traynor, for the California Supreme Court: extrinsic evidence
+      of the parties' intent must be provisionally admitted even where
+      contract language appears clear and unambiguous on its face, to
+      determine whether the language is "reasonably susceptible" to the
+      meaning urged by the party offering the evidence. Rejects the view
+      that plain meaning is a threshold bar to considering context. The
+      leading contextualist authority in American contract law; also its
+      most heavily criticized decision on this point.
+
+  - id: case_trident
+    type: case
+    citation: "Trident Ctr. v. Connecticut Gen. Life Ins. Co., 847 F.2d 564 (9th Cir. 1988)"
+    short_name: "Trident Center"
+    home_jurisdiction: US-federal-9th-cir
+    court_level: federal_circuit
+    binding_in: [US-federal-9th-cir]
+    year: 1988
+    summary: >
+      Judge Kozinski, applying California law under Erie: criticizes PG&E's
+      rule at length as inviting endless litigation over even the most
+      "obviously unambiguous" clauses (there, an unambiguous no-prepayment
+      provision), but holds the panel is bound to apply it because it is
+      California Supreme Court authority on a question of California law --
+      a federal appellate court sitting in diversity has no power to depart
+      from the state's highest court's interpretation of its own contract
+      law merely because the federal panel disagrees with it.
+
+  - id: case_giancontieri
+    type: case
+    citation: "W.W.W. Assocs., Inc. v. Giancontieri, 77 N.Y.2d 157 (1990)"
+    short_name: "Giancontieri"
+    home_jurisdiction: US-NY
+    court_level: state_supreme
+    binding_in: [US-NY]
+    year: 1990
+    summary: >
+      New York Court of Appeals reaffirms the strict "four corners" rule:
+      where a contract is clear and unambiguous on its face, extrinsic
+      evidence of the parties' subjective intent (including an alleged
+      drafting error) is not to be considered at all. New York's stated
+      policy rationale is certainty and predictability for sophisticated
+      commercial parties negotiating at arm's length with counsel, over
+      case-by-case accuracy.
+
+  - id: case_frigaliment
+    type: case
+    citation: "Frigaliment Importing Co. v. B.N.S. Int'l Sales Corp., 190 F. Supp. 116 (S.D.N.Y. 1960)"
+    short_name: "Frigaliment ('What is Chicken')"
+    home_jurisdiction: US-federal-2nd-cir
+    court_level: federal_district
+    binding_in: []
+    year: 1960
+    summary: >
+      Judge Friendly: where a contract term ("chicken") is ambiguous between
+      a broad and a narrow trade meaning, the party urging the narrower
+      meaning bears the burden of proof; usage of trade, course of
+      negotiations, and one party's own conduct (labeling its export
+      license application) can resolve the ambiguity even absent controlling
+      appellate authority. Frequently taught, never binding outside its own
+      case -- persuasive-only precedent used here to ground the
+      usage-of-trade step of the UCC hierarchy.
+
+  - id: case_newport_beach
+    type: case
+    citation: "Founding Members of the Newport Beach Country Club v. Newport Beach Country Club, Inc., 109 Cal. App. 4th 944 (2003)"
+    short_name: "Newport Beach Country Club"
+    home_jurisdiction: US-CA
+    court_level: state_appellate
+    binding_in: []
+    year: 2003
+    summary: >
+      California Court of Appeal (a lower court than the PG&E court, so it
+      cannot overrule PG&E and does not purport to): applying PG&E's
+      reasonably-susceptible test, invokes the objective theory of
+      contracts to hold that undisclosed subjective intent -- internal
+      communications never conveyed to the other side -- is not the kind
+      of extrinsic evidence PG&E requires courts to consider, even under
+      the provisionally-admit-it standard. Only evidence that was
+      objectively communicated between the parties counts; here, that
+      turned out to be a letter that contradicted rather than supported the
+      interpretation urged, so the claim still failed even under the
+      narrower category of admissible evidence. Narrows PG&E's practical
+      reach (not every off-the-record intention gets an evidentiary
+      hearing) without disturbing the rule itself. Persuasive outside its
+      own appellate district, binding only within it.
+
+precedent_relations:
+  - id: pr_trident_criticizes_pge
+    source_case: case_trident
+    target_case: case_pge
+    relation: criticizes
+    on_issue: >
+      whether facially unambiguous contract language may be reopened via
+      extrinsic evidence under the "reasonably susceptible" test
+    source_bound_by_target: true
+
+  - id: pr_newport_limits_pge
+    source_case: case_newport_beach
+    target_case: case_pge
+    relation: limits
+    on_issue: >
+      whether undisclosed subjective intent (as opposed to objectively
+      communicated evidence) qualifies as the kind of extrinsic evidence
+      the "reasonably susceptible" test requires courts to consider
+    source_bound_by_target: true
+
+doctrinal_rules:
+  # --- Threshold rules: is extrinsic evidence admissible at all? ---
+  - id: rule_pmr_four_corners
+    name: "Four corners / plain meaning rule (NY)"
+    statement: >
+      If the contract is clear and unambiguous on its face, extrinsic
+      evidence of intent is inadmissible; ambiguity must appear from the
+      four corners of the document itself before any context is considered.
+    authority_basis: [case_giancontieri]
+    jurisdiction_scope: [US-NY]
+    trigger: { type: threshold_ambiguity, params: { test: facial_four_corners } }
+    priority: 10
+
+  - id: rule_contextualism_pge
+    name: "Contextualist / reasonably-susceptible rule (CA)"
+    statement: >
+      Extrinsic evidence of the parties' intent must be provisionally
+      considered even where the contract appears clear and unambiguous on
+      its face, to determine whether the language is reasonably susceptible
+      to the meaning being urged.
+    authority_basis: [case_pge, restatement_214]
+    jurisdiction_scope: [US-CA]
+    trigger: { type: threshold_ambiguity, params: { test: reasonably_susceptible } }
+    priority: 10
+
+  # --- UCC 1-303 hierarchy of resort (sale-of-goods contracts) ---
+  - id: rule_express_terms
+    name: "Express terms control"
+    statement: "Whenever reasonable, express terms and course of performance/dealing/trade usage are construed as consistent; where that is unreasonable, express terms control."
+    authority_basis: [statute_ucc_1_303]
+    jurisdiction_scope: []
+    trigger: { type: evidence_conflict, params: { source: express_terms } }
+    priority: 1
+
+  - id: rule_course_of_performance
+    name: "Course of performance controls over course of dealing/usage"
+    statement: "Course of performance (how these parties actually performed this contract) controls over course of dealing and usage of trade."
+    authority_basis: [statute_ucc_1_303]
+    jurisdiction_scope: []
+    trigger: { type: evidence_conflict, params: { source: course_of_performance } }
+    priority: 2
+
+  - id: rule_course_of_dealing
+    name: "Course of dealing controls over usage of trade"
+    statement: "Course of dealing (how these parties treated prior, separate contracts between them) controls over usage of trade."
+    authority_basis: [statute_ucc_1_303]
+    jurisdiction_scope: []
+    trigger: { type: evidence_conflict, params: { source: course_of_dealing } }
+    priority: 3
+
+  - id: rule_usage_of_trade
+    name: "Usage of trade is the lowest-priority source"
+    statement: "Usage of trade (how the relevant trade/industry generally uses the term) is the weakest of the four sources, consulted last."
+    authority_basis: [statute_ucc_1_303, case_frigaliment]
+    jurisdiction_scope: []
+    trigger: { type: evidence_conflict, params: { source: usage_of_trade } }
+    priority: 4
+
+  # --- Common-law canons of construction (structural pattern triggers) ---
+  - id: rule_ejusdem_generis
+    name: "Ejusdem generis"
+    statement: >
+      General words that follow an enumeration of specific items are
+      construed to include only things of the same kind or class as the
+      specific items listed.
+    authority_basis: [restatement_202]
+    jurisdiction_scope: []
+    trigger: { type: structural_pattern, params: { pattern: specific_list_then_general_catchall } }
+    priority: 30
+
+  - id: rule_noscitur_a_sociis
+    name: "Noscitur a sociis"
+    statement: >
+      An ambiguous word or phrase is given meaning by reference to the
+      words with which it is associated in the text.
+    authority_basis: [restatement_202]
+    jurisdiction_scope: []
+    trigger: { type: structural_pattern, params: { pattern: ambiguous_word_among_associated_words } }
+    priority: 31
+
+  - id: rule_expressio_unius
+    name: "Expressio unius est exclusio alterius"
+    statement: >
+      Where a contract expressly enumerates specific items with no general
+      catchall, the expression of those items excludes items not listed.
+    authority_basis: [restatement_202]
+    jurisdiction_scope: []
+    trigger: { type: structural_pattern, params: { pattern: enumerated_list_no_catchall } }
+    priority: 32
+
+  - id: rule_contra_proferentem
+    name: "Contra proferentem"
+    statement: >
+      As a rule of last resort, when no other rule of interpretation
+      resolves the ambiguity, the term is construed against the party who
+      drafted or supplied it.
+    authority_basis: [restatement_206]
+    jurisdiction_scope: []
+    trigger: { type: fallback, params: { requires_flag: unequal_bargaining_power } }
+    priority: 90
+
+hierarchies:
+  - id: ucc_1_303_hierarchy
+    name: "UCC §1-303 order of resort for course of performance/dealing/usage"
+    authority_basis: [statute_ucc_1_303]
+    jurisdiction_scope: []
+    ordered_rule_ids:
+      - rule_express_terms
+      - rule_course_of_performance
+      - rule_course_of_dealing
+      - rule_usage_of_trade
+
+  - id: common_law_canons_ladder
+    name: "Common-law canons of construction, in order of resort"
+    authority_basis: [restatement_202, restatement_206]
+    jurisdiction_scope: []
+    ordered_rule_ids:
+      - rule_ejusdem_generis
+      - rule_noscitur_a_sociis
+      - rule_expressio_unius
+      - rule_contra_proferentem

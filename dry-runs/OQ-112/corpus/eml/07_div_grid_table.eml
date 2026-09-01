@@ -1,0 +1,29 @@
+Content-Type: multipart/alternative; boundary="===corpus-boundary-0006==="
+MIME-Version: 1.0
+From: David Osei <d.osei@harrowgate-partners.example>
+To: Sarah Chen <sarah.chen@meridiancole-law.example>
+Subject: Settlement allocation - confirm before filing
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0006===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Settlement allocation below - view in HTML for the grid.
+--===corpus-boundary-0006===
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<html><body>
+<p>Settlement allocation below (rendered as a grid, not a table) - please
+confirm the Class B figure before we file.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #000;">
+<div style="font-weight:bold;">Class</div><div style="font-weight:bold;">Claimants</div><div style="font-weight:bold;">Allocation</div>
+<div>Class A</div><div>412</div><div>$1,230,000</div>
+<div>Class B</div><div>187</div><div>$540,000</div>
+<div>Class C</div><div>63</div><div>$96,500</div>
+</div>
+</body></html>
+--===corpus-boundary-0006===--

@@ -1,0 +1,102 @@
+[
+  {
+    "text": "opposing counsel's brief just dropped, can you help me think through our reply",
+    "expected_task_type": "litigation_reasoning"
+  },
+  {
+    "text": "need help pulling together our SJ arguments before Friday",
+    "expected_task_type": "litigation_reasoning"
+  },
+  {
+    "text": "client wants to know if we have a shot at getting the case dismissed on jurisdictional grounds, walk me through it",
+    "expected_task_type": "litigation_reasoning"
+  },
+  {
+    "text": "deposition is Thursday, help me draft an outline of qs for the defendant's former CFO",
+    "expected_task_type": "litigation_reasoning"
+  },
+  {
+    "text": "we got a sanctions motion filed against us, need to figure out our response strategy asap",
+    "expected_task_type": "litigation_reasoning"
+  },
+  {
+    "text": "need a draft NDA for a vendor call tmrw morning, mutual, standard terms",
+    "expected_task_type": "transactional_drafting"
+  },
+  {
+    "text": "put together a first draft employment agreement for a new VP hire, at-will, CA",
+    "expected_task_type": "transactional_drafting"
+  },
+  {
+    "text": "can you whip up a simple consulting agreement for a 3-month engagement",
+    "expected_task_type": "transactional_drafting"
+  },
+  {
+    "text": "drafting a lease for a small office space, landlord side, need something to send over",
+    "expected_task_type": "transactional_drafting"
+  },
+  {
+    "text": "building out the merger agreement shell for the deal team, just need reps and warranties section started",
+    "expected_task_type": "transactional_drafting"
+  },
+  {
+    "text": "vendor sent back their redlines on the MSA, can you flag anything that looks off",
+    "expected_task_type": "contract_review"
+  },
+  {
+    "text": "client wants us to look over this supplier contract before they sign, anything scary in there",
+    "expected_task_type": "contract_review"
+  },
+  {
+    "text": "can you check this NDA the other side sent us against our usual playbook",
+    "expected_task_type": "contract_review"
+  },
+  {
+    "text": "diligence pile just landed, need someone to go through the lease agreements and flag termination rights",
+    "expected_task_type": "contract_review"
+  },
+  {
+    "text": "boss wants a risk summary on the SaaS agreement we're about to sign",
+    "expected_task_type": "contract_review"
+  },
+  {
+    "text": "what's the current rule in the 9th circuit on personal jurisdiction for online sellers",
+    "expected_task_type": "legal_research"
+  },
+  {
+    "text": "quick q - is there precedent for piercing the corporate veil in single-member LLC cases in DE",
+    "expected_task_type": "legal_research"
+  },
+  {
+    "text": "client asking whether non-competes are even enforceable in their state anymore, can you check",
+    "expected_task_type": "legal_research"
+  },
+  {
+    "text": "need to know if there's a statute covering this data breach notification timeline",
+    "expected_task_type": "legal_research"
+  },
+  {
+    "text": "before this brief goes out the door can you make sure the case cites actually say what we think they say",
+    "expected_task_type": "citation_checking"
+  },
+  {
+    "text": "double check that Smith v Jones quote on page 12, want to make sure it's accurate before filing",
+    "expected_task_type": "citation_checking"
+  },
+  {
+    "text": "partner wants every citation in this memo verified against the actual source before it goes to the client",
+    "expected_task_type": "citation_checking"
+  },
+  {
+    "text": "found a possible shepardize issue - one of the cases in our brief might've been overruled, can you verify before we file",
+    "expected_task_type": "citation_checking"
+  },
+  {
+    "text": "can you help me set up a spreadsheet to track our billable hours this month",
+    "expected_task_type": "general"
+  },
+  {
+    "text": "need to review the settlement agreement draft and also think through whether we should push back on the liability cap in negotiations",
+    "expected_task_type": "general"
+  }
+]

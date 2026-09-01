@@ -1,0 +1,2 @@
+QUESTION (OQ-122 — Ship an affordable, MCP-accessible statutes-and-regulations source):
+Close the "cheap, queryable statutes/regs" gap for one slice of law: pick a jurisdiction/corpus — options offered included a state's statutes, a regulatory code, or an EU instrument set — and solve the currency/hierarchy/cross-reference problem honestly, shipping a working retrieve-by-citation-plus-structured-query MCP server, not just a plan. A runnable retrieve-by-citation-plus-one-real-query slice on real primary law beats a plan to scrape everything.

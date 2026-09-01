@@ -1,0 +1,30 @@
+Content-Type: multipart/alternative; boundary="===corpus-boundary-0005==="
+MIME-Version: 1.0
+From: Sarah Chen <sarah.chen@meridiancole-law.example>
+To: David Osei <d.osei@harrowgate-partners.example>
+Subject: Revised closing schedule
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0005===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Revised closing schedule attached below - view in HTML.
+--===corpus-boundary-0005===
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<html><body>
+<p>Revised closing schedule attached below - note the escrow release
+milestones now span two workstreams (see merged cells).</p>
+<table border="1">
+<tr><th>Phase</th><th colspan="2">Workstream</th><th>Date</th></tr>
+<tr><td rowspan="2">Phase 1</td><td>Legal</td><td>Diligence</td><td>Aug 1</td></tr>
+<tr><td>Finance</td><td>Escrow setup</td><td>Aug 3</td></tr>
+<tr><td colspan="3">Phase 2 - Joint Closing Review</td><td>Aug 10</td></tr>
+<tr><td>Phase 3</td><td>Legal</td><td>Final signatures</td><td>Aug 15</td></tr>
+</table>
+</body></html>
+--===corpus-boundary-0005===--

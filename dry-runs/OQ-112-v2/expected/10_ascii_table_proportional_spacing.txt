@@ -1,0 +1,6 @@
+See comparison below (aligned in my email client, may not be aligned here):
+
+Item                 Draft 1      Draft 2
+Indemnification cap  $1,000,000   $2,500,000
+Term                 3 years      5 years
+Termination notice   30 days      60 days

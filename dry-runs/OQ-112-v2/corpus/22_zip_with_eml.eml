@@ -1,0 +1,29 @@
+From: alice@example.com
+To: paralegal@example.com
+Subject: Please file - zipped correspondence
+Date: Mon, 12 Feb 2024 21:00:00 -0500
+Message-ID: <f22@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1407025826176267293=="
+
+--===============1407025826176267293==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Please file the attached zipped correspondence in the case file.
+
+--===============1407025826176267293==
+Content-Type: application/zip
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="archive.zip"
+MIME-Version: 1.0
+
+UEsDBBQAAAAIADa+/FxNR5wi4AAAACoBAAASAAAAYXJjaGl2ZWRfZW1haWwuZW1sVY/NasMwEITv
+eool58hVTENb9YeWJoYcDIWG3NfSOlaxV2Ylh/Ttq1tbmMMwDPMxjcTJgsdL8K90xWkeqXJxUsdo
+Acfg6F/6uXRf5LKFN3FDuJAHF0UozZE9sSO1w0wWGglrMA/QUAe1qW+Lt8YUgTZbY1RLKeGZ9GFn
+4amvax2YSf6SXtR75Eyc9fF7LouZrvlmHjHwI7gBJVF+Xi251/er36Ygp55E79lFH/hs4a4LWbWH
+dq9PJClEtrCpjFIfJBAXAYfjuIY8EHhCPwYmCAkKi8ofDzlCi+UpbLaV+gFQSwECFAAUAAAACAA2
+vvxcTUecIuAAAAAqAQAAEgAAAAAAAAAAAAAAgAEAAAAAYXJjaGl2ZWRfZW1haWwuZW1sUEsFBgAA
+AAABAAEAQAAAABABAAAAAA==
+
+--===============1407025826176267293==--

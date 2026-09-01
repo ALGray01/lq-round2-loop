@@ -1,0 +1,13 @@
+loop.sh: loop 1 used 47 turns (47/196)
+loop.sh: loop 2 used 53 turns (100/196)
+loop.sh: loop 2 invocation exited 1 (subtype=error_max_turns) but returned a valid turn count (48) — treating as a normal cutoff, continuing
+loop.sh: loop 3 used 48 turns (148/196)
+loop.sh: loop 4 used 32 turns (180/196)
+loop.sh: loop 5 used 3 turns (183/196)
+loop.sh: loop 6 used 3 turns (186/196)
+loop.sh: loop 7 used 2 turns (188/196)
+loop.sh: loop 8 used 3 turns (191/196)
+loop.sh: loop 9 used 2 turns (193/196)
+loop.sh: loop 9 invocation exited 1 (subtype=error_max_turns) but returned a valid turn count (3) — treating as a normal cutoff, continuing
+loop.sh: loop 10 used 3 turns (196/196)
+loop.sh: budget exhausted (196/196 turns spent over 10 loop(s))

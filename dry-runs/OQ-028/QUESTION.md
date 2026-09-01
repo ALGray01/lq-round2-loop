@@ -1,0 +1,2 @@
+QUESTION (OQ-028 — Client-specific "mini brain" MCP):
+Lawyers want a "mini brain" per client — self-updating context from emails, notes, prior matters — queryable by their agent during work, optionally surfaceable to the client. Design the MCP. Cover: what gets ingested vs left out, permission model (lawyer-only vs lawyer-and-client), refresh cadence, conflict-of-interest isolation, and how it interacts with firm-wide knowledge. Ship the schema and one working endpoint.

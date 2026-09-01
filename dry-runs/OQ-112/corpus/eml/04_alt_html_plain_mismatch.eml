@@ -1,0 +1,31 @@
+Content-Type: multipart/alternative; boundary="===corpus-boundary-0002==="
+MIME-Version: 1.0
+From: Mike Torres <mike.torres@meridiancole-law.example>
+To: Blackstone Ridge Deal Team <team@blackstoneridge.example>
+Subject: Q3 payment schedule
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0002===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+This message requires an HTML-capable email client to view correctly.
+--===corpus-boundary-0002===
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+<html><body>
+<p>Team,</p>
+<p>Please see the payment schedule below for Q3. Note row 3 has been revised
+upward per the July 14 call.</p>
+<table border="1" cellpadding="4">
+<tr><th>Milestone</th><th>Amount</th><th>Status</th></tr>
+<tr><td>Milestone 1</td><td>$150,000</td><td>paid</td></tr>
+<tr><td>Milestone 2</td><td>$225,000</td><td>due Aug 15</td></tr>
+<tr><td>Milestone 3</td><td>$310,000</td><td>due Sep 30 (revised from $275,000)</td></tr>
+</table>
+<p>Regards,<br>Mike</p>
+</body></html>
+--===corpus-boundary-0002===--

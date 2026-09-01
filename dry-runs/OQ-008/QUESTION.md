@@ -1,0 +1,2 @@
+QUESTION (OQ-008 — Spec the legal-markdown standard):
+Markdown wasn't designed for legal documents — pages, footnotes, numbered schemes, court-format rules. Specify what an open legal-markdown standard would need to cover that existing standards (CommonMark, Pandoc, HTML+CSS) don't. Ship a reference implementation that handles one concrete workflow (e.g., contract drafting with margin numbering + footnotes + cross-references). Justify why none of the existing standards is sufficient.

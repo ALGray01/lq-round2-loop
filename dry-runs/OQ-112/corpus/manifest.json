@@ -1,0 +1,283 @@
+[
+  {
+    "id": "01",
+    "file": "01_deep_chain_5hop_mixed_quoting.eml",
+    "features": [
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "scenario": "5-hop reply/fwd chain mixing Outlook '-----Original Message-----' and Gmail 'On ... wrote:' quoting styles, plus a nested nested-quote forward at the bottom.",
+    "expected_latest_message": "Sarah,\n\nConfirmed - Blackstone Ridge accepts the revised indemnification cap at $2.5M. Please send the updated Schedule C for signature by EOD Friday.\n\nMike",
+    "notes": ""
+  },
+  {
+    "id": "02",
+    "file": "02_broken_quote_depth.eml",
+    "features": [
+      "F4"
+    ],
+    "scenario": "Quote-depth markers corrupted by repeated forwarding through different clients: inconsistent '>' counts, missing spaces, no blank line separating levels.",
+    "expected_latest_message": "All,\n\nAgreed, let's proceed on that basis. I'll circulate the final redline tonight.\n\nBest,\nDavid",
+    "notes": ""
+  },
+  {
+    "id": "03",
+    "file": "03_forwarded_as_rfc822_attachment.eml",
+    "features": [
+      "F5",
+      "F16"
+    ],
+    "scenario": "True forward: original message attached as a real message/rfc822 MIME part (not pasted into the body text).",
+    "expected_latest_message": "Priya - forwarding the original engagement letter you asked for, see attached. Let me know if you need anything else pulled from the file.",
+    "notes": ""
+  },
+  {
+    "id": "04",
+    "file": "04_alt_html_plain_mismatch.eml",
+    "features": [
+      "F6",
+      "F8"
+    ],
+    "scenario": "multipart/alternative: plain part is a stale 'view in HTML' stub, real content (incl. a pricing table) is only in the HTML part.",
+    "expected_latest_message": "Team,\n\nPlease see the payment schedule below for Q3. Note row 3 has been revised upward per the July 14 call.\n\nMilestone 1: $150,000 (paid)\nMilestone 2: $225,000 (due Aug 15)\nMilestone 3: $310,000 (due Sep 30) -- revised from $275,000\n\nRegards,\nMike",
+    "notes": "Extraction that trusts text/plain gets only the stub sentence."
+  },
+  {
+    "id": "05",
+    "file": "05_related_inline_images_plus_attachment.eml",
+    "features": [
+      "F7",
+      "F19"
+    ],
+    "scenario": "multipart/related inline cid: images inside multipart/mixed alongside a real attachment and a zero-byte 'corrupted' attachment.",
+    "expected_latest_message": "See the signature block comparison below (inline images) and the clean redline attached. The exhibit scan attachment looks corrupted on my end - can you resend?",
+    "notes": ""
+  },
+  {
+    "id": "06",
+    "file": "06_messy_html_table_nested.eml",
+    "features": [
+      "F8"
+    ],
+    "scenario": "HTML table with colspan/rowspan merged cells (closing schedule) in the HTML alternative part.",
+    "expected_latest_message": "Revised closing schedule attached below - note the escrow release milestones now span two workstreams (see merged cells).",
+    "notes": ""
+  },
+  {
+    "id": "07",
+    "file": "07_div_grid_table.eml",
+    "features": [
+      "F8"
+    ],
+    "scenario": "Structured data laid out as a CSS div-grid with zero <table> tags - table-aware HTML parsers find nothing to extract.",
+    "expected_latest_message": "Settlement allocation below (rendered as a grid, not a table) - please confirm the Class B figure before we file.",
+    "notes": ""
+  },
+  {
+    "id": "08",
+    "file": "08_tracked_change_red_text.eml",
+    "features": [
+      "F9"
+    ],
+    "scenario": "Inline redline via HTML <strike>/color:red spans ('see amended in red below') rather than real Word track-changes.",
+    "expected_latest_message": "Please see amended clause in red below - we've capped liquidated damages at 10% of contract value instead of the original 15%.",
+    "notes": ""
+  },
+  {
+    "id": "09",
+    "file": "09_bracket_annotation_plaintext.eml",
+    "features": [
+      "F9",
+      "F10"
+    ],
+    "scenario": "Plain-text-only message (no HTML part) using a bracket [deleted:]/[inserted:] convention as the only redline signal.",
+    "expected_latest_message": "Attached my comments inline using brackets since I'm on mobile and can't do track changes right now:\n\nClause 4.1: Tenant shall pay a security deposit of [deleted: $10,000] [inserted: $12,500] within 5 business days of execution.",
+    "notes": ""
+  },
+  {
+    "id": "10",
+    "file": "10_mixed_encoding_subject.eml",
+    "features": [
+      "F11",
+      "F14"
+    ],
+    "scenario": "RFC 2047 encoded-word Subject and From display-name in ISO-8859-1, body declared and encoded as UTF-8 with accented French legal text.",
+    "expected_latest_message": "Bonjour Sarah,\n\nVeuillez trouver ci-joint la clause révisée concernant la résiliation anticipée du bail commercial. Merci de confirmer votre accord avant vendredi.\n\nCordialement,\nÉlodie",
+    "notes": "Raw subject text: 'Bail commercial - clause de résiliation révisée'"
+  },
+  {
+    "id": "11",
+    "file": "11_qp_soft_break_multibyte.eml",
+    "features": [
+      "F11",
+      "F12"
+    ],
+    "scenario": "Quoted-printable body with a soft line break forced in the middle of a multi-byte UTF-8 sequence (the euro sign), so a naive per-line QP decode step corrupts the character.",
+    "expected_latest_message": "Total due: 1.250,00 € (incl. VAT) – please confirm receipt of funds.",
+    "notes": ""
+  },
+  {
+    "id": "12",
+    "file": "12_mislabeled_charset_mojibake.eml",
+    "features": [
+      "F13"
+    ],
+    "scenario": "Header declares charset=us-ascii but the body contains raw windows-1252 high bytes (curly quotes/en-dash from a Word paste) - decoding per the declared charset raises or mangles.",
+    "expected_latest_message": "Client’s counsel confirmed “no objection” to the amended schedule – see redline attached.",
+    "notes": ""
+  },
+  {
+    "id": "13",
+    "file": "13_mixed_cte_parts.eml",
+    "features": [
+      "F12"
+    ],
+    "scenario": "multipart/alternative where the three equivalent parts use base64, quoted-printable and 7bit Content-Transfer-Encoding respectively - a parser hardcoded to one decode path breaks on the others.",
+    "expected_latest_message": "Three copies of the same notice below in different transport encodings - use whichever your client renders. Final version: escrow release approved for $480,000.",
+    "notes": ""
+  },
+  {
+    "id": "14",
+    "file": "14_huge_cc_list_folded_headers.eml",
+    "features": [
+      "F14"
+    ],
+    "scenario": "38-recipient Cc list folded across many header continuation lines, including RFC 2047-encoded non-ASCII display names.",
+    "expected_latest_message": "All parties copied for the record - closing is confirmed for August 15 at 10am. Wire instructions to follow under separate cover.",
+    "notes": ""
+  },
+  {
+    "id": "15",
+    "file": "15_zero_width_bom_body.eml",
+    "features": [
+      "F15"
+    ],
+    "scenario": "UTF-8 BOM at the start of the raw file plus zero-width spaces and curly quotes/em-dash embedded in the body text (typical of a Word copy-paste).",
+    "expected_latest_message": "Per our call, the “final” version of Exhibit A is attached—please sign and return by Friday.",
+    "notes": "expected_latest_message has zero-width spaces removed; the raw file's body retains them for the parser to trip on. Verified separately: stdlib email.message_from_bytes() on this file returns m.keys() == [] and a MissingHeaderBodySeparatorDefect - the leading BOM makes the 'From:' line fail header-line matching, so the parser concludes there are NO headers at all and dumps the entire header block + body into get_payload() as one unparsed blob. From/Subject/etc. are all lost, not just body text."
+  },
+  {
+    "id": "16",
+    "file": "16_rfc2231_filename_attachment.eml",
+    "features": [
+      "F17"
+    ],
+    "scenario": "Attachment filename uses RFC 2231 extended parameter encoding (filename*=UTF-8''...) for a non-ASCII German filename.",
+    "expected_latest_message": "Anbei der Änderungsvertrag zur Unterschrift. Bitte bis Freitag zurücksenden.",
+    "notes": ""
+  },
+  {
+    "id": "17",
+    "file": "17_mislabeled_attachment_type.eml",
+    "features": [
+      "F18"
+    ],
+    "scenario": "'signed_contract.docx' is declared application/octet-stream (needs sniffing to recognize as a ZIP/OOXML file), and 'id_scan.pdf' is declared application/pdf but its magic bytes (MZ) are an executable, not a PDF (%PDF) - a content-sniffing, security-relevant mismatch.",
+    "expected_latest_message": "Two files attached: the signed contract and the scanned ID as requested.",
+    "notes": ""
+  },
+  {
+    "id": "18",
+    "file": "18_nested_eml_in_eml.eml",
+    "features": [
+      "F16",
+      "F20"
+    ],
+    "scenario": "Two levels of nesting: outer message has an attached .eml (Mike's forward) which itself has a further attached .eml (Linda's original) carrying its own attachment.",
+    "expected_latest_message": "Full history attached for the file - this is the complete chain including Linda's original attachment.",
+    "notes": ""
+  },
+  {
+    "id": "19",
+    "file": "19_corrupted_truncated_attachment.eml",
+    "features": [
+      "F19"
+    ],
+    "scenario": "Attachment truncated to a 9-byte PDF header stub (simulating a failed export) - opening/parsing it should fail gracefully without aborting extraction of the rest of the message.",
+    "expected_latest_message": "Attaching the exhibit scan - let me know if it doesn't open, our scanner has been acting up.",
+    "notes": ""
+  },
+  {
+    "id": "20",
+    "file": "20_top_posted_simple.eml",
+    "features": [
+      "F1"
+    ],
+    "scenario": "Simple single-hop top-posted reply with a large signature block and legal disclaimer footer - the easy control case (closest to Enron-style clean plaintext) to confirm the harness passes when the file genuinely is simple.",
+    "expected_latest_message": "Works for me, please proceed.",
+    "notes": ""
+  },
+  {
+    "id": "21",
+    "file": "21_interleaved_reply_deep.eml",
+    "features": [
+      "F3"
+    ],
+    "scenario": "Point-by-point interleaved reply: new [MT]-tagged content sits directly between blocks of quoted original text, defeating 'everything after the first > is history' heuristics.",
+    "expected_latest_message": "See my responses inline below marked [MT]:\n\n> 1. Confirm the closing date of August 15.\n[MT] Confirmed.\n\n> 2. Confirm wire instructions go to the escrow account, not directly to seller.\n[MT] Confirmed - escrow account only, per Section 3.\n\n> 3. Any outstanding diligence items?\n[MT] Just the environmental report, expected Wednesday.",
+    "notes": ""
+  },
+  {
+    "id": "22",
+    "file": "22_apple_mail_style_quote.eml",
+    "features": [
+      "F2"
+    ],
+    "scenario": "Apple Mail-style quoting ('On <date>, at <time>, X wrote:') with a distinct date format from the Outlook/Gmail styles used elsewhere in the corpus.",
+    "expected_latest_message": "Sounds good - I'll have the paralegal pull those records this afternoon.",
+    "notes": ""
+  },
+  {
+    "id": "23",
+    "file": "23_plaintext_only_clean_control.eml",
+    "features": [
+      "control"
+    ],
+    "scenario": "Clean single-message plain text, no chain, no HTML, no attachments - the Enron-style easy case, included as a control to show the harness isn't failing on everything.",
+    "expected_latest_message": "Hi team,\n\nJust confirming receipt of the signed documents. We'll file with the county clerk tomorrow morning and send confirmation once recorded.\n\nThanks,\nLinda",
+    "notes": ""
+  },
+  {
+    "id": "24",
+    "file": "24_html_only_no_plain_part.eml",
+    "features": [
+      "F6"
+    ],
+    "scenario": "Single-part text/html message with no multipart/alternative and no text/plain fallback at all - code that assumes a plain part always exists gets nothing.",
+    "expected_latest_message": "Please review the attached amendment before our 2pm call. Key change highlighted below.\n\nSection 5(b) now requires 30 days' notice instead of 15.",
+    "notes": ""
+  },
+  {
+    "id": "25",
+    "file": "msg/25_native_msg_basic.msg",
+    "features": [
+      "F21"
+    ],
+    "scenario": "Plain native .msg (OLE/CFB binary container, MS-OXMSG property streams) - no MIME headers or boundaries exist anywhere in the file, unlike every .eml in this corpus.",
+    "expected_latest_message": "Confirming the wire went out this morning for the escrow release - $480,000 to the account on file. Let me know once your side reconciles.",
+    "notes": "Hand-built with cfb_writer.py/msg_writer.py (no pip package for writing .msg exists); structural correctness verified by round-tripping through the independent extract-msg library, not just self-parsed."
+  },
+  {
+    "id": "26",
+    "file": "msg/26_native_msg_rtf_only_body.msg",
+    "features": [
+      "F21",
+      "F22",
+      "F9"
+    ],
+    "scenario": "Native .msg with NO PR_BODY plain-text property set at all (empty string) - the only body representation is PR_RTF_COMPRESSED, the historic Outlook default. A plain/HTML-only body reader gets nothing; extracting the text (and the red/bold tracked-change markup) requires RTF decompression + de-escaping.",
+    "expected_latest_message": "Please see amended clause in red below - liquidated damages capped at 10% of contract value, down from the original 15%.",
+    "notes": "RTF uses the uncompressed 'MELA' variant of the [MS-OXRTFCP] compressed-RTF container (real LZFu compression not implemented) - still a spec-valid CompressedRTFStream, verified readable via extract-msg."
+  },
+  {
+    "id": "27",
+    "file": "msg/27_native_msg_with_attachment.msg",
+    "features": [
+      "F21"
+    ],
+    "scenario": "Native .msg with a real binary attachment stored as an OLE sub-storage (__attach_version1.0_#00000000) rather than a MIME part - attachment discovery code written only for multipart MIME walking finds nothing here.",
+    "expected_latest_message": "Anbei die unterschriebene Vollmacht als Anhang - bitte bis Freitag bestätigen.",
+    "notes": ""
+  }
+]

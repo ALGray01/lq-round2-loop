@@ -1,0 +1,73 @@
+{
+  "name": "query_client_brain",
+  "description": "Query a single client's self-updating context store (emails, notes, prior-matter documents) plus, optionally, firm-wide knowledge. Enforces per-client access grants, conflict-of-interest isolation, and visibility (lawyer_only vs lawyer_and_client) before returning anything.",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "requester_user_id": {
+        "type": "string",
+        "description": "Caller's user_id. Determines role (lawyer/paralegal/client/admin) and, via client_access, whether they may see this client's brain at all."
+      },
+      "client_id": {
+        "type": "string",
+        "description": "The client whose mini-brain is being queried."
+      },
+      "query": {
+        "type": "string",
+        "description": "Free-text query. Matched against ingested document title/body.",
+        "minLength": 1
+      },
+      "include_firm_wide": {
+        "type": "boolean",
+        "description": "Whether to also search firm-wide (non-client-confidential) knowledge and return it as a clearly separate block.",
+        "default": true
+      },
+      "max_results": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 50,
+        "default": 10
+      }
+    },
+    "required": ["requester_user_id", "client_id", "query"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "allowed": { "type": "boolean" },
+      "denial_reason": {
+        "type": ["string", "null"],
+        "description": "Populated only when allowed=false. One of: unknown_user, unknown_client, no_active_grant, conflict_wall."
+      },
+      "client_results": {
+        "type": "array",
+        "description": "Matches from this client's own mini-brain, already filtered by visibility for the requester's role. Empty (not omitted) when allowed=false.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "doc_id": { "type": "string" },
+            "source_type": { "type": "string" },
+            "visibility": { "type": "string", "enum": ["lawyer_only", "lawyer_and_client"] },
+            "matter_id": { "type": ["string", "null"] },
+            "title": { "type": "string" },
+            "snippet": { "type": "string" }
+          }
+        }
+      },
+      "firm_wide_results": {
+        "type": "array",
+        "description": "Matches from firm-wide knowledge, kept in a separate array so a caller can never mistake generic firm knowledge for this client's confidential context.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "doc_id": { "type": "string" },
+            "title": { "type": "string" },
+            "snippet": { "type": "string" }
+          }
+        }
+      }
+    },
+    "required": ["allowed", "client_results", "firm_wide_results"]
+  }
+}

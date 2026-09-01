@@ -1,0 +1,26 @@
+Candidate: multimodal vision (Claude Sonnet 5), run as an independent, context-isolated
+subagent that was given ONLY the cropped image files below and no other information about
+this project (see scripts/README note on methodology for why this independence matters).
+
+Source crops: output/deed_line1_2.png, output/deed_line3_5.png
+(same region as ground_truth/deed_lines_1_6.txt, transcribed blind/independently)
+
+=== deed_line1_2.png ===
+Line 1: This Indenture Made the Eighteenth Day of Novr: in the Year of our Lord, One Thousand Seven Hundred & fifty five
+Line 2 (partial, cut off at bottom of crop): [illegible - small trailing script] the Last Will & Testament of Benjamin Bordin the Younger late of [Augusta]
+
+Confidence note: Line 1 is clear and confident; the tail end of line 2 is cut off by the crop
+boundary and the county name at the right edge is only partially legible.
+
+=== deed_line3_5.png ===
+Line 1 (top, cut off - overlap with previous crop): This Indenture Made the [Eighteenth] Day of [Novr:] ... [illegible, cropped]
+Line 2: & Testament of Benjamin Bordin the Younger late of [Augusta]
+Line 3: Between Archibald Alexander, Executor, & Magdalen Bowyer Relict & Exectrix of the Last Will & Testament of Benjamin Bordin the Younger [late of] [illegible]
+Line 4: county in the Collony of Virginia Gentleman Deceased. Who was the Eldest Son & Heir at Law, & Also the only Acting Executor of Benjamin Bordin the
+Line 5: Elder, late of Orange County in the Collony of Virginia Aforesd. Gentleman Deceased of the one part, And Jacob Gray, Plantationer - of the said
+Line 6 (bottom, partial): county in the Collony of Virginia [illegible] of the other part, Whereas thesd. Benjamin Bordin the Elder in his Life-time & at the time of his Death was Seized
+Line 7 (very bottom, cut off): [illegible] in the Same Collony of the other part, [illegible] being in thesd. Collony of Virginia [illegible] in the Province of New Jersey, And
+
+Confidence note: Middle lines (3-6) are read with moderate-to-high confidence; the topmost line
+(overlap) and bottommost line are cut off by crop edges and contain several genuinely illegible
+words rather than guesses.

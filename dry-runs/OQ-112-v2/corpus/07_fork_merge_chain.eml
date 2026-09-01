@@ -1,0 +1,18 @@
+From: alice@example.com
+To: carol@example.com, david@example.com
+Subject: Re: Effective date (consolidated)
+Date: Mon, 12 Feb 2024 09:00:00 -0500
+Message-ID: <f07@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Consolidating both threads below before the call at 3pm.
+
+> Branch A (from Carol, replying to the 9am draft):
+> Fine by me, just fix the date in section 1.
+>
+> Branch B (from David, replying to the same 9am draft):
+> I'd rather we keep the original date and note the exception in section 1.
+>
+> Original 9am draft:
+> Proposing to shift the effective date to March 1.

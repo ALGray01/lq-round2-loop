@@ -1,0 +1,61 @@
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0014==="
+MIME-Version: 1.0
+From: Sarah Chen <sarah.chen@meridiancole-law.example>
+To: David Osei <d.osei@harrowgate-partners.example>
+Subject: Fwd: Fwd: Draft NDA for review
+Date: Tue, 28 Jul 2026 00:53:20 -0000
+
+--===corpus-boundary-0014===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Full history attached for the file - this is the complete chain including Linda's original attachment.
+--===corpus-boundary-0014===
+Content-Type: message/rfc822
+MIME-Version: 1.0
+
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0013==="
+MIME-Version: 1.0
+From: Mike Torres <mike.torres@meridiancole-law.example>
+To: Sarah Chen <sarah.chen@meridiancole-law.example>
+Subject: Fwd: Draft NDA for review
+Date: Tue, 02 Jun 2026 14:30:00 +0000
+
+--===corpus-boundary-0013===
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+Forwarding Linda's draft NDA, my comments in the redline.
+--===corpus-boundary-0013===
+Content-Type: message/rfc822
+MIME-Version: 1.0
+
+From: Linda Vance <l.vance@meridiancole-law.example>
+To: Mike Torres <mike.torres@meridiancole-law.example>
+Subject: Draft NDA for review
+Date: Mon, 01 Jun 2026 09:00:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===corpus-boundary-0012==="
+
+--===corpus-boundary-0012===
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Attached draft NDA, please review redline before Thursday.
+
+--===corpus-boundary-0012===
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="NDA_draft_v1.docx"
+MIME-Version: 1.0
+
+TkRBIGRyYWZ0IGJ5dGVzIGhlcmVOREEgZHJhZnQgYnl0ZXMgaGVyZU5EQSBkcmFmdCBieXRlcyBo
+ZXJlTkRBIGRyYWZ0IGJ5dGVzIGhlcmVOREEgZHJhZnQgYnl0ZXMgaGVyZQ==
+
+--===corpus-boundary-0012===--
+
+--===corpus-boundary-0013===--
+
+--===corpus-boundary-0014===--

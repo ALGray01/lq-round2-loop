@@ -1,0 +1,22 @@
+[
+  {"id": 1, "text": "Draft the argument section for our motion to dismiss.", "expected_task_type": "litigation_reasoning"},
+  {"id": 2, "text": "We need a rebuttal to opposing counsel's summary judgment motion.", "expected_task_type": "litigation_reasoning"},
+  {"id": 3, "text": "What's our likelihood of success if we move to compel discovery here?", "expected_task_type": "litigation_reasoning"},
+  {"id": 4, "text": "Please draft a non-disclosure agreement for our new contractor.", "expected_task_type": "transactional_drafting"},
+  {"id": 5, "text": "Put together a first draft of an employment agreement for our new VP of Sales.", "expected_task_type": "transactional_drafting"},
+  {"id": 6, "text": "I need contract language for an indemnification clause for the vendor MSA.", "expected_task_type": "transactional_drafting"},
+  {"id": 7, "text": "Can you review this contract and flag risky clauses before we send it back?", "expected_task_type": "contract_review"},
+  {"id": 8, "text": "Take a look at the attached NDA and tell me if anything looks off before we sign.", "expected_task_type": "contract_review", "note": "ambiguous case: 'nda' keyword also fires transactional_drafting; correctly resolved by tie-break priority toward contract_review (see eval_report.json) but only because of the tie-break rule, not a confident match"},
+  {"id": 9, "text": "Redline this MSA and add comments on anything that needs negotiation.", "expected_task_type": "contract_review"},
+  {"id": 10, "text": "We're about to sign this lease -- can you check it for anything unusual?", "expected_task_type": "contract_review", "expected_stakes": "medium"},
+  {"id": 11, "text": "What is the standard for piercing the corporate veil in Delaware?", "expected_task_type": "legal_research"},
+  {"id": 12, "text": "Can you research whether non-competes are enforceable in California?", "expected_task_type": "legal_research"},
+  {"id": 13, "text": "Summarize the current case law on trade secret misappropriation.", "expected_task_type": "legal_research"},
+  {"id": 14, "text": "I have a general legal question about how courts treat force majeure clauses during pandemics.", "expected_task_type": "legal_research"},
+  {"id": 15, "text": "Please verify the citation: 410 U.S. 113 (1973), Bluebook format.", "expected_task_type": "citation_check"},
+  {"id": 16, "text": "Can you cite check this brief before we file it?", "expected_task_type": "citation_check"},
+  {"id": 17, "text": "Is Roe v. Wade still good law after Dobbs?", "expected_task_type": "citation_check", "note": "hard case: real phrasing of 'is X still good law' doesn't match our fixed keyword template; classifier is expected to plausibly miss this one"},
+  {"id": 18, "text": "Draft a term sheet for the Series A round.", "expected_task_type": "transactional_drafting"},
+  {"id": 19, "text": "This is the final version to be filed with the court tomorrow -- I need the argument on the motion to dismiss.", "expected_task_type": "litigation_reasoning", "expected_stakes": "high"},
+  {"id": 20, "text": "This memo needs to be finalized so we can send to the client -- it covers our research on the licensing question.", "expected_task_type": "legal_research", "expected_stakes": "medium"}
+]

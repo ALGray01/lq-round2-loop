@@ -1,0 +1,4 @@
+init_seconds=2.03
+infer_seconds=89.72
+num_lines=24
+avg_confidence=0.7517

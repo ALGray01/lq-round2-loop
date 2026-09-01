@@ -1,0 +1,2 @@
+QUESTION (OQ-010 — Working OCR pipeline for hard legal scans):
+Estate planners, litigators, and anyone working with archived docs hit OCR walls — low-quality scans, handwriting, multi-column layouts, redactions. Test at least three candidates (Docling, PaddleOCR, Chandra 2, multimodal vision, or others you justify) on a real hard document. Publish what worked, what failed, and a recommended pipeline including preprocessing. Concrete recipe over generic comparison.

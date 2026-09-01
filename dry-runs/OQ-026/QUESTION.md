@@ -1,0 +1,2 @@
+QUESTION (OQ-026 — Methodology layer for legal data before the LLM sees it):
+Before an LLM ever sees legal data, what methodology layer should encode it? Precedent relations, interpretive principles, authority weighting, doctrinal hierarchy. Isaacus/Kanon handles entity extraction; the methodology layer remains unbuilt. Propose the schema and demonstrate it on one bounded area of law (your choice — contract interpretation, statutory construction, anything specific).

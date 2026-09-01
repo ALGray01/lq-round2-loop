@@ -1,0 +1,142 @@
+{
+  "front_matter": {
+    "title": "Master Services Agreement",
+    "parties": [
+      "Acme Corp, a Delaware corporation (\"Provider\")",
+      "Globex Inc, a New York corporation (\"Client\")"
+    ],
+    "effective_date": "2026-01-15"
+  },
+  "headings": {
+    "definitions": {
+      "level": 1,
+      "text": "Definitions",
+      "local_label": "1",
+      "full_path": "Section 1",
+      "line_no": 9
+    },
+    "sec-confidential-info": {
+      "level": 1,
+      "text": "Confidential Information",
+      "local_label": "2",
+      "full_path": "Section 2",
+      "line_no": 17
+    },
+    "obligations": {
+      "level": 2,
+      "text": "Obligations",
+      "local_label": "2.1",
+      "full_path": "Section 2.1",
+      "line_no": 19
+    },
+    "sec-exclusions": {
+      "level": 2,
+      "text": "Exclusions",
+      "local_label": "2.2",
+      "full_path": "Section 2.2",
+      "line_no": 23
+    },
+    "publicly-available-information": {
+      "level": 3,
+      "text": "Publicly available information",
+      "local_label": "(a)",
+      "full_path": "Section 2.2(a)",
+      "line_no": 25
+    },
+    "independently-developed-information": {
+      "level": 3,
+      "text": "Independently developed information",
+      "local_label": "(b)",
+      "full_path": "Section 2.2(b)",
+      "line_no": 29
+    },
+    "burden-of-proof": {
+      "level": 4,
+      "text": "Burden of proof",
+      "local_label": "(i)",
+      "full_path": "Section 2.2(b)(i)",
+      "line_no": 33
+    },
+    "term-and-termination": {
+      "level": 1,
+      "text": "Term and Termination",
+      "local_label": "3",
+      "full_path": "Section 3",
+      "line_no": 37
+    },
+    "term": {
+      "level": 2,
+      "text": "Term",
+      "local_label": "3.1",
+      "full_path": "Section 3.1",
+      "line_no": 39
+    },
+    "sec-termination-convenience": {
+      "level": 2,
+      "text": "Termination for convenience",
+      "local_label": "3.2",
+      "full_path": "Section 3.2",
+      "line_no": 43
+    },
+    "sec-termination-cause": {
+      "level": 2,
+      "text": "Termination for cause",
+      "local_label": "3.3",
+      "full_path": "Section 3.3",
+      "line_no": 47
+    },
+    "sec-amendment": {
+      "level": 1,
+      "text": "Amendment",
+      "local_label": "4",
+      "full_path": "Section 4",
+      "line_no": 51
+    },
+    "governing-law": {
+      "level": 1,
+      "text": "Governing Law",
+      "local_label": "5",
+      "full_path": "Section 5",
+      "line_no": 55
+    }
+  },
+  "defined_terms": {
+    "Agreement": {
+      "definition": "this Master Services Agreement, including all Exhibits and Schedules attached hereto",
+      "anchor_id": "def-agreement",
+      "line_no": 11,
+      "used": true
+    },
+    "Confidential Information": {
+      "definition": "non-public information disclosed by either party in connection with this Agreement",
+      "anchor_id": "def-confidential-information",
+      "line_no": 13,
+      "used": true
+    },
+    "Services": {
+      "definition": "the services described in each Statement of Work",
+      "anchor_id": "def-services",
+      "line_no": 15,
+      "used": false
+    }
+  },
+  "footnotes": {
+    "care-standard": {
+      "number": 1,
+      "line_no": 61,
+      "referenced": true
+    },
+    "burden": {
+      "number": 2,
+      "line_no": 63,
+      "referenced": true
+    }
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "message": "defined term 'Services' is never referenced",
+      "line_no": 15
+    }
+  ]
+}

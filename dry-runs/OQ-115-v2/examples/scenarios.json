@@ -1,0 +1,14 @@
+[
+  {"label": "internal research memo", "text": "Research case law on adverse possession for an internal memo to the partner, low priority", "stakes": "low"},
+  {"label": "client-facing research memo", "text": "Write a research memo on whether our client's use case triggers CFAA liability, to send to the client", "stakes": "medium"},
+  {"label": "vendor NDA, internal draft", "text": "Draft an NDA for a new vendor relationship, first pass for internal review", "stakes": "low"},
+  {"label": "merger agreement, about to be signed", "text": "Draft the final merger agreement closing docs, this will be executed by both parties tomorrow", "stakes": "high"},
+  {"label": "contract review, due diligence pass", "text": "Review this contract and flag risky clauses against our playbook as part of due diligence", "stakes": "medium"},
+  {"label": "contract review, before signature", "text": "Review the agreement and its liability cap and indemnification clause before the client signs", "stakes": "high"},
+  {"label": "motion draft, internal strategy discussion", "text": "Draft a motion for summary judgment outline to discuss trial strategy internally first", "stakes": "low"},
+  {"label": "motion, about to be filed", "text": "Finalize the brief and argument section for the motion we are filing with the court tomorrow", "stakes": "high"},
+  {"label": "citation check, internal draft", "text": "Check this citation and confirm pincite in our internal draft before it goes further", "stakes": "low"},
+  {"label": "citation check, filing", "text": "Verify this citation before we file the reply brief with the court", "stakes": "high"},
+  {"label": "ambiguous / off-taxonomy request", "text": "What's a good name for our office holiday party this year?", "stakes": "low"},
+  {"label": "large discovery contract review", "text": "Review this contract set for risk as part of due diligence, it is a very large set of documents", "stakes": "medium", "min_context_tokens": 500000}
+]

@@ -1,0 +1,3 @@
+init_seconds=0.06
+infer_seconds=24.20
+chars=162

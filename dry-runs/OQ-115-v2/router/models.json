@@ -1,0 +1,66 @@
+{
+  "as_of": "2026-07-29",
+  "note": "Capability tiers are 1 (weak) to 5 (strong), assigned by informed judgment from public model documentation and benchmark reporting, not from a live eval run in this repo -- see README Limitations. Costs are illustrative blended USD per 1M tokens (rough average of input/output list price) and will drift; treat them as ORDER-OF-MAGNITUDE placeholders to be replaced with current provider pricing before any real spend decision is automated on top of this router.",
+  "models": [
+    {
+      "id": "claude-opus",
+      "provider": "anthropic",
+      "reasoning": 5,
+      "drafting": 5,
+      "factual_accuracy": 4,
+      "speed": 2,
+      "context_window_tokens": 200000,
+      "cost_per_1m_blended_usd": 30.0
+    },
+    {
+      "id": "claude-sonnet",
+      "provider": "anthropic",
+      "reasoning": 4,
+      "drafting": 5,
+      "factual_accuracy": 4,
+      "speed": 4,
+      "context_window_tokens": 200000,
+      "cost_per_1m_blended_usd": 6.0
+    },
+    {
+      "id": "claude-haiku",
+      "provider": "anthropic",
+      "reasoning": 2,
+      "drafting": 3,
+      "factual_accuracy": 3,
+      "speed": 5,
+      "context_window_tokens": 200000,
+      "cost_per_1m_blended_usd": 0.8
+    },
+    {
+      "id": "gpt-frontier",
+      "provider": "openai",
+      "reasoning": 5,
+      "drafting": 4,
+      "factual_accuracy": 4,
+      "speed": 2,
+      "context_window_tokens": 200000,
+      "cost_per_1m_blended_usd": 25.0
+    },
+    {
+      "id": "gpt-mini",
+      "provider": "openai",
+      "reasoning": 2,
+      "drafting": 3,
+      "factual_accuracy": 3,
+      "speed": 5,
+      "context_window_tokens": 128000,
+      "cost_per_1m_blended_usd": 0.5
+    },
+    {
+      "id": "gemini-pro",
+      "provider": "google",
+      "reasoning": 4,
+      "drafting": 4,
+      "factual_accuracy": 3,
+      "speed": 3,
+      "context_window_tokens": 1000000,
+      "cost_per_1m_blended_usd": 5.0
+    }
+  ]
+}

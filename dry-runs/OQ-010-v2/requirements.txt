@@ -1,0 +1,8 @@
+pillow
+opencv-python
+numpy
+pymupdf
+rapidocr-onnxruntime
+easyocr
+paddlepaddle
+paddleocr

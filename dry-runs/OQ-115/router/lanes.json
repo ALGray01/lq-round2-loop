@@ -1,0 +1,29 @@
+{
+  "claude_subscription": {
+    "provider": "anthropic",
+    "tiers": {
+      "fast": {"model": "claude-haiku-4-5-20251001", "daily_cap_tokens": 300000},
+      "balanced": {"model": "claude-sonnet-5", "daily_cap_tokens": 150000},
+      "frontier": {"model": "claude-opus-5", "daily_cap_tokens": 40000}
+    },
+    "note": "The only lane with a real backend wired up in this build (router/backends.py:AnthropicBackend) -- used if ANTHROPIC_API_KEY is set in the environment. Per-tier caps are smaller for the frontier tier, mirroring how real subscription products meter their scarcest/most expensive model more tightly than the cheap one."
+  },
+  "openai_subscription": {
+    "provider": "openai",
+    "tiers": {
+      "fast": {"model": "gpt-4o-mini", "daily_cap_tokens": 250000},
+      "balanced": {"model": "gpt-4.1", "daily_cap_tokens": 120000},
+      "frontier": {"model": "o1", "daily_cap_tokens": 30000}
+    },
+    "note": "Illustrative placeholder model names for whatever fast/balanced/frontier tier this subscription currently exposes. No real backend wired up (see README); always uses MockBackend."
+  },
+  "gemini_subscription": {
+    "provider": "google",
+    "tiers": {
+      "fast": {"model": "gemini-2.0-flash", "daily_cap_tokens": 250000},
+      "balanced": {"model": "gemini-2.5-pro", "daily_cap_tokens": 120000},
+      "frontier": {"model": "gemini-2.5-pro", "daily_cap_tokens": 30000}
+    },
+    "note": "Illustrative placeholder model names. No real backend wired up (see README); always uses MockBackend."
+  }
+}

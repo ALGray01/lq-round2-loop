@@ -1,0 +1,14 @@
+From: billing@example.com
+To: client@example.com
+Subject: Updated fee schedule
+Date: Mon, 12 Feb 2024 13:00:00 -0500
+Message-ID: <f08@example.com>
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<p>Updated fee schedule below, please confirm.</p><table border=3D1 cellspaci=
+ng=3D0 cellpadding=3D4><tr><th colspan=3D2>Phase</th><th>Fee</th></tr><tr><td=
+ rowspan=3D2>Discovery</td><td>Document review</td><td>$12,000</td></tr><tr><=
+td>Depositions</td><td>$18,500</td></tr><tr><td colspan=3D2>Trial prep (flat =
+fee)</td><td>$25,000</td></tr></table>

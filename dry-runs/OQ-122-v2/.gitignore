@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.stackdump
+.pytest_cache/
+# reserve-phase subagent scratch files, never part of the deliverable
+# (globs cover every audit round: _attacker_, _attacker2_, _skeptic2_, etc.)
+_attacker*
+_skeptic*
+_baseline*
+# Full title-16 structure dump (~750KB) is only needed once, to rebuild the
+# corpus; it's regenerable via `python scripts/fetch_ecfr.py` and isn't part
+# of the actual deliverable data (that's data/corpus.json + the raw part XML).
+data/raw/structure_*.json
